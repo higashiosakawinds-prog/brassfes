@@ -35,12 +35,12 @@ const SHOP = {
   venue: "大阪府立中央図書館 ライティホール",
   host: "東大阪吹奏楽団",
 
-  // 掲載プラン。cells は A4 を16マスに分けたうちの何マス分か（図の塗りつぶしに使う）
+  // 掲載プラン。size は A4 を 4×4 マスに分けたときの「よこ×たて」のマス数（図の塗りつぶしに使う）
   plans: [
-    { name: "1ページ",  price: 10000, cells: 16, note: "写真・紹介文・地図・クーポンをたっぷり。お店の魅力をまるごと伝えたい方に", tag: "いちばん目立つ" },
-    { name: "1/2ページ", price: 5000,  cells: 8,  note: "写真と紹介文、クーポンもしっかり載せられるサイズ" },
-    { name: "1/4ページ", price: 3000,  cells: 4,  note: "写真1枚＋ひとこと紹介＋クーポン。はじめての方にもおすすめ", tag: "おすすめ" },
-    { name: "クーポンのみ", price: 1000, cells: 1, note: "クーポンブックのページに、店名とクーポンを掲載" }
+    { name: "1ページ",  price: 10000, size: [4, 4], note: "写真・紹介文・地図・クーポンをたっぷり。お店の魅力をまるごと伝えたい方に", tag: "いちばん目立つ" },
+    { name: "1/2ページ", price: 5000,  size: [4, 2], note: "写真と紹介文、クーポンもしっかり載せられるサイズ" },
+    { name: "1/4ページ", price: 3000,  size: [2, 2], note: "写真1枚＋ひとこと紹介＋クーポン。はじめての方にもおすすめ", tag: "おすすめ" },
+    { name: "クーポンのみ", price: 1000, size: [1, 1], note: "クーポンブックのページに、店名とクーポンを掲載" }
   ],
   // どのプランにも付いてくるもの
   allPlans: ["当日の来場者全員に配るパンフレットに掲載", "フェスタのWebサイトに、お店の名前・クーポン・リンクを掲載"],
@@ -315,7 +315,7 @@ document.querySelector(".hero .from b").textContent = yen(minPrice);
 $("planList").innerHTML = S.plans.map(p => `
   <div class="plan rv">
     ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
-    <div class="a4" aria-hidden="true">${Array.from({ length: 16 }, (_, k) => `<i class="${k < p.cells ? "on" : ""}" style="--k:${k}"></i>`).join("")}</div>
+    <div class="a4" aria-hidden="true">${Array.from({ length: 16 }, (_, k) => `<i class="${k % 4 < p.size[0] && Math.floor(k / 4) < p.size[1] ? "on" : ""}" style="--k:${k}"></i>`).join("")}</div>
     <h3>${p.name}</h3>
     <div class="price">${yen(p.price)}<small>（税込）</small></div>
     <p>${p.note}</p>
