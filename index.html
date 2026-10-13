@@ -110,6 +110,7 @@ const FESTA = {
     station: "荒本駅",        // 大きく見せる駅名
     distance: "400m",         // 大きく見せる距離
     walk: "徒歩約6分",
+    seats: "380席（車椅子席4席・親子室2室）",
     photo: "images/venue.webp",  // 会場の写真（空 "" なら出ません）
     mapQuery: "大阪府立中央図書館 ライティホール",   // 地図に表示する場所（Googleマップで検索する言葉）
     mapUrl: "https://maps.app.goo.gl/kAeZNDkgXrctFNdb9"  // 「Googleマップで開く」ボタンのリンク
@@ -120,8 +121,8 @@ const FESTA = {
     { q: "予約やチケットは必要ですか？", a: "不要です！入場無料なので、当日そのままお越しください。", fixed: true },
     { q: "途中で入ったり出たりできますか？", a: "曲と曲の間であれば出入りできます。", fixed: true },
     { q: "小さな子どもと一緒でも大丈夫？", a: "大歓迎です！ご家族みんなで楽しんでください。", fixed: true },
-    { q: "車椅子で行けますか？", a: "会場のライティホールには車椅子席があります。数に限りがあるため、くわしい使い方は決まりしだいお知らせします。", fixed: false },
-    { q: "赤ちゃん連れでも聴ける席はありますか？", a: "親子席があります。泣いてしまっても気にせず楽しめるよう、ご利用ください。くわしい使い方は決まりしだいお知らせします。", fixed: false },
+    { q: "車椅子で行けますか？", a: "会場のライティホールには車椅子席が4席あります。自由にご利用ください。", fixed: true },
+    { q: "赤ちゃん連れでも聴ける席はありますか？", a: "親子室が2室あります。お子さんが泣いてしまっても気にせず楽しめますので、自由にご利用ください。", fixed: true },
     { q: "車で行けますか？", a: "駐車場に限りがございますので、電車でのご来場をお勧めします！", fixed: true },
     { q: "クーポンはどこでもらえますか？", a: "当日、会場でお配りするパンフレットについています。", fixed: true }
   ],
@@ -819,6 +820,7 @@ $("infoList").innerHTML = `
   <dt>日時</dt><dd>${F.dateLong}<br>開場 ${F.open} ／ 開演 ${F.start}${F.timeNote ? `<br><small>${F.timeNote}</small>` : ""}</dd>
   <dt>会場</dt><dd>${F.venue.name}</dd>
   <dt>住所</dt><dd>${F.venue.address}</dd>
+  ${F.venue.seats ? `<dt>座席</dt><dd>${F.venue.seats}</dd>` : ""}
   <dt>電車</dt><dd>${F.venue.access}</dd>
   <dt>料金</dt><dd>${F.price}${F.notice ? "（予定）" : ""}</dd>
   <dt>主催</dt><dd>${F.host}</dd>`;
