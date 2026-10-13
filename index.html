@@ -59,7 +59,7 @@ const FESTA = {
 
   // 出演団体（増えたらコピーして足すだけ。photo は丸アイコンの画像。団体ロゴや写真に変えてもOK）
   groups: [
-    { name: "東大阪吹奏楽団", from: "東大阪市", color: "navy", chara: "drum", says: "地元でめーっちゃ待ってるで！", photo: "images/face-clarinet.webp", link: "",
+    { name: "東大阪吹奏楽団", from: "東大阪市", color: "navy", chara: "drum", says: "地元で|めーっちゃ|待ってるで！", photo: "images/face-clarinet.webp", link: "",
       text: "東大阪のまちに、音楽の輪を広げるために。2026年に生まれた新しい吹奏楽団です。地域とともに音楽を育みながら、東大阪に新しい文化をつくっていきます。" },
     { name: "吹奏楽団 未来図", from: "枚方市", color: "pink", chara: "clarinet", says: "未来を描く音楽を！", photo: "images/face-tuba.webp", link: "",
       text: "2026年に結成した新しい吹奏楽団。『未来を描く音楽』を合言葉に、一人一人が輝き合う、わくわくする音楽を届けていきます。" },
@@ -673,7 +673,7 @@ $("free").textContent = F.price;
 $("rail").innerHTML = F.groups.map(g => `
   <div class="bub ${g.color}">
     <div class="ph">${photoOr(g)}</div>
-    <div><div class="nm">${g.name}<small>${g.from}</small></div><div class="sy">「${g.says}」</div></div>
+    <div><div class="nm">${g.name}<small>${g.from}</small></div><div class="sy">「${nb(g.says)}」</div></div>
     <details><summary>どんなバンド？</summary><p>${g.text}</p>${g.link ? `<a class="more" href="${g.link}" target="_blank" rel="noopener">もっと知る</a>` : ""}</details>
   </div>`).join("");
 $("dots").innerHTML = F.groups.map((_, i) => `<i class="${i ? "" : "on"}"></i>`).join("");
