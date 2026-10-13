@@ -35,15 +35,23 @@ const SHOP = {
   venue: "大阪府立中央図書館 ライティホール",
   host: "東大阪吹奏楽団",
 
-  // 掲載プラン。size は A4 を 4×4 マスに分けたときの「よこ×たて」のマス数（図の塗りつぶしに使う）
+  // 掲載プラン。group でまとまりを分ける（paper＝パンフ＋Web／web＝Webのみ／support＝応援）
+  //   paper の size … A4を4×4マスに分けたときの「よこ×たて」のマス数（図に使う）
+  //   web の pickup … true なら「おすすめ枠」に表示。limit は先着の店数
   plans: [
-    { name: "1ページ",  price: 10000, size: [4, 4], note: "写真・紹介文・地図・クーポンをたっぷり。お店の魅力をまるごと伝えたい方に", tag: "いちばん目立つ" },
-    { name: "1/2ページ", price: 5000,  size: [4, 2], note: "写真と紹介文、クーポンもしっかり載せられるサイズ" },
-    { name: "1/4ページ", price: 3000,  size: [2, 2], note: "写真1枚＋ひとこと紹介＋クーポン。はじめての方にもおすすめ", tag: "おすすめ" },
-    { name: "クーポンのみ", price: 1000, size: [1, 1], note: "クーポンブックのページに、店名とクーポンを掲載" }
+    { group: "paper", name: "1ページ",   price: 10000, size: [4, 4], note: "写真・紹介文・地図・クーポンをたっぷり。お店の魅力をまるごと伝えたい方に", tag: "いちばん目立つ" },
+    { group: "paper", name: "1/2ページ", price: 5000,  size: [4, 2], note: "写真と紹介文、クーポンもしっかり載せられるサイズ" },
+    { group: "paper", name: "1/4ページ", price: 3000,  size: [2, 2], note: "写真1枚＋ひとこと紹介＋クーポン。はじめての方にもおすすめ", tag: "おすすめ" },
+    { group: "web", name: "Webピックアップ", price: 3000, pickup: true, limit: 6, note: "クーポン一覧のいちばん上「おすすめ」枠に、写真つきの大きなカードで表示" },
+    { group: "web", name: "Webスタンダード", price: 1000, pickup: false, note: "クーポン一覧に、店名・ひとこと・クーポンを掲載（ジャンル別に並びます）" },
+    { group: "support", name: "協賛（応援）", price: 3000, priceFrom: true, note: "クーポンは出せないけれど、地域の音楽を応援したい会社・団体さまへ。パンフレットとWebにお名前・ロゴを掲載" }
   ],
-  // どのプランにも付いてくるもの
-  allPlans: ["当日の来場者全員に配るパンフレットに掲載", "フェスタのWebサイトに、お店の名前・クーポン・リンクを掲載"],
+  groups: {
+    paper:   { title: "パンフレット＋Web", lead: "紙面に載せて、Webでもおすすめ枠に。いちばんしっかり届くプランです", perks: ["パンフレットの紙面に掲載", "Webのおすすめ枠（ピックアップ）にも表示", "パンフレットの掲載店一覧にも掲載"] },
+    web:     { title: "Webのみ",           lead: "まずは気軽に。スマホのクーポン一覧に載せるプランです", perks: ["Webのクーポン一覧に掲載", "パンフレットの掲載店一覧に1行で掲載（スマホがない方も使えます）"] },
+    support: { title: "応援する",          lead: "", perks: [] }
+  },
+
 
   // スケジュール（決まったら日付を入れる。date が "" のあいだは「調整中」と出る）
   schedule: [
@@ -55,6 +63,7 @@ const SHOP = {
   ],
 
   // 来場見込み・部数（決まったら数字を入れる。"" のあいだは出ません）
+  seats: "380席",   // 会場の座席数
   expected: "",   // 例: "300名"
   copies: "",     // 例: "300部"
 
@@ -140,6 +149,14 @@ section{padding:80px 0;position:relative}
 .steps li:not(:last-child)::after{content:"";grid-column:1;justify-self:center;width:0;height:0}
 
 /* ===== 料金プラン ===== */
+.pgroup{margin-bottom:44px}
+.pgroup-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.pgroup-head h3{font-weight:900;font-size:1.3rem;letter-spacing:.06em}
+.pgroup-head span{font-family:var(--en);font-size:.7rem;letter-spacing:.3em;color:var(--pink)}
+.pgroup-lead{font-size:.88rem;color:var(--soft);margin-bottom:12px}
+.perks{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.perks li{list-style:none;font-size:.78rem;font-weight:700;background:var(--sky-l);border-radius:999px;padding:3px 12px}
+.perks li::before{content:"✓ ";color:var(--blue)}
 .plans{display:grid;gap:18px}
 @media(min-width:640px){.plans{grid-template-columns:1fr 1fr}}
 .plan{position:relative;background:var(--card);border:2px solid var(--ink);border-radius:22px;padding:20px;display:grid;grid-template-columns:96px 1fr;gap:6px 18px;align-items:start}
@@ -147,7 +164,21 @@ section{padding:80px 0;position:relative}
 .a4{grid-row:span 3;width:96px;aspect-ratio:1/1.414;border:2px solid var(--ink);border-radius:4px;background:var(--white);padding:4px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:3px}
 .a4 i{border-radius:2px;background:rgba(43,37,34,.08);transition:background .3s}
 .plan.in .a4 i.on{background:var(--blue);transition-delay:calc(var(--k) * 35ms)}
-.plan h3{font-weight:900;font-size:1.1rem}
+.plan h4{font-weight:900;font-size:1.1rem}
+/* Webプランの図：スマホ画面 */
+.phone{grid-row:span 3;width:96px;aspect-ratio:1/1.75;border:2px solid var(--ink);border-radius:14px;background:var(--white);padding:10px 6px 6px;display:flex;flex-direction:column;gap:4px;position:relative}
+.phone::before{content:"";position:absolute;left:50%;top:4px;width:22px;height:3px;border-radius:2px;background:var(--ink);transform:translateX(-50%)}
+.phone i{display:block;border-radius:3px;background:rgba(43,37,34,.08);height:9px;transition:background .3s}
+.phone i.big{height:34px}
+.plan.in .phone i.on{background:var(--blue);transition-delay:.2s}
+.plan.in .phone i.on.big{background:var(--pink)}
+/* 協賛の図：名前が並ぶ帯 */
+.names{grid-row:span 3;width:96px;aspect-ratio:1/1.414;border:2px solid var(--ink);border-radius:4px;background:var(--white);padding:6px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}
+.names p{grid-column:auto!important;font-family:var(--en);font-size:.5rem!important;text-align:center;letter-spacing:.2em;color:var(--soft)!important;line-height:1!important}
+.names div{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.names i{height:10px;border-radius:2px;background:rgba(43,37,34,.08);transition:background .3s}
+.plan.in .names i.on{background:var(--sun);transition-delay:calc(var(--k) * 60ms)}
+.price .from{font-family:var(--jp);font-size:.9rem;font-weight:700;margin-left:2px}
 .price{font-family:var(--en);font-weight:400;font-size:2.4rem;line-height:1.1;letter-spacing:-.01em}
 .price small{font-family:var(--jp);font-size:.8rem;font-weight:700;margin-left:2px;white-space:nowrap;display:inline-block}
 .plan p{grid-column:2;font-size:.85rem;line-height:1.75;color:var(--soft)}
@@ -233,8 +264,8 @@ footer a{color:var(--sun)}
     <span class="eyebrow" style="color:var(--navy)">HOW IT WORKS</span>
     <h2 class="h2">クーポンの<span class="nb">しくみ</span></h2>
     <ol class="steps">
-      <li class="rv"><span class="ic">1</span><div><b>入場のときに、パンフレットを受け取る</b><small>お店の紹介とクーポンが載っています</small></div></li>
-      <li class="rv"><span class="ic">2</span><div><b>演奏会を楽しむ</b><small>休憩中にパンフレットをパラパラ</small></div></li>
+      <li class="rv"><span class="ic">1</span><div><b>入場のときに、パンフレットを受け取る</b><small>お店の紹介と、掲載店の一覧が載っています</small></div></li>
+      <li class="rv"><span class="ic">2</span><div><b>スマホでクーポンを開く</b><small>パンフレットのQRコードから。スマホがない方は、パンフレットの掲載店一覧がそのままクーポンになります</small></div></li>
       <li class="rv"><span class="ic">3</span><div><b>帰り道や後日、お店でクーポンを見せる</b><small>音楽のあとの寄り道が、あなたのお店に</small></div></li>
     </ol>
   </div>
@@ -245,9 +276,8 @@ footer a{color:var(--sun)}
   <div class="col">
     <span class="eyebrow">PLAN</span>
     <h2 class="h2">掲載プラン</h2>
-    <p style="font-size:.9rem;margin:-10px 0 26px">パンフレットはA4サイズの冊子です。図の青いところが、掲載される大きさの目安です。</p>
-    <div class="plans" id="planList"></div>
-    <div class="common rv"><b>どのプランにも付いてくるもの</b><ul id="allPlans"></ul></div>
+    <p style="font-size:.9rem;margin:-10px 0 30px">パンフレットはA4サイズの冊子です。図の色のついたところが、掲載される場所・大きさの目安です。</p>
+    <div id="planList"></div>
     <div class="numbers" id="numbers"></div>
   </div>
 </section>
@@ -312,16 +342,33 @@ $("heroLead").textContent = `${S.dateLong}のフェスタで配るパンフレ�
 const minPrice = Math.min(...S.plans.map(p => p.price));
 document.querySelector(".hero .from b").textContent = yen(minPrice);
 
-$("planList").innerHTML = S.plans.map(p => `
+// プランの図：紙面はA4の16マス、Webはスマホ画面、協賛は名前の帯
+function figure(p) {
+  if (p.group === "paper")
+    return `<div class="a4" aria-hidden="true">${Array.from({ length: 16 }, (_, k) => `<i class="${k % 4 < p.size[0] && Math.floor(k / 4) < p.size[1] ? "on" : ""}" style="--k:${k}"></i>`).join("")}</div>`;
+  if (p.group === "web")
+    return `<div class="phone" aria-hidden="true"><i class="big ${p.pickup ? "on" : ""}"></i><i></i><i></i><i class="${p.pickup ? "" : "on"}"></i><i></i><i></i></div>`;
+  return `<div class="names" aria-hidden="true"><p>THANKS</p><div>${Array.from({ length: 6 }, (_, k) => `<i class="${k === 4 ? "on" : ""}" style="--k:${k}"></i>`).join("")}</div></div>`;
+}
+const card = (p) => `
   <div class="plan rv">
-    ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
-    <div class="a4" aria-hidden="true">${Array.from({ length: 16 }, (_, k) => `<i class="${k % 4 < p.size[0] && Math.floor(k / 4) < p.size[1] ? "on" : ""}" style="--k:${k}"></i>`).join("")}</div>
-    <h3>${p.name}</h3>
-    <div class="price">${yen(p.price)}<small>（税込）</small></div>
+    ${p.tag || p.limit ? `<span class="tag">${p.tag || `先着${p.limit}店`}</span>` : ""}
+    ${figure(p)}
+    <h4>${p.name}</h4>
+    <div class="price">${yen(p.price)}${p.priceFrom ? '<span class="from">〜</span>' : ""}<small>（税込）</small></div>
     <p>${p.note}</p>
-  </div>`).join("");
-$("allPlans").innerHTML = S.allPlans.map(t => `<li>${t}</li>`).join("");
-$("numbers").innerHTML = (S.expected ? `<div><small>来場見込み</small><b>${S.expected}</b></div>` : "")
+  </div>`;
+$("planList").innerHTML = Object.entries(S.groups).map(([key, g]) => {
+  const list = S.plans.filter(p => p.group === key);
+  if (!list.length) return "";
+  return `<div class="pgroup">
+    <div class="pgroup-head"><h3>${g.title}</h3><span>${key.toUpperCase()}</span></div>
+    ${g.lead ? `<p class="pgroup-lead">${g.lead}</p>` : ""}
+    ${g.perks.length ? `<ul class="perks">${g.perks.map(t => `<li>${t}</li>`).join("")}</ul>` : ""}
+    <div class="plans">${list.map(card).join("")}</div>
+  </div>`;
+}).join("");
+$("numbers").innerHTML = (S.seats ? `<div><small>会場の座席数</small><b>${S.seats}</b></div>` : "") + (S.expected ? `<div><small>来場見込み</small><b>${S.expected}</b></div>` : "")
                        + (S.copies ? `<div><small>パンフレット部数</small><b>${S.copies}</b></div>` : "");
 
 $("sched").innerHTML = S.schedule.map(s => `<li class="rv"><b>${s.label}</b>${s.date ? `<span>${s.date}</span>` : `<em class="tbd">調整中</em>`}</li>`).join("");
