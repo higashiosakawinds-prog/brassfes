@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>東大阪市吹奏楽フェスタ 2027</title>
+<meta name="description" content="2027年5月2日(日)、大阪府立中央図書館ライティホールで開催。入場無料。東大阪の吹奏楽団・高校吹奏楽部が集まる音楽のお祭り。終演後は東大阪のお店で使えるクーポンも。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+
+<!--
+==========================================================
+  📝 毎年ここだけ書き換えればOK！（FESTA の中身）
+  日付・出演団体・プログラム・お店・質問 は全部ここ。
+  この下の「デザイン」「表示のしくみ」は触らなくて大丈夫。
+==========================================================
+-->
+<script>
+const FESTA = {
+  name: "東大阪市吹奏楽フェスタ",
+  year: 2027,
+  day: "2027-05-02",         // カウントダウンに使う日付
+  dateBig: "5.2",
+  weekday: "SUN",
+  dateLong: "2027年5月2日（日）",
+  open: "13:00",              // 開場（予定）
+  start: "13:30",             // 開演（予定）
+  timeNote: "時間は予定です。決まりしだいお知らせします。", // 確定したら "" にする
+  price: "入場無料",
+
+  catchcopy: "広げよう、音楽の輪。楽しもう、音楽の和！",
+
+  // ファーストビューの大きなイラスト（images フォルダに入れた画像の名前。空 "" なら仮キャラが出ます）
+  heroImage: "images/hero-members.webp",     // ファーストビュー
+  polaroidImage: "images/hero-members.webp", // 黄色い面のポラロイド写真
+  townImage: "images/tuba-back.webp",        // 「音楽のあとは、街へ」でのぞいている人
+  accessImage: "images/member-walk.webp",    // 「日時・会場」で手招きしている人
+  inviteImage: "images/member-jump.webp",    // 「来年は、いっしょに」で跳んでいる人
+
+  // 「ここが楽しい！」ポイント（来たくなる理由）。img は丸からとび出すイラスト
+  points: [
+    { title: "ふらっと入れる", img: "images/tuba-reach.webp", text: "入場無料・予約なし。図書館に寄ったついでに、ちょっと聴いていくのも大歓迎。", chara: "drum" },
+    { title: "高校生から大人まで", img: "images/hero-members.webp", text: "高校の吹奏楽部と、2つの市民楽団。世代の違うバンドの音を、一日でまとめて聴けます。", chara: "clarinet" },
+    { title: "最後はみんなで合奏", img: "images/tuba-wave.webp", text: "フィナーレは団体の垣根をこえた合同ステージ。ここでしか聴けない編成です。", chara: "trumpet" },
+    { title: "帰りは街へ", img: "images/member-walk.webp", text: "パンフレットのクーポンを持って、東大阪のお店へ。音楽のあとの寄り道も楽しんで。", chara: "drum" }
+  ],
+
+  // プログラム（順番どおりに並べる）。img は大きな丸からとび出すイラスト。zoom は絵の大きさ(%)、なければ自動
+  program: [
+    { part: "第一部", img: "images/band-seated.webp", zoom: 104, title: "東大阪吹奏楽団 ＋ 日新高校吹奏楽部", text: "地域に根ざした2団体によるドリームステージ！", color: "navy" },
+    { part: "第二部", img: "images/tuba-reach.webp", title: "吹奏楽団 未来図", text: "2027年吹奏楽コンクール課題曲・自由曲（カット無し）を含む、未来図の今をお届けします。", color: "pink" },
+    { part: "第三部", img: "images/band-conductor.webp", zoom: 104, title: "合同ステージ", text: "東大阪と枚方が手を取り合う合同演奏。団体の垣根をこえて、ひとつの音に。", color: "orange" }
+  ],
+
+  // 出演団体（増えたらコピーして足すだけ。photo は丸アイコンの画像。団体ロゴや写真に変えてもOK）
+  groups: [
+    { name: "東大阪吹奏楽団", from: "東大阪市", color: "navy", chara: "drum", says: "地元で待ってるで！", photo: "images/face-clarinet.webp", link: "",
+      text: "東大阪のまちに、音楽の輪を広げるために。2026年に生まれた新しい吹奏楽団です。地域とともに音楽を育みながら、東大阪に新しい文化をつくっていきます。" },
+    { name: "吹奏楽団 未来図", from: "枚方市", color: "pink", chara: "clarinet", says: "未来を描く音楽を！", photo: "images/face-tuba.webp", link: "",
+      text: "2026年に結成した新しい吹奏楽団。『未来を描く音楽』を合言葉に、一人一人が輝き合う、わくわくする音楽を届けていきます。" },
+    { name: "日新高校 吹奏楽部", from: "東大阪市", color: "orange", chara: "trumpet", says: "若さ全開でいきます！", photo: "images/face-jk.webp", link: "",
+      text: "映画「国宝」のロケ地となった日新高校。自然豊かな環境で、心のこもった音楽を地域に届けています。" }
+  ],
+
+  // このフェスタが目指すこと（助成金の申請書とも言葉をそろえておくと◎）
+  vision: {
+    title: "音楽で、まちをつなぐ。",
+    lead: "このフェスタは、ただの合同演奏会ではありません。東大阪の吹奏楽団・学校・市民・まちのお店を音楽でつなぎ、毎年続いていく地域のお祭りを目指しています。",
+    pillars: [
+      { title: "世代をこえて", text: "高校生から大人まで、同じ舞台で音を重ねる。世代や団体のちがいをこえて、音楽で交流できる場をつくります。", img: "winds" },
+      { title: "学校とつながる", text: "部活動の地域移行を見すえて、学校と市民楽団がいっしょに音楽をつくる。その発表と交流の場にしていきます。", img: "triangle" },
+      { title: "まちのお店とつながる", text: "パンフレットのクーポンをきっかけに、来場者が東大阪のお店を知り、まちを歩く。音楽からまちのにぎわいへ。", img: "tambourine" },
+      { title: "だれでも、吹奏楽に", text: "入場無料・予約なし。はじめての人も、子ども連れも、気軽に生の音楽にふれられる機会をつくります。", img: "mallets" }
+    ],
+    steps: [
+      { when: "2027", text: "3団体で、第1回をひらく" },
+      { when: "2028〜", text: "東大阪の学校・市民楽団に、参加の輪をひろげる" },
+      { when: "いつか", text: "まちのみんなでつくる「年にいちどのお祭り」へ" }
+    ]
+  },
+
+  // 応援しているお店・会社（決まったら追加。空っぽの間は「募集中」の枠が出ます）
+  // 例： { name: "〇〇珈琲", type: "カフェ", area: "荒本", coupon: "ドリンク50円引き", link: "https://..." },
+  shops: [],
+  shopFormUrl: "",   // ← お店・会社の掲載応募フォームのURL（Googleフォームなど）
+
+  venue: {
+    name: "大阪府立中央図書館 ライティホール",
+    address: "東大阪市荒本北1-2-1",
+    access: "近鉄けいはんな線「荒本駅」1番出口から北西へ約400m（徒歩約6分）",
+    station: "荒本駅",        // 大きく見せる駅名
+    distance: "400m",         // 大きく見せる距離
+    walk: "徒歩約6分",
+    photo: "images/venue.webp",  // 会場の写真（空 "" なら出ません）
+    mapQuery: "大阪府立中央図書館 ライティホール",   // 地図に表示する場所（Googleマップで検索する言葉）
+    mapUrl: "https://maps.app.goo.gl/kAeZNDkgXrctFNdb9"  // 「Googleマップで開く」ボタンのリンク
+  },
+
+  // よくある質問（// 要確認 は確認できたら消す）
+  faq: [
+    { q: "予約やチケットは必要ですか？", a: "いりません。入場無料なので、当日そのままお越しください。" }, // 要確認
+    { q: "途中で入ったり出たりできますか？", a: "曲と曲の間であれば出入りできます。" },                      // 要確認
+    { q: "小さな子どもと一緒でも大丈夫？", a: "大歓迎です！ご家族みんなで楽しんでください。" },              // 要確認
+    { q: "車で行けますか？", a: "駐車場に限りがあるため、できるだけ電車でお越しください。" },                // 要確認
+    { q: "クーポンはどこでもらえますか？", a: "当日、会場でお配りするパンフレットについています。" }
+  ],
+
+  host: "東大阪吹奏楽団",
+  contactUrl: ""   // ← 問い合わせ先（例: mailto:xxxx@example.com や フォームのURL）
+};
+</script>
+
+<!-- ===== デザイン（ふだんは触らなくてOK） ===== -->
+<style>
+:root{
+  /* イラストの「2色刷り」っぽい、くすんだ暖かい色でそろえる */
+  --blue:#3a8a85;   /* 青緑（ファーストビュー・最後） */
+  --sun:#ecb641;    /* からし色（ロゴ・黄色の面） */
+  --navy:#2d3f6b;   /* 紺 */
+  --pink:#d9583e;   /* 朱色 */
+  --orange:#e8913a;
+  --sky-l:#d6e6df; --pink-l:#f5d8ca; --sun-l:#f6e2a8; --lav:#e9dcc6;
+  --ink:#2b2522;    /* 文字は真っ黒でなく、こげ茶寄りの黒 */
+  --soft:#6b625b;
+  --white:#f6f0e4;  /* ページの地は紙の色 */
+  --card:#fbf7ee;
+  --jp:"Zen Kaku Gothic New",sans-serif;
+  --en:"Jost","Zen Kaku Gothic New",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:var(--jp);font-weight:500;color:var(--ink);background:var(--white);line-height:1.9;letter-spacing:.04em;overflow-x:hidden}
+a{color:inherit}
+body::after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .15 0 0 0 0 .1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.col{max-width:560px;margin:0 auto;padding:0 20px;position:relative}
+.en{font-family:var(--en)}
+
+/* 共通パーツ */
+.h2{font-weight:900;font-size:clamp(1.5rem,6.4vw,1.9rem);line-height:1.6;letter-spacing:.1em;text-align:center}
+.uline{display:inline;font-weight:900;font-size:1.15rem;line-height:2.1;background:linear-gradient(transparent 92%,var(--ink) 92%);padding-bottom:2px}
+.pill{display:inline-block;background:var(--ink);color:var(--white);text-decoration:none;font-weight:700;font-size:.9rem;padding:12px 26px;border-radius:999px;letter-spacing:.06em}
+.pill.wide{display:block;text-align:center;padding:16px;font-size:1rem}
+.soon{display:inline-block;font-weight:700;border:2px dashed currentColor;border-radius:999px;padding:10px 24px;opacity:.7;font-size:.9rem}
+.tag{position:relative;display:inline-block;background:var(--navy);color:var(--white);font-weight:700;font-size:.9rem;padding:6px 18px;border-radius:999px}
+.tag::after{content:"";position:absolute;left:50%;top:100%;transform:translateX(-50%);border:8px solid transparent;border-top-color:var(--navy)}
+.confetti{position:absolute;width:12px;height:12px;background:var(--orange);transform:rotate(18deg);border-radius:2px;pointer-events:none}
+.dash{position:absolute;pointer-events:none}
+
+/* =========================================
+   ファーストビュー
+   ========================================= */
+.hero{background:var(--blue);position:relative;overflow:hidden;padding-top:34px}
+.hero .col{padding-bottom:0}
+.wm{position:relative;margin:0 auto;width:min(100%,460px);padding:26px 18px 22px;text-align:center;color:var(--sun)}
+.wm svg.frame{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.wm .s{display:block;font-weight:900;font-size:clamp(1rem,4.4vw,1.25rem);letter-spacing:.3em;line-height:1.3}
+.wm .l{display:block;font-weight:900;font-size:clamp(2.1rem,10vw,3.1rem);letter-spacing:.06em;line-height:1.25}
+.wm .y{display:block;font-family:var(--en);font-weight:500;font-size:1rem;letter-spacing:.4em;line-height:1.4}
+.copy{color:var(--sun);text-align:center;font-weight:700;font-size:.98rem;letter-spacing:.14em;line-height:1.8;margin-top:22px}
+.count{display:block;width:max-content;margin:14px auto 0;background:rgba(0,0,0,.14);color:var(--white);font-weight:700;font-size:.82rem;border-radius:999px;padding:3px 14px}
+.count b{font-family:var(--en);font-weight:500;font-size:1.15rem;color:var(--sun);margin:0 2px}
+.badges{position:relative;height:150px;margin-top:6px}
+.bdg{position:absolute;width:104px;text-decoration:none}
+.bdg svg.arc{position:absolute;left:-14px;top:-18px;width:132px;height:132px;overflow:visible}
+.bdg svg.arc text{fill:var(--sun);font-weight:700;font-size:13px;letter-spacing:2px}
+.bdg .ph{width:84px;height:84px;margin:10px auto 0;border-radius:50%;border:3px solid var(--white);background:var(--cl);overflow:hidden;display:flex;align-items:flex-end;justify-content:center;position:relative}
+.bdg .ph svg{width:74%;margin-bottom:-6%}
+.bdg:hover .ph{transform:rotate(-6deg) scale(1.06)}
+.bdg .ph{transition:transform .3s}
+.bdg .ph img{width:100%;height:100%;object-fit:cover}
+.bdg::after{content:"";position:absolute;right:12px;bottom:-4px;border:7px solid transparent;border-top-color:var(--sun);border-left-color:var(--sun);transform:rotate(10deg)}
+.bdg:nth-child(1){left:0;top:0}
+.bdg:nth-child(2){right:0;top:-10px}
+.bdg:nth-child(3){left:50%;top:44px;transform:translateX(-50%)}
+.cast{position:relative;display:flex;justify-content:center;align-items:flex-end;margin:6px auto 0;max-width:600px;height:min(64vw,330px)}
+.cast.photo{height:auto;display:block;width:118%;max-width:680px;margin:-26px 0 -30% 50%;transform:translateX(-50%)}
+.cast.photo img{width:100%;height:auto;display:block;will-change:transform}
+@media (prefers-reduced-motion:no-preference){
+  .cast.photo img{animation:rise 1.1s .2s cubic-bezier(.2,1,.3,1) both}
+  .bdg{animation:popin .6s cubic-bezier(.3,1.6,.5,1) both}
+  .bdg:nth-child(1){animation-delay:.7s}.bdg:nth-child(2){animation-delay:.85s}.bdg:nth-child(3){animation-delay:1s}
+  .datebadge{animation:popin .6s 1.25s cubic-bezier(.3,1.6,.5,1) both}
+}
+@keyframes rise{from{transform:translateY(30%);opacity:0}}
+@keyframes popin{from{scale:0;opacity:0}}
+.hero.has-photo .datebadge{right:auto;left:8px;bottom:5%;transform:rotate(-8deg)}
+@media(min-width:700px){.hero.has-photo .datebadge{left:auto;right:calc(50% - 400px);bottom:30%;width:140px;height:140px}}
+.cast .m{width:44%;margin:0 -6%;position:relative}
+.cast .m svg{width:100%;display:block}
+.cast .m:nth-child(2){width:50%;z-index:2;margin-bottom:-4%}
+.datebadge{position:absolute;right:max(10px,calc(50% - 300px));bottom:18%;z-index:3;width:118px;height:118px;border-radius:50%;background:var(--sun);color:var(--ink);text-decoration:none;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.15;transform:rotate(-6deg)}
+.datebadge .d{font-family:var(--en);font-weight:500;font-size:2.3rem;letter-spacing:0}
+.datebadge .w{font-family:var(--en);font-size:.8rem;letter-spacing:.3em;margin-left:.3em}
+.datebadge .f{font-weight:900;font-size:.88rem;margin-top:3px}
+.datebadge .v{width:20px;height:20px;border-radius:50%;background:var(--ink);margin-top:5px;position:relative}
+.datebadge .v::after{content:"";position:absolute;left:6px;top:5px;width:6px;height:6px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg)}
+@media (prefers-reduced-motion:no-preference){
+  .cast .m{animation:bob 3.2s ease-in-out infinite}
+  .cast .m:nth-child(2){animation-delay:.4s}.cast .m:nth-child(3){animation-delay:.8s}
+}
+@keyframes bob{50%{transform:translateY(-6px)}}
+
+/* 吹き出しカード（出演バンド） */
+.bands{padding:34px 0 10px}
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:14px 20px 8px;scrollbar-width:none;max-width:600px;margin:0 auto}
+.rail::-webkit-scrollbar{display:none}
+.bub{flex:0 0 calc(100% - 24px);scroll-snap-align:center;position:relative;border:2px solid var(--ink);border-radius:18px;padding:18px;display:grid;grid-template-columns:110px 1fr;gap:4px 16px;align-items:center;background:var(--card)}
+.bub::before{content:"";position:absolute;left:44px;top:-13px;width:22px;height:22px;background:var(--card);border-left:2px solid var(--ink);border-top:2px solid var(--ink);transform:skewX(-30deg) rotate(45deg) scale(.8)}
+.bub .ph{width:110px;height:110px;border-radius:50%;background:var(--c);overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.bub .ph svg{width:76%;margin-bottom:-6%}
+.bub .ph img{width:100%;height:100%;object-fit:cover}
+.bub .nm{font-weight:900;font-size:1.05rem;line-height:1.5}
+.bub .nm small{display:block;font-weight:700;font-size:.75rem;color:var(--soft)}
+.bub .sy{font-size:.85rem;color:var(--c);font-weight:900;margin-top:4px}
+.bub details{grid-column:1/-1}
+.bub summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;margin-top:6px}
+.bub summary::-webkit-details-marker{display:none}
+.bub summary::before{content:"+";width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.bub details[open] summary::before{content:"−"}
+.bub details p{font-size:.88rem;margin-top:10px}
+.bub a.more{font-size:.85rem;font-weight:700}
+.dots{display:flex;justify-content:center;gap:10px;margin-top:14px}
+.dots i{width:10px;height:10px;border-radius:50%;border:2px solid var(--ink)}
+.dots i.on{background:var(--ink)}
+
+/* =========================================
+   黄色のスカラップ面
+   ========================================= */
+.yellow{background:var(--sun);position:relative;margin-top:60px;padding:46px 0 70px;border-radius:0 0 50% 50% / 0 0 46px 46px}
+.yellow::before{content:"";position:absolute;left:0;right:0;top:-18px;height:20px;
+  background:radial-gradient(circle at 22px 22px,var(--sun) 21px,transparent 22px) 0 0/44px 22px repeat-x}
+.yellow .col{text-align:center}
+.yellow .h2{margin:22px 0 26px}
+.polaroid{background:var(--card);padding:10px;box-shadow:3px 4px 0 rgba(0,0,0,.08);transform:rotate(-1.5deg);position:relative;margin:0 6px}
+.polaroid::before{content:"";position:absolute;inset:0;background:var(--card);transform:rotate(3deg);z-index:-1;box-shadow:2px 3px 0 rgba(0,0,0,.06)}
+.polaroid .pic{aspect-ratio:4/3;background:var(--blue);position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.polaroid .pic svg{width:30%;margin:0 -2% -3%}
+.polaroid .pic img{position:absolute;left:50%;top:6%;width:128%;max-width:none;transform:translateX(-50%) rotate(-3deg)}
+.polaroid .pic .lights{position:absolute;inset:0;background:
+  radial-gradient(ellipse 30% 60% at 25% -10%,rgba(255,240,170,.55),transparent 70%),
+  radial-gradient(ellipse 30% 60% at 75% -10%,rgba(255,240,170,.55),transparent 70%)}
+.polaroid .pic .floor{position:absolute;left:0;right:0;bottom:0;height:16%;background:#8a5b37}
+.cap{font-size:.75rem;text-align:right;margin-top:6px}
+.theme{display:flex;align-items:center;gap:16px;text-align:left;margin:26px 0 12px}
+.theme .c{flex:none;width:84px;height:84px;border-radius:50%;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;font-size:.95rem;line-height:1.3}
+.theme p{font-weight:900;font-size:clamp(1.1rem,5vw,1.35rem);line-height:1.6;letter-spacing:.08em}
+.dashed{display:inline-block;color:var(--navy);font-weight:900;border-bottom:2px dashed var(--navy);margin:8px 0 26px;font-size:1.05rem}
+.dashed small{display:block;font-size:.72rem;font-weight:700;opacity:.8;border:0}
+.yellow .pill{background:var(--navy)}
+
+/* =========================================
+   アーチ状に流れる英字
+   ========================================= */
+.arcs{margin:18px 0 0;overflow:hidden}
+.arcs svg{display:block;width:100%;height:auto;max-height:360px}
+.arcs text{font-family:var(--en);font-weight:400;fill:var(--ink);letter-spacing:.02em}
+
+/* とび出す丸：下半分は丸で切り取り、頭は丸の上にはみ出す */
+.pop{position:relative;width:var(--w,170px);aspect-ratio:1/1.3;border-radius:0 0 999px 999px;overflow:hidden;flex:none}
+.pop::before{content:"";position:absolute;left:0;right:0;bottom:0;aspect-ratio:1;border-radius:50%;background:var(--cl)}
+.pop img{position:absolute;left:50%;top:2%;width:var(--zoom,165%);max-width:none;transform:translate(-50%,45%) rotate(var(--tilt,0deg));opacity:0;
+  transition:transform 1s cubic-bezier(.2,1.35,.35,1),opacity .35s}
+.pop>svg{position:absolute;left:15%;bottom:-6%;width:70%}
+.pop.in img{transform:translate(-50%,0) rotate(var(--tilt,0deg));opacity:1}
+/* うしろからのぞく人 */
+.peek{position:absolute;z-index:-2;pointer-events:none;transform:translateY(55%);transition:transform 1s cubic-bezier(.2,1.2,.35,1)}
+.peek.in{transform:translateY(0)}
+/* 横からすべりこむ */
+.rv{opacity:0;transform:translateY(30%) rotate(10deg) scale(.85);transition:transform .9s cubic-bezier(.2,1.2,.35,1),opacity .4s}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.pop img,.peek,.rv{transition:none}}
+
+/* ===== にぎやかし ===== */
+section,.yellow,.join,.flow,.town{position:relative}
+.yellow,.points,.flow,.town,.faq,.access{overflow-x:clip}
+.deco{position:absolute;z-index:0;pointer-events:none;will-change:transform}
+.deco img{width:100%;display:block}
+.col{z-index:1}
+/* 丸から飛び出す音符 */
+.burst{position:absolute;width:30px;pointer-events:none;z-index:3;opacity:0;animation:burst 1.3s cubic-bezier(.2,.8,.3,1) forwards}
+@keyframes burst{
+  0%{opacity:0;transform:translate(0,0) scale(.3) rotate(0)}
+  20%{opacity:1}
+  100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1) rotate(var(--dr))}}
+/* 見出しの文字がぽんぽん落ちてくる */
+.ch{display:inline-block;opacity:0;transform:translateY(-.6em) rotate(-8deg)}
+.in .ch{animation:drop .6s cubic-bezier(.3,1.6,.5,1) forwards;animation-delay:calc(var(--i) * 45ms)}
+@keyframes drop{to{opacity:1;transform:none}}
+/* 来年セクションの紙吹雪 */
+.confetti-rain{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.confetti-rain i{position:absolute;top:-20px;width:9px;height:14px;border-radius:2px;opacity:.9;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(120vh) rotate(720deg)}}
+@media (prefers-reduced-motion:reduce){.ch{opacity:1;transform:none}.in .ch{animation:none}.burst,.confetti-rain{display:none}}
+
+/* =========================================
+   4つの楽しみかた
+   ========================================= */
+.points{padding:30px 0 40px}
+.points .h2 small{display:block;font-family:var(--en);font-weight:300;font-size:.75rem;letter-spacing:.4em}
+.pt{display:grid;grid-template-columns:170px 1fr;gap:16px;align-items:end;margin-top:34px;position:relative}
+.pt:nth-child(even){grid-template-columns:1fr 170px}
+.pt:nth-child(even) .pop{order:2;--tilt:4deg}
+.pt:nth-child(odd) .pop{--tilt:-4deg}
+.pt>div:last-child{padding-bottom:18px}
+.pt p{font-size:.9rem;margin-top:8px}
+
+/* =========================================
+   当日の流れ（パネルの上にキャラが座る）
+   ========================================= */
+.flow{padding:40px 0 20px}
+.times{display:flex;justify-content:center;gap:28px;margin:18px 0 6px}
+.times div{text-align:center;font-family:var(--en);font-weight:300;font-size:clamp(2.6rem,12vw,3.4rem);line-height:1}
+.times div small{display:block;font-size:.75rem;font-weight:500;letter-spacing:.4em;margin-bottom:6px}
+.note{text-align:center;font-size:.8rem;color:var(--soft)}
+.panel{position:relative;isolation:isolate;margin-top:130px;border-radius:14px;padding:84px 22px 34px}
+.panel::before{content:"";position:absolute;inset:0;background:var(--pl);border-radius:14px;z-index:-1}
+.panel .peek{left:-4px;top:-150px;width:210px}
+.panel .no{position:absolute;right:22px;top:-46px;text-align:right;font-family:var(--en);font-weight:300;line-height:.9}
+.panel .no b{display:block;font-weight:300;font-size:4.6rem;letter-spacing:-.02em}
+.panel .no span{display:block;font-size:1.2rem;letter-spacing:.3em;margin-top:6px}
+.panel .side{position:absolute;z-index:3;left:-2px;top:96px;font-family:var(--en);font-weight:400;font-size:2.4rem;letter-spacing:.12em;line-height:1;writing-mode:vertical-rl}
+.panel h3{text-align:center;font-weight:900;font-size:clamp(1.25rem,5.6vw,1.6rem);line-height:1.6;letter-spacing:.1em;margin:0 0 6px 24px}
+.panel .big{position:relative;width:calc(100% + 64px);margin:10px -20px 18px -44px}
+.panel .big .pop{--w:100%;--cl:var(--c);z-index:1;aspect-ratio:1/1.2}
+.panel .big svg.ring{position:absolute;left:-5%;width:110%;bottom:-5%;aspect-ratio:1;overflow:visible;z-index:2;pointer-events:none}
+.panel .big svg.ring text{font-family:var(--en);font-size:12px;letter-spacing:2px;fill:var(--ink);stroke:var(--pl);stroke-width:5px;paint-order:stroke;stroke-linejoin:round}
+.panel .part{font-size:.85rem;font-weight:700;margin-bottom:6px}
+.panel p.t{font-size:.92rem;margin-top:10px}
+.panel .dash{right:14px;bottom:20px}
+
+/* =========================================
+   音楽のあとは、街へ
+   ========================================= */
+.town{padding:20px 0 30px}
+
+/* =========================================
+   このフェスタが目指すこと
+   ========================================= */
+.vision{background:var(--navy);color:var(--white);margin-top:70px;padding:80px 0 90px;overflow:hidden;border-radius:46px 46px 0 0}
+.vision .ghost{position:absolute;right:-10px;top:10px;font-family:var(--en);font-weight:300;font-size:clamp(4rem,22vw,8rem);line-height:1;color:transparent;-webkit-text-stroke:1.2px rgba(236,182,65,.5);letter-spacing:.05em;pointer-events:none}
+.vision .eyebrow{display:block;font-family:var(--en);font-weight:300;font-size:.75rem;letter-spacing:.4em;color:var(--sun)}
+.vision .big{font-weight:900;font-size:clamp(2rem,9.6vw,3rem);line-height:1.35;letter-spacing:.06em;margin:14px 0 22px;color:var(--sun)}
+.vision .lead{font-size:.95rem;line-height:2;margin-bottom:40px}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pillar{position:relative;overflow:hidden;background:rgba(246,240,228,.08);border:1.5px solid rgba(246,240,228,.25);border-radius:18px;padding:18px 14px 64px;min-height:230px}
+.pillar:nth-child(2),.pillar:nth-child(3){background:rgba(236,182,65,.14)}
+.pillar h3{font-weight:900;font-size:1.05rem;line-height:1.5;color:var(--sun);margin-bottom:8px}
+.pillar p{font-size:.8rem;line-height:1.85}
+.pillar img{position:absolute;right:-10px;bottom:-12px;width:72px;max-height:80px;object-fit:contain;rotate:-10deg;transition:rotate .8s cubic-bezier(.3,1.6,.5,1),translate .8s cubic-bezier(.3,1.6,.5,1);translate:30px 30px}
+.pillar.in img{translate:0 0;rotate:6deg}
+@media(min-width:760px){.pillars{grid-template-columns:repeat(4,1fr)}}
+.road{margin-top:52px;position:relative}
+.road h3{font-weight:900;font-size:1.1rem;letter-spacing:.1em;margin-bottom:18px}
+.road ol{list-style:none;position:relative;padding-left:4px}
+.road ol::before{content:"";position:absolute;left:30px;top:12px;bottom:12px;border-left:2px dashed rgba(246,240,228,.5)}
+.road li{position:relative;display:grid;grid-template-columns:62px 1fr;gap:14px;align-items:center;margin-bottom:18px}
+.road .w{width:58px;height:58px;border-radius:50%;background:var(--sun);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--en);font-weight:500;font-size:.85rem;position:relative;z-index:1}
+.road li:last-child .w{background:var(--pink);color:var(--white);font-family:var(--jp);font-weight:900}
+.road li p{font-weight:700;font-size:.95rem;line-height:1.7}
+.road li{opacity:0;transform:translateX(-20px);transition:.6s cubic-bezier(.2,1,.3,1)}
+.road.in li{opacity:1;transform:none}
+.road.in li:nth-child(2){transition-delay:.15s}.road.in li:nth-child(3){transition-delay:.3s}
+@media (prefers-reduced-motion:reduce){.road li{opacity:1;transform:none}.pillar img{translate:0 0}}
+.vision + .town{padding-top:60px}
+.maplink{display:inline-flex;align-items:center;gap:8px;margin-top:14px}
+.town .panel{--pl:var(--lav)}
+.town .lead{font-size:.92rem;margin:4px 0 22px 24px}
+.tickets{display:grid;gap:14px;margin-left:24px}
+.ticket{display:flex;background:var(--card);border-radius:12px;text-decoration:none;min-height:96px;border:2px solid var(--ink)}
+.ticket .l{flex:1;padding:12px 14px}
+.ticket .l small{display:block;font-size:.72rem;color:var(--soft);font-weight:700}
+.ticket .l b{font-weight:900;font-size:1rem;line-height:1.5}
+.ticket .r{width:88px;flex:none;border-left:2px dashed var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;font-size:.85rem;padding:8px;line-height:1.4;background:var(--sun-l);border-radius:0 10px 10px 0}
+.ticket.empty{border-style:dashed;background:rgba(255,255,255,.6)}
+.ticket.empty .r{background:transparent}
+.forshop{margin:34px 0 0 24px;background:var(--card);border-radius:14px;padding:22px 18px;text-align:center}
+.forshop h4{font-weight:900;font-size:1.15rem;letter-spacing:.1em;margin-bottom:4px}
+.forshop ul{list-style:none;text-align:left;margin:14px 0 20px}
+.forshop li{font-size:.9rem;padding:8px 0 8px 1.5em;position:relative;border-bottom:1px dashed rgba(0,0,0,.2)}
+.forshop li::before{content:"♪";position:absolute;left:0;color:var(--pink);font-weight:900}
+
+/* =========================================
+   日時・会場
+   ========================================= */
+.access{padding:60px 0 30px}
+.venue-ph{margin:28px -20px 0;background:var(--blue);border-radius:50% 50% 0 0 / 34% 34% 0 0;overflow:hidden;padding-top:8%}
+.venue-ph img{width:100%;display:block}
+.venue-ph:empty{display:none}
+.dist{position:relative;text-align:left;margin:22px 0 34px;min-height:200px}
+.dist .walk{position:absolute;right:-14px;top:-150px;width:48%;max-width:250px;pointer-events:none;z-index:2;filter:drop-shadow(0 10px 8px rgba(43,37,34,.18))}
+@media (prefers-reduced-motion:no-preference){.dist .walk.in{animation:stroll 1.6s 1s ease-in-out infinite}}
+@keyframes stroll{50%{transform:translateY(-6px) rotate(-2deg)}}
+.dist .st{font-weight:900;letter-spacing:.1em}
+.dist .km{font-family:var(--en);font-weight:300;font-size:clamp(5rem,26vw,7.5rem);line-height:1;letter-spacing:-.02em}
+.dist .wk{display:inline-block;background:var(--sun);font-weight:900;padding:2px 14px;border-radius:999px}
+.access dl{display:grid;grid-template-columns:4.2em 1fr;border-top:2px solid var(--ink)}
+.access dt,.access dd{padding:12px 0;border-bottom:1px dashed rgba(0,0,0,.25);font-size:.92rem}
+.access dt{font-weight:900}
+.access dd small{color:var(--soft)}
+.map{margin-top:26px;border-radius:50% 50% 18px 18px / 30px 30px 18px 18px;overflow:hidden;background:var(--sky-l);height:300px}
+.map iframe{width:100%;height:100%;border:0;display:block}
+
+/* =========================================
+   よくある質問
+   ========================================= */
+.faq{padding:50px 0 60px}
+.faq .list{margin-top:26px}
+.faq details{border:2px solid var(--ink);border-radius:16px;margin-bottom:14px;background:var(--card)}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px 16px;font-weight:900;font-size:.98rem;line-height:1.6}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .q{width:34px;height:34px;border-radius:50%;background:var(--blue);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--en);font-weight:500}
+.faq summary::after{content:"+";width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--white);display:flex;align-items:center;justify-content:center}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 16px 16px 62px;font-size:.92rem}
+
+/* =========================================
+   来年は、いっしょに
+   ========================================= */
+.join{background:var(--blue);color:var(--white);position:relative;margin-top:30px;padding:70px 0 80px;text-align:center;overflow:hidden}
+.join::before{content:"";position:absolute;left:0;right:0;top:-1px;height:22px;
+  background:radial-gradient(circle at 22px 0,var(--white) 21px,transparent 22px) 0 0/44px 22px repeat-x}
+.join .jump{display:block;width:min(70%,320px);margin:-40px auto -110px;position:relative;z-index:1;rotate:-6deg}
+@media (prefers-reduced-motion:no-preference){.join .jump.in{animation:hop 2.2s ease-in-out infinite}}
+@keyframes hop{0%,100%{transform:translateY(0) rotate(0)}40%{transform:translateY(-18px) rotate(-3deg)}60%{transform:translateY(-14px) rotate(-2deg)}}
+.join .ghost{font-family:var(--en);font-weight:300;font-size:clamp(5rem,30vw,9rem);line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--sun);letter-spacing:.04em}
+.join .h2{color:var(--sun);margin:6px 0 16px}
+.join p{font-size:.92rem;text-align:left;margin-bottom:26px}
+.join .pill{background:var(--card);color:var(--ink)}
+.share{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.share a{color:var(--white);text-decoration:none;font-weight:700;font-size:.85rem;border:2px solid var(--white);border-radius:999px;padding:9px 18px}
+footer{background:var(--ink);color:var(--white);text-align:center;padding:26px 0 34px;font-size:.8rem}
+footer b{display:block;font-size:.95rem;letter-spacing:.1em}
+
+/* 色の組み合わせ（--c:濃い色 / --cl:薄い色 / --pl:パネル色） */
+.navy{--c:#5f86b0;--cl:var(--sky-l);--pl:#d9e4e4}
+.pink{--c:#e07a5f;--cl:var(--pink-l);--pl:var(--pink-l)}
+.orange{--c:#ecb641;--cl:var(--sun-l);--pl:#e3e5c6}
+</style>
+</head>
+<body>
+
+<!-- ===== ファーストビュー ===== -->
+<header class="hero">
+  <svg class="dash" style="left:18px;top:14px;width:70px" viewBox="0 0 70 40" aria-hidden="true"><path d="M6 30 Q10 12 26 6 M34 30 Q40 16 56 12" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 8"/></svg>
+  <div class="col">
+    <h1 class="wm">
+      <svg class="frame" aria-hidden="true"><path id="wmPath" fill="none" stroke="var(--sun)" stroke-width="4" stroke-linejoin="round"/></svg>
+      <span class="s">東大阪市</span><span class="l">吹奏楽フェスタ</span><span class="y" id="yr"></span>
+    </h1>
+    <p class="copy" id="copy"></p>
+    <p class="count" id="countdown"></p>
+    <div class="badges" id="badges"></div>
+  </div>
+  <div class="cast" id="cast"></div>
+  <a class="datebadge" href="#access"><span class="d" id="dBig"></span><span class="w" id="wd"></span><span class="f" id="free"></span><span class="v"></span></a>
+</header>
+
+<!-- ===== 出演バンド（吹き出しカード） ===== -->
+<section class="bands">
+  <div class="rail" id="rail"></div>
+  <div class="dots" id="dots"></div>
+</section>
+
+<!-- ===== 黄色の面 ===== -->
+<section class="yellow">
+  <span class="confetti" style="left:8%;top:30px"></span><span class="confetti" style="right:10%;top:160px;background:#fff"></span>
+  <div class="col">
+    <span class="tag" id="dateTag"></span>
+    <h2 class="h2" id="catch"></h2>
+    <div class="polaroid"><div class="pic"><span class="lights"></span><span id="stageCrew" style="display:contents"></span></div></div>
+    <p class="cap">※イラストはイメージです</p>
+    <div class="theme"><span class="c" id="freeC"></span><p>予約なしで、<br>ふらっと聴きにきてね</p></div>
+    <span class="dashed" id="timesDashed"></span><br>
+    <a class="pill wide" href="#access">日時・会場を見る</a>
+  </div>
+</section>
+
+<!-- ===== アーチ状に流れる英字 ===== -->
+<div class="arcs" aria-hidden="true">
+  <svg viewBox="0 0 400 230">
+    <defs>
+      <path id="a1" d="M-40 70 Q200 -10 440 70"/>
+      <path id="a2" d="M-40 140 Q200 50 440 140"/>
+      <path id="a3" d="M-40 215 Q200 115 440 215"/>
+    </defs>
+    <text font-size="30"><textPath href="#a1" class="arcT"></textPath></text>
+    <text font-size="40"><textPath href="#a2" class="arcT"></textPath></text>
+    <text font-size="52"><textPath href="#a3" class="arcT"></textPath></text>
+  </svg>
+</div>
+
+<!-- ===== 4つの楽しみかた ===== -->
+<section class="points">
+  <div class="col">
+    <h2 class="h2"><small>POINT</small><span id="ptHead"></span></h2>
+    <div id="points"></div>
+  </div>
+</section>
+
+<!-- ===== 当日の流れ ===== -->
+<section class="flow">
+  <div class="col">
+    <h2 class="h2"><span style="display:block;font-family:var(--en);font-weight:300;font-size:.75rem;letter-spacing:.4em">PROGRAM</span>当日の流れ</h2>
+    <div class="times" id="times"></div>
+    <p class="note" id="note"></p>
+    <div id="program"></div>
+  </div>
+</section>
+
+<!-- ===== 音楽のあとは、街へ ===== -->
+<section class="vision" id="vision">
+  <div class="ghost" aria-hidden="true">VISION</div>
+  <div class="col">
+    <span class="eyebrow">VISION</span>
+    <h2 class="big" id="vTitle"></h2>
+    <p class="lead" id="vLead"></p>
+    <div class="pillars" id="pillars"></div>
+    <div class="road" id="road"><h3>これからの道のり</h3><ol id="steps"></ol></div>
+  </div>
+</section>
+
+<section class="town" id="town">
+  <div class="col">
+    <div class="panel">
+      <div id="townPeek"></div>
+      <div class="no"><b>♪</b><span>SHOP</span></div>
+      <div class="side">TOWN</div>
+      <h3>音楽のあとは、<br>街へ。</h3>
+      <p class="lead">このフェスタは、東大阪のお店や会社を応援しています。パンフレットのクーポンを持って、帰り道に寄ってみてください。</p>
+      <div class="tickets" id="shops"></div>
+      <div class="forshop">
+        <h4>お店・会社のみなさまへ</h4>
+        <p style="font-size:.9rem">あなたのお店も、フェスタに参加しませんか？</p>
+        <ul>
+          <li>このページに、お店・会社の紹介を掲載</li>
+          <li>当日配るパンフレットに掲載</li>
+          <li>クーポンブックで、来場者にお店を知ってもらえる</li>
+        </ul>
+        <div id="shopCta"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 日時・会場 ===== -->
+<section class="access" id="access">
+  <div class="col">
+    <h2 class="h2"><span style="display:block;font-family:var(--en);font-weight:300;font-size:.75rem;letter-spacing:.4em">ACCESS</span>日時・会場</h2>
+    <figure class="venue-ph" id="venuePh"></figure>
+    <div class="dist" id="dist"></div>
+    <dl id="infoList"></dl>
+    <div class="map"><iframe id="map" loading="lazy" title="会場の地図" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <div style="text-align:center" id="mapLink"></div>
+  </div>
+</section>
+
+<!-- ===== よくある質問 ===== -->
+<section class="faq">
+  <div class="col">
+    <h2 class="h2"><span style="display:block;font-family:var(--en);font-weight:300;font-size:.75rem;letter-spacing:.4em">Q&amp;A</span>よくある質問</h2>
+    <div class="list" id="faq"></div>
+  </div>
+</section>
+
+<!-- ===== 来年は、いっしょに ===== -->
+<section class="join">
+  <div class="col">
+    <div id="jump"></div>
+    <div class="ghost" id="nextYear" aria-hidden="true"></div>
+    <h2 class="h2">来年は、いっしょに。</h2>
+    <p>このフェスタは、東大阪の学校や市民楽団みんなで集まる「年にいちどのお祭り」に育てていきます。出てみたい学校・楽団のみなさん、気軽に声をかけてください。</p>
+    <div id="joinCta"></div>
+    <div class="share" id="share"></div>
+  </div>
+</section>
+
+<footer><div class="col"><b id="fName"></b><p id="fHost"></p></div></footer>
+
+<!--
+==========================================================
+  表示のしくみ（ふだんは触らなくてOK）
+  上の FESTA の中身を、ページの各場所に入れているだけ。
+==========================================================
+-->
+<script>
+const F = FESTA;
+const $ = (id) => document.getElementById(id);
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// キャラクター（仮のイラスト。あとで画像に差し替え予定）
+function chara(kind, color) {
+  const L = "#2b2522";
+  const inst = {
+    trumpet: `<g transform="translate(60 92) rotate(-14)"><rect x="-6" y="-6" width="58" height="10" rx="5" fill="#f2c14e" stroke="${L}" stroke-width="3"/>
+      <path d="M50 -14 L74 -24 L74 14 L50 4 Z" fill="#f2c14e" stroke="${L}" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="14" y="-16" width="6" height="12" fill="#f2c14e" stroke="${L}" stroke-width="2.5"/><rect x="26" y="-16" width="6" height="12" fill="#f2c14e" stroke="${L}" stroke-width="2.5"/></g>`,
+    clarinet: `<g transform="translate(96 46) rotate(18)"><rect x="-6" y="0" width="12" height="96" rx="4" fill="#3a3f4a" stroke="${L}" stroke-width="3"/>
+      <path d="M-6 92 L-14 112 L14 112 L6 92 Z" fill="#3a3f4a" stroke="${L}" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="0" cy="30" r="2.5" fill="#cfd6de"/><circle cx="0" cy="48" r="2.5" fill="#cfd6de"/><circle cx="0" cy="66" r="2.5" fill="#cfd6de"/></g>`,
+    drum: `<g transform="translate(60 112)"><ellipse cx="0" cy="18" rx="40" ry="10" fill="#e5537e" stroke="${L}" stroke-width="3"/>
+      <rect x="-40" y="0" width="80" height="18" fill="#fff" stroke="${L}" stroke-width="3"/>
+      <ellipse cx="0" cy="0" rx="40" ry="10" fill="#fdf6e8" stroke="${L}" stroke-width="3"/>
+      <path d="M-30 4 L-30 16 M-15 6 L-15 18 M0 6 L0 18 M15 6 L15 18 M30 4 L30 16" stroke="${L}" stroke-width="2"/>
+      <line x1="-34" y1="-30" x2="-8" y2="-4" stroke="#8a5a2b" stroke-width="5" stroke-linecap="round"/>
+      <line x1="34" y1="-30" x2="8" y2="-4" stroke="#8a5a2b" stroke-width="5" stroke-linecap="round"/></g>`
+  }[kind];
+  return `<svg viewBox="0 0 140 150" aria-hidden="true">
+    <ellipse cx="44" cy="140" rx="12" ry="6" fill="${L}"/><ellipse cx="80" cy="140" rx="12" ry="6" fill="${L}"/>
+    <path d="M62 14 C96 14 110 44 110 84 C110 120 92 136 62 136 C32 136 14 120 14 84 C14 44 28 14 62 14 Z" fill="${color}" stroke="${L}" stroke-width="4"/>
+    <ellipse cx="46" cy="72" rx="5" ry="7" fill="${L}"/><ellipse cx="78" cy="72" rx="5" ry="7" fill="${L}"/>
+    <circle cx="48" cy="69" r="1.8" fill="#fff"/><circle cx="80" cy="69" r="1.8" fill="#fff"/>
+    <ellipse cx="34" cy="88" rx="8" ry="5" fill="#ff9fb8" opacity=".85"/><ellipse cx="90" cy="88" rx="8" ry="5" fill="#ff9fb8" opacity=".85"/>
+    <path d="M54 86 Q62 96 70 86" fill="none" stroke="${L}" stroke-width="3.5" stroke-linecap="round"/>
+    ${inst}</svg>`;
+}
+const BODY = { navy: "#9cc0d6", pink: "#f0a58c", orange: "#f2cd6e" };
+// とび出す丸の中身（画像があれば画像、なければ仮キャラ）
+const pop = (img, kind, color, alt = "", zoom = "") => `<div class="pop">${img ? `<img src="${img}" alt="${alt}" loading="lazy" ${zoom ? `data-zoom="${zoom}"` : ""}>` : chara(kind, color)}</div>`;
+const photoOr = (g) => g.photo ? `<img src="${g.photo}" alt="${g.name}">` : chara(g.chara, "#fbf7ee");
+
+// ---- ロゴのもくもく枠（大きさに合わせて描く） ----
+function drawFrame() {
+  const box = document.querySelector(".wm"), w = box.offsetWidth, h = box.offsetHeight, r0 = 14;
+  const n = Math.max(3, Math.round((w - h) / (r0 * 2))), r = (w - h) / (n * 2), R = h / 2;
+  let d = `M${R} 2`;
+  for (let i = 0; i < n; i++) d += ` a${r} ${r * .7} 0 0 1 ${r * 2} 0`;
+  d += ` A${R - 2} ${R - 2} 0 0 1 ${w - R} ${h - 2}`;
+  for (let i = 0; i < n; i++) d += ` a${r} ${r * .7} 0 0 1 ${-r * 2} 0`;
+  d += ` A${R - 2} ${R - 2} 0 0 1 ${R} 2 Z`;
+  $("wmPath").setAttribute("d", d);
+}
+
+// ---- ファーストビュー ----
+const days = Math.ceil((new Date(F.day + "T00:00:00+09:00") - new Date()) / 86400000);
+$("countdown").innerHTML = days > 0 ? `本番まで あと<b>${days}</b>日` : days === 0 ? `本日開催！` : `ご来場ありがとうございました`;
+$("yr").textContent = F.year;
+$("copy").innerHTML = F.catchcopy.replace("。", "。<br>");
+$("badges").innerHTML = F.groups.map((g, i) => `
+  <a class="bdg ${g.color}" href="#rail">
+    <svg class="arc" viewBox="0 0 132 132"><path id="bp${i}" d="M14 70 A52 52 0 0 1 118 70" fill="none"/>
+      <text><textPath href="#bp${i}" startOffset="50%" text-anchor="middle">${g.name.replace(/ /g, "")}</textPath></text></svg>
+    <div class="ph">${photoOr(g)}</div></a>`).join("");
+if (F.heroImage) {
+  $("cast").classList.add("photo");
+  document.querySelector(".hero").classList.add("has-photo");
+  $("cast").innerHTML = `<img src="${F.heroImage}" alt="楽器を持った出演者のイラスト" width="1000" height="1094">`;
+} else {
+  $("cast").innerHTML = F.groups.map(g => `<div class="m">${chara(g.chara, BODY[g.color])}</div>`).join("");
+}
+$("dBig").textContent = F.dateBig;
+$("wd").textContent = F.weekday;
+$("free").textContent = F.price;
+
+// ---- 出演バンド（吹き出しカード） ----
+$("rail").innerHTML = F.groups.map(g => `
+  <div class="bub ${g.color}">
+    <div class="ph">${photoOr(g)}</div>
+    <div><div class="nm">${g.name}<small>${g.from}</small></div><div class="sy">「${g.says}」</div></div>
+    <details><summary>どんなバンド？</summary><p>${g.text}</p>${g.link ? `<a class="more" href="${g.link}" target="_blank" rel="noopener">もっと知る</a>` : ""}</details>
+  </div>`).join("");
+$("dots").innerHTML = F.groups.map((_, i) => `<i class="${i ? "" : "on"}"></i>`).join("");
+$("rail").addEventListener("scroll", () => {
+  const r = $("rail"), i = Math.round(r.scrollLeft / (r.scrollWidth / F.groups.length));
+  [...$("dots").children].forEach((d, k) => d.classList.toggle("on", k === i));
+});
+
+// ---- 黄色の面 ----
+$("dateTag").textContent = `${F.dateLong} 開催`;
+$("catch").innerHTML = F.catchcopy.replace("。", "。<br>");
+$("stageCrew").innerHTML = F.polaroidImage
+  ? `<img src="${F.polaroidImage}" alt="出演者のイラスト" loading="lazy">`
+  : F.groups.map(g => chara(g.chara, BODY[g.color])).join("");
+$("freeC").textContent = F.price;
+$("timesDashed").innerHTML = `開場 ${F.open} ／ 開演 ${F.start}${F.timeNote ? `<small>${F.timeNote}</small>` : ""}`;
+
+// ---- アーチの英字（ゆっくり流れる） ----
+const arcWord = `HIGASHIOSAKA BRASS FESTA ${F.year}  ·  `.repeat(4);
+let arcBoost = 0;  // スクロールした分だけ文字が速く流れる
+const arcs = [...document.querySelectorAll(".arcT")];
+arcs.forEach(t => t.textContent = arcWord);
+if (!reduce) {
+  let x = 0;
+  (function loop() { x = (x + 0.12 + arcBoost * .25) % 100; arcBoost *= .94; arcs.forEach((t, i) => t.setAttribute("startOffset", `${-(i % 2 ? 100 - x : x)}%`)); requestAnimationFrame(loop); })();
+}
+
+// ---- 4つの楽しみかた ----
+const pc = ["pink", "navy", "orange", "pink"];
+$("ptHead").textContent = `${F.points.length}つの楽しみかた`;
+$("points").innerHTML = F.points.map((p, i) => `
+  <div class="pt ${pc[i % 4]}">
+    ${pop(p.img, p.chara, BODY[pc[i % 4]])}
+    <div><span class="uline">${p.title}</span><p>${p.text}</p></div>
+  </div>`).join("");
+
+// ---- 当日の流れ ----
+const side = ["FIRST", "SECOND", "FINALE", "MORE"];
+$("times").innerHTML = `<div><small>OPEN</small>${F.open}</div><div><small>START</small>${F.start}</div>`;
+$("note").textContent = F.timeNote;
+$("program").innerHTML = F.program.map((p, i) => {
+  const no = String(i + 1).padStart(2, "0");
+  return `<div class="panel ${p.color}">
+    <div class="no"><b>${no}</b><span>STAGE</span></div>
+    <div class="side">${side[i] || "STAGE"}</div>
+    <h3>${p.title}</h3>
+    <div class="big">
+      <svg class="ring" viewBox="0 0 200 200"><path id="rp${i}" d="M6 100 A94 94 0 0 1 194 100" fill="none"/>
+        <text><textPath href="#rp${i}" startOffset="80%" text-anchor="middle">STAGE ${no} - ${side[i] || "STAGE"}</textPath></text></svg>
+      ${pop(p.img, F.groups[i % F.groups.length].chara, "#fbf7ee", "", p.zoom)}
+    </div>
+    <div class="part">${p.part}</div>
+    <p class="t">${p.text}</p>
+  </div>`;
+}).join("");
+
+// ---- お店・会社 ----
+if (F.townImage) $("townPeek").innerHTML = `<img class="peek" src="${F.townImage}" alt="" loading="lazy">`;
+const empty = `<div class="ticket empty"><div class="l"><small>掲載店舗 募集中</small><b>ここにあなたのお店が入ります</b></div><div class="r">クーポン<br>掲載OK</div></div>`;
+$("shops").innerHTML = F.shops.length
+  ? F.shops.map(s => `<a class="ticket" ${s.link ? `href="${s.link}" target="_blank" rel="noopener"` : ""}>
+      <div class="l"><small>${s.type}・${s.area}</small><b>${s.name}</b></div><div class="r">${s.coupon}</div></a>`).join("")
+  : empty.repeat(2);
+$("shopCta").innerHTML = F.shopFormUrl
+  ? `<a class="pill" href="${F.shopFormUrl}" target="_blank" rel="noopener">掲載を申し込む</a>`
+  : `<span class="soon">申し込みフォーム 準備中</span>`;
+
+// ---- 日時・会場 ----
+$("dist").innerHTML = `<div class="st">${F.venue.station}から</div><div class="km">${F.venue.distance}</div><span class="wk">${F.venue.walk}</span>`
+  + (F.accessImage ? `<img class="walk rv" src="${F.accessImage}" alt="" loading="lazy">` : "");
+if (F.venue.photo) $("venuePh").innerHTML = `<img src="${F.venue.photo}" alt="${F.venue.name}の外観" loading="lazy">`;
+$("infoList").innerHTML = `
+  <dt>日時</dt><dd>${F.dateLong}<br>開場 ${F.open} ／ 開演 ${F.start}${F.timeNote ? `<br><small>${F.timeNote}</small>` : ""}</dd>
+  <dt>会場</dt><dd>${F.venue.name}</dd>
+  <dt>住所</dt><dd>${F.venue.address}</dd>
+  <dt>電車</dt><dd>${F.venue.access}</dd>
+  <dt>料金</dt><dd>${F.price}（予約不要）</dd>
+  <dt>主催</dt><dd>${F.host}</dd>`;
+$("map").src = `https://www.google.com/maps?q=${encodeURIComponent(F.venue.mapQuery)}&output=embed`;
+if (F.venue.mapUrl) $("mapLink").innerHTML = `<a class="pill maplink" href="${F.venue.mapUrl}" target="_blank" rel="noopener">Googleマップで開く</a>`;
+
+// ---- このフェスタが目指すこと ----
+$("vTitle").innerHTML = F.vision.title.replace("、", "、<br>");
+$("vLead").textContent = F.vision.lead;
+$("pillars").innerHTML = F.vision.pillars.map(v =>
+  `<div class="pillar"><h3>${v.title}</h3><p>${v.text}</p><img src="images/decor/${v.img}.webp" alt="" loading="lazy"></div>`).join("");
+$("steps").innerHTML = F.vision.steps.map(st => `<li><span class="w">${st.when}</span><p>${st.text}</p></li>`).join("");
+
+// ---- よくある質問 ----
+$("faq").innerHTML = F.faq.map(f => `<details><summary><span class="q">Q</span><span>${f.q}</span></summary><p>${f.a}</p></details>`).join("");
+
+// ---- 来年は、いっしょに ----
+$("nextYear").textContent = F.year + 1;
+if (F.inviteImage) $("jump").innerHTML = `<img class="jump rv" src="${F.inviteImage}" alt="手を差しのべるクラリネット奏者のイラスト" loading="lazy">`;
+$("joinCta").innerHTML = F.contactUrl
+  ? `<a class="pill" href="${F.contactUrl}">出演について問い合わせる</a>`
+  : `<span class="soon">お問い合わせ先 準備中</span>`;
+const url = encodeURIComponent(location.href);
+const txt = encodeURIComponent(`${F.name} ${F.year}｜${F.dateLong} ${F.venue.name}・${F.price}`);
+$("share").innerHTML = `
+  <a href="https://social-plugins.line.me/lineit/share?url=${url}" target="_blank" rel="noopener">LINEで友だちに送る</a>
+  <a href="https://x.com/intent/post?text=${txt}&url=${url}" target="_blank" rel="noopener">Xでシェア</a>`;
+$("fName").textContent = `${F.name} ${F.year}`;
+$("fHost").textContent = `主催：${F.host}`;
+
+// ---- にぎやかしの飾り（どこに・どの絵を・どのくらい動かすか） ----
+// speed: スクロールでずれる量（大きいほどよく動く）  spin: 回る量
+const DECOR = [
+  // 文字にかからないよう、画面のはしっこ・イラストの後ろ・パネルの後ろに置く
+  { at: ".yellow",  img: "note-gold",  css: "left:-14px;top:90px;width:64px",       speed: .2,  spin: .06 },
+  { at: ".yellow",  img: "note-red",   css: "right:-12px;top:440px;width:72px",     speed: .3,  spin: -.05 },
+  { at: ".points",  img: "winds",      css: "right:-150px;top:-120px;width:250px",  speed: .15, spin: .02 },
+  { at: ".points",  img: "tambourine", css: "right:-46px;top:46%;width:110px",      speed: .2,  spin: .08 },
+  { at: ".points",  img: "note-red2",  css: "left:-8px;top:24%;width:44px",         speed: .3,  spin: -.1 },
+  { at: ".points",  img: "note-gold",  css: "left:-10px;bottom:4%;width:44px",      speed: .3,  spin: .1 },
+  { at: ".flow",    img: "triangle",   css: "right:-34px;top:31%;width:120px",      speed: .2,  spin: .05 },
+  { at: ".flow",    img: "cymbal",     css: "left:-96px;top:62%;width:200px",       speed: .18, spin: -.04 },
+  { at: ".town",    img: "mallets",    css: "right:-44px;top:40%;width:150px",      speed: .2,  spin: .06 },
+  { at: ".faq",     img: "percussion", css: "right:-130px;bottom:-40px;width:280px", speed: .12, spin: -.02 },
+  { at: ".faq",     img: "note-red",   css: "left:-10px;top:40px;width:50px",       speed: .3,  spin: .1 }
+];
+const decoEls = [];
+if (!matchMedia("(max-width:340px)").matches) DECOR.forEach(d => {
+  const host = document.querySelector(d.at); if (!host) return;
+  const el = document.createElement("div");
+  el.className = "deco"; el.style.cssText = d.css; el.setAttribute("aria-hidden", "true");
+  el.innerHTML = `<img src="images/decor/${d.img}.webp" alt="" loading="lazy">`;
+  host.prepend(el); decoEls.push({ el, ...d });
+});
+
+// ---- 動き ----
+// 画像の形に合わせて、とび出す丸の拡大率を決める（縦長＝上半身をアップ、横長＝全体）
+document.querySelectorAll(".pop img").forEach(img => {
+  const set = () => {
+    const wide = img.naturalWidth / img.naturalHeight > .95, big = img.closest(".big");
+    const z = img.dataset.zoom;
+    img.parentNode.style.setProperty("--zoom", z ? z + "%" : big ? (wide ? "118%" : "150%") : (wide ? "140%" : "165%"));
+  };
+  img.complete ? set() : img.addEventListener("load", set);
+});
+// 画面に入ったら「in」をつけて登場させる
+// 丸から音符を飛ばす
+const NOTES = ["note-gold", "note-red", "note-red2"];
+function burst(popEl) {
+  if (reduce) return;
+  const host = popEl.parentNode, r = popEl.getBoundingClientRect(), h = host.getBoundingClientRect();
+  for (let k = 0; k < 5; k++) {
+    const n = document.createElement("img");
+    n.className = "burst"; n.alt = ""; n.src = `images/decor/${NOTES[k % 3]}.webp`;
+    const ang = (-150 + k * 30 + Math.random() * 20) * Math.PI / 180, dist = 70 + Math.random() * 60;
+    n.style.left = (r.left - h.left + r.width / 2 - 15) + "px";
+    n.style.top = (r.top - h.top + r.height * .45) + "px";
+    n.style.setProperty("--dx", Math.cos(ang) * dist + "px");
+    n.style.setProperty("--dy", Math.sin(ang) * dist - 30 + "px");
+    n.style.setProperty("--dr", (Math.random() * 80 - 40) + "deg");
+    n.style.animationDelay = (k * 60 + 350) + "ms";
+    host.appendChild(n); setTimeout(() => n.remove(), 2200);
+  }
+}
+document.querySelectorAll(".pop").forEach(p => p.addEventListener("click", () => burst(p)));
+
+// 見出しの文字をひと文字ずつに分ける
+document.querySelectorAll(".h2").forEach(h => {
+  let i = 0;
+  (function walk(node) {
+    [...node.childNodes].forEach(c => {
+      if (c.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        [...c.textContent].forEach(ch => { const s = document.createElement("span"); s.className = "ch"; s.style.setProperty("--i", i++); s.textContent = ch; frag.appendChild(s); });
+        c.replaceWith(frag);
+      } else if (c.nodeName !== "BR") walk(c);
+    });
+  })(h);
+});
+
+// 来年セクションに紙吹雪
+const rain = document.createElement("div"); rain.className = "confetti-rain"; rain.setAttribute("aria-hidden", "true");
+const CC = ["var(--sun)", "var(--pink)", "var(--white)", "var(--orange)"];
+rain.innerHTML = Array.from({ length: 22 }, (_, k) =>
+  `<i style="left:${(k * 47) % 100}%;background:${CC[k % 4]};animation-duration:${6 + (k % 5)}s;animation-delay:${-(k * .7)}s;transform:rotate(${k * 33}deg)"></i>`).join("");
+document.querySelector(".join").prepend(rain);
+
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add("in"); io.unobserve(e.target);
+  if (e.target.classList.contains("pop")) burst(e.target);
+}), { threshold: .3 });
+document.querySelectorAll(".pop, .peek, .rv, .h2, .pillar, .road").forEach(el => reduce ? el.classList.add("in") : io.observe(el));
+
+// スクロールに合わせて飾りがふわふわ動く（＋アーチの文字が速くなる）
+let lastY = scrollY, ticking = false;
+function onScroll() {
+  const vh = innerHeight;
+  decoEls.forEach(d => {
+    // 飾りそのものが画面の真ん中に来たとき 0、上下に離れるほど大きくずれる（ずれすぎないよう上限つき）
+    const r = d.el.parentNode.getBoundingClientRect();
+    const off = Math.max(-vh * .6, Math.min(vh * .6, r.top + d.el.offsetTop + d.el.offsetHeight / 2 - vh / 2));
+    d.el.style.transform = `translateY(${off * -d.speed}px) rotate(${off * d.spin}deg)`;
+  });
+  arcBoost = Math.min(3, arcBoost + Math.abs(scrollY - lastY) * .01); lastY = scrollY;
+  ticking = false;
+}
+if (!reduce) { addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true }); onScroll(); }
+// ファーストビューのイラストは、スクロールでゆっくり沈む
+const heroImg = document.querySelector(".cast.photo img");
+if (heroImg && !reduce) addEventListener("scroll", () => {
+  const y = scrollY; if (y < 900) heroImg.style.translate = `0 ${y * .18}px`;
+}, { passive: true });
+
+drawFrame();
+addEventListener("resize", drawFrame);
+document.fonts && document.fonts.ready.then(drawFrame);
+</script>
+</body>
+</html>
