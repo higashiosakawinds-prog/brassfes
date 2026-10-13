@@ -4,7 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>東大阪市吹奏楽フェスタ 2027</title>
-<meta name="description" content="2027年5月2日(日)、大阪府立中央図書館ライティホールで開催。入場無料。東大阪の吹奏楽団・高校吹奏楽部が集まる音楽のお祭り。終演後は東大阪のお店で使えるクーポンも。">
+<!-- 検索・SNSシェア用（LINEやXは JavaScript を読まないので、ここは直接書いておく。日付や会場が変わったらここも直す） -->
+<meta name="description" content="2027年5月2日(日)、大阪府立中央図書館ライティホールで開催（入場無料予定）。主催：東大阪吹奏楽団。東大阪の市民楽団・高校吹奏楽部が集まる吹奏楽のお祭り。">
+<link rel="canonical" href="https://higashiosakawinds-prog.github.io/brassfes/">
+<meta name="theme-color" content="#3a8a85">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="東大阪市吹奏楽フェスタ">
+<meta property="og:title" content="東大阪市吹奏楽フェスタ 2027｜5月2日(日) ライティホール">
+<meta property="og:description" content="東大阪の市民楽団・高校吹奏楽部が集まる吹奏楽のお祭り。主催：東大阪吹奏楽団。">
+<meta property="og:url" content="https://higashiosakawinds-prog.github.io/brassfes/">
+<meta property="og:image" content="https://higashiosakawinds-prog.github.io/brassfes/images/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="images/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
@@ -27,6 +40,7 @@ const FESTA = {
   open: "13:00",              // 開場（予定）
   start: "13:30",             // 開演（予定）
   timeNote: "時間は予定です。決まりしだいお知らせします。", // 確定したら "" にする
+  notice: "このページの内容は2026年10月時点の予定です。正式に決まりしだい更新します。", // 全部決まったら "" にする
   price: "入場無料",
 
   catchcopy: "広げよう、音楽の輪。楽しもう、音楽の和！",
@@ -87,7 +101,7 @@ const FESTA = {
   // 応援しているお店・会社（決まったら追加。空っぽの間は「募集中」の枠が出ます）
   // 例： { name: "〇〇珈琲", type: "カフェ", area: "荒本", coupon: "ドリンク50円引き", link: "https://..." },
   shops: [],
-  shopFormUrl: "",   // ← お店・会社の掲載応募フォームのURL（Googleフォームなど）
+  shopFormUrl: "",   // ← お店・会社の「掲載の相談」フォームのURL（Googleフォームなど）
 
   venue: {
     name: "大阪府立中央図書館 ライティホール",
@@ -101,17 +115,19 @@ const FESTA = {
     mapUrl: "https://maps.app.goo.gl/kAeZNDkgXrctFNdb9"  // 「Googleマップで開く」ボタンのリンク
   },
 
-  // よくある質問（// 要確認 は確認できたら消す）
+  // よくある質問。fixed: false のあいだは「調整中」の札がつく（決まったら true に）
   faq: [
-    { q: "予約やチケットは必要ですか？", a: "不要です！入場無料なので、当日そのままお越しください。" }, // 要確認
-    { q: "途中で入ったり出たりできますか？", a: "曲と曲の間であれば出入りできます。" },                      // 要確認
-    { q: "小さな子どもと一緒でも大丈夫？", a: "大歓迎です！ご家族みんなで楽しんでください。" },              // 要確認
-    { q: "車で行けますか？", a: "駐車場に限りがございますので、電車でのご来場をお勧めします！" },                // 要確認
-    { q: "クーポンはどこでもらえますか？", a: "当日、会場でお配りするパンフレットについています。" }
+    { q: "予約やチケットは必要ですか？", a: "不要です！入場無料なので、当日そのままお越しください。", fixed: false },
+    { q: "途中で入ったり出たりできますか？", a: "曲と曲の間であれば出入りできます。", fixed: false },
+    { q: "小さな子どもと一緒でも大丈夫？", a: "大歓迎です！ご家族みんなで楽しんでください。", fixed: false },
+    { q: "車で行けますか？", a: "駐車場に限りがございますので、電車でのご来場をお勧めします！", fixed: false },
+    { q: "クーポンはどこでもらえますか？", a: "当日、会場でお配りするパンフレットについています。", fixed: false }
   ],
 
   host: "東大阪吹奏楽団",
-  contactUrl: ""   // ← 問い合わせ先（例: mailto:xxxx@example.com や フォームのURL）
+  contactUrl: "",   // ← 学校・楽団の「出演の相談」フォームのURL
+  // フォームがまだ無いあいだは、ここにメールアドレスを入れると「メールで相談する」ボタンになる
+  contactEmail: ""
 };
 </script>
 
@@ -164,6 +180,7 @@ img{max-width:100%;display:block}
 .hero h1{margin:0 auto;width:min(96%,520px)}
 .hero h1 img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 0 rgba(43,37,34,.18))}
 .nb{display:inline-block}
+.host{position:relative;z-index:3;text-align:center;color:var(--white);font-size:.78rem;font-weight:700;letter-spacing:.1em;margin-top:6px;text-shadow:0 0 6px rgba(31,72,69,.9)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .copy{color:var(--white);text-align:center;font-weight:900;font-size:1rem;letter-spacing:.14em;line-height:1.8;margin-top:10px;position:relative;z-index:3;text-shadow:0 0 6px rgba(31,72,69,.9),0 0 14px rgba(31,72,69,.7)}
 .count{display:block;width:max-content;margin:0 auto 12px;background:rgba(43,37,34,.22);color:var(--white);font-weight:700;font-size:.82rem;border-radius:999px;padding:3px 14px}
@@ -196,7 +213,7 @@ img{max-width:100%;display:block}
   .town-bg{animation:townIn 1.2s cubic-bezier(.2,1,.3,1) both}
   .hero h1{animation:logoIn .9s .45s cubic-bezier(.3,1.5,.5,1) both}
   .hero h1 img{animation:logoFloat 4s 1.6s ease-in-out infinite}
-  .copy,.count{animation:fadeUp .6s 1s both}
+  .copy,.count,.host{animation:fadeUp .6s 1s both}
   .cast.photo img{animation:rise 1.1s .8s cubic-bezier(.2,1,.3,1) both}
   .sky-note{animation:skyNote 5s ease-in-out infinite}
   .datebadge{animation:popin .6s 1.7s cubic-bezier(.3,1.6,.5,1) both}
@@ -439,6 +456,10 @@ section,.yellow,.join,.flow,.town{position:relative}
 .faq summary .q{width:34px;height:34px;border-radius:50%;background:var(--blue);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--en);font-weight:500}
 .faq summary::after{content:"+";width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--white);display:flex;align-items:center;justify-content:center}
 .faq details[open] summary::after{content:"−"}
+.tbd{display:inline-block;font-style:normal;font-size:.68rem;font-weight:700;color:var(--pink);border:1.5px solid var(--pink);border-radius:999px;padding:0 8px;margin-left:8px;vertical-align:2px;line-height:1.6}
+.tbd-note{display:block;color:var(--soft);font-size:.78rem;margin-top:4px}
+.notice{font-size:.8rem;color:var(--soft);background:var(--card);border-left:4px solid var(--sun);padding:10px 14px;border-radius:0 10px 10px 0;margin:18px 0}
+.notice:empty{display:none}
 .faq details p{padding:0 16px 16px 62px;font-size:.92rem}
 
 /* =========================================
@@ -475,8 +496,9 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
   <img class="sky-note" src="images/decor/note-red2.webp" alt="" style="left:12%;top:30px;width:26px;animation-delay:-3.5s" aria-hidden="true">
   <div class="col">
     <p class="count" id="countdown"></p>
-    <h1 id="logo"></h1>
+    <h1 id="logo"><img src="images/logo.webp" alt="東大阪市吹奏楽フェスタ 2027" width="1200" height="553"></h1>
     <p class="copy" id="copy"></p>
+    <p class="host" id="heroHost"></p>
   </div>
   <div class="cast" id="cast"></div>
   <a class="datebadge" href="#access"><span class="d" id="dBig"></span><span class="w" id="wd"></span><span class="f" id="free"></span><span class="v"></span></a>
@@ -576,6 +598,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
     <h2 class="h2"><span style="display:block;font-family:var(--en);font-weight:300;font-size:.75rem;letter-spacing:.4em">ACCESS</span>日時・会場</h2>
     <figure class="venue-ph" id="venuePh"></figure>
     <div class="dist" id="dist"></div>
+    <p class="notice" id="accNotice"></p>
     <dl id="infoList"></dl>
     <div class="map"><iframe id="map" loading="lazy" title="会場の地図" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
     <div style="text-align:center" id="mapLink"></div>
@@ -586,6 +609,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
 <section class="faq">
   <div class="col">
     <h2 class="h2"><span style="display:block;font-family:var(--en);font-weight:300;font-size:.75rem;letter-spacing:.4em">Q&amp;A</span>よくある質問</h2>
+    <p class="notice" id="faqNotice"></p>
     <div class="list" id="faq"></div>
   </div>
 </section>
@@ -652,9 +676,8 @@ const photoOr = (g) => g.photo ? `<img src="${g.photo}" alt="${g.name}">` : char
 // ---- ファーストビュー ----
 const days = Math.ceil((new Date(F.day + "T00:00:00+09:00") - new Date()) / 86400000);
 $("countdown").innerHTML = days > 0 ? `本番まで あと<b>${days}</b>日` : days === 0 ? `本日開催！` : `ご来場ありがとうございました`;
-$("logo").innerHTML = F.logo
-  ? `<img src="${F.logo}" alt="${F.name} ${F.year}" width="1200" height="553">`
-  : `${F.name} ${F.year}`;
+if (F.logo) $("logo").innerHTML = `<img src="${F.logo}" alt="${F.name} ${F.year}" width="1200" height="553">`;
+$("heroHost").textContent = `主催：${F.host}`;
 if (F.heroTown) $("townBg").innerHTML = `<img src="${F.heroTown}" alt="">`;
 $("copy").innerHTML = F.catchcopy.replace("。", "。<br>");
 
@@ -736,9 +759,13 @@ $("shops").innerHTML = F.shops.length
   ? F.shops.map(s => `<a class="ticket" ${s.link ? `href="${s.link}" target="_blank" rel="noopener"` : ""}>
       <div class="l"><small>${s.type}・${s.area}</small><b>${s.name}</b></div><div class="r">${s.coupon}</div></a>`).join("")
   : empty.repeat(2);
-$("shopCta").innerHTML = F.shopFormUrl
-  ? `<a class="pill" href="${F.shopFormUrl}" target="_blank" rel="noopener">掲載を申し込む</a>`
-  : `<span class="soon">申し込みフォーム 準備中</span>`;
+// 出口のボタン：フォームがあればフォーム、なければメール（件名つき）、どちらも無ければ「準備中」
+const cta = (url, subject, label) => url
+  ? `<a class="pill" href="${url}" target="_blank" rel="noopener">${label}</a>`
+  : F.contactEmail
+  ? `<a class="pill" href="mailto:${F.contactEmail}?subject=${encodeURIComponent(subject)}">${label}（メール）</a>`
+  : "";
+$("shopCta").innerHTML = cta(F.shopFormUrl, `【${F.name}】お店・会社の掲載について`, "掲載について相談する") || `<span class="soon">申し込みフォーム 準備中</span>`;
 
 // ---- 日時・会場 ----
 $("dist").innerHTML = `<div class="st">${F.venue.station}から</div><div class="km">${F.venue.distance}</div><span class="wk">${F.venue.walk}</span>`
@@ -749,8 +776,9 @@ $("infoList").innerHTML = `
   <dt>会場</dt><dd>${F.venue.name}</dd>
   <dt>住所</dt><dd>${F.venue.address}</dd>
   <dt>電車</dt><dd>${F.venue.access}</dd>
-  <dt>料金</dt><dd>${F.price}（予約不要）</dd>
+  <dt>料金</dt><dd>${F.price}${F.notice ? "（予定）" : ""}</dd>
   <dt>主催</dt><dd>${F.host}</dd>`;
+$("accNotice").textContent = F.notice;
 $("map").src = `https://www.google.com/maps?q=${encodeURIComponent(F.venue.mapQuery)}&output=embed`;
 if (F.venue.mapUrl) $("mapLink").innerHTML = `<a class="pill maplink" href="${F.venue.mapUrl}" target="_blank" rel="noopener">Googleマップで開く</a>`;
 
@@ -762,14 +790,14 @@ $("pillars").innerHTML = F.vision.pillars.map(v =>
 $("steps").innerHTML = F.vision.steps.map(st => `<li><span class="w">${st.when}</span><p>${st.text}</p></li>`).join("");
 
 // ---- よくある質問 ----
-$("faq").innerHTML = F.faq.map(f => `<details><summary><span class="q">Q</span><span>${f.q}</span></summary><p>${f.a}</p></details>`).join("");
+$("faq").innerHTML = F.faq.map(f => `<details><summary><span class="q">Q</span><span>${f.q}${f.fixed ? "" : '<em class="tbd">調整中</em>'}</span></summary>
+  <p>${f.a}${f.fixed ? "" : '<small class="tbd-note">※予定です。正式に決まりしだい更新します。</small>'}</p></details>`).join("");
+$("faqNotice").textContent = F.notice;
 
 // ---- 来年は、いっしょに ----
 $("nextYear").textContent = F.year + 1;
 if (F.inviteImage) $("jump").innerHTML = `<img class="jump rv" src="${F.inviteImage}" alt="手を差しのべるクラリネット奏者のイラスト" loading="lazy">`;
-$("joinCta").innerHTML = F.contactUrl
-  ? `<a class="pill" href="${F.contactUrl}">出演について問い合わせる</a>`
-  : `<span class="soon">お問い合わせ先 準備中</span>`;
+$("joinCta").innerHTML = cta(F.contactUrl, `【${F.name}】出演について`, "出演について相談する") || `<span class="soon">お問い合わせ先 準備中</span>`;
 const url = encodeURIComponent(location.href);
 const txt = encodeURIComponent(`${F.name} ${F.year}｜${F.dateLong} ${F.venue.name}・${F.price}`);
 $("share").innerHTML = `
@@ -777,6 +805,27 @@ $("share").innerHTML = `
   <a href="https://x.com/intent/post?text=${txt}&url=${url}" target="_blank" rel="noopener">Xでシェア</a>`;
 $("fName").textContent = `${F.name} ${F.year}`;
 $("fHost").textContent = `主催：${F.host}`;
+
+// ---- 検索エンジン向けのイベント情報（FESTA から自動で作る） ----
+const ld = document.createElement("script");
+ld.type = "application/ld+json";
+ld.textContent = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "MusicEvent",
+  name: `${F.name} ${F.year}`,
+  startDate: `${F.day}T${F.start}:00+09:00`,
+  doorTime: `${F.day}T${F.open}:00+09:00`,
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  isAccessibleForFree: /無料/.test(F.price),
+  location: { "@type": "Place", name: F.venue.name,
+    address: { "@type": "PostalAddress", streetAddress: F.venue.address, addressRegion: "大阪府", addressCountry: "JP" } },
+  image: [new URL("images/ogp.jpg", location.href).href],
+  description: F.vision.lead,
+  organizer: { "@type": "Organization", name: F.host, url: "https://higashiosakawinds-prog.github.io/higasui/" },
+  performer: F.groups.map(g => ({ "@type": "MusicGroup", name: g.name }))
+});
+document.head.appendChild(ld);
 
 // ---- にぎやかしの飾り（どこに・どの絵を・どのくらい動かすか） ----
 // speed: スクロールでずれる量（大きいほどよく動く）  spin: 回る量
