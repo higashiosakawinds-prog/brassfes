@@ -625,8 +625,10 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
           <li>このページに、お店・会社の紹介を掲載</li>
           <li>当日配るパンフレットに掲載</li>
           <li>クーポンブックで、来場者にお店を知ってもらえる</li>
+          <li>クーポンのみの掲載なら1,000円から</li>
         </ul>
-        <div id="shopCta"></div>
+        <a class="pill" href="shop.html">掲載プラン・料金を見る</a>
+        <div id="shopCta" style="margin-top:12px"></div>
       </div>
     </div>
   </div>
@@ -805,7 +807,7 @@ const cta = (url, subject, label) => url
   : F.contactEmail
   ? `<a class="pill" href="mailto:${F.contactEmail}?subject=${encodeURIComponent(subject)}">${label}（メール）</a>`
   : "";
-$("shopCta").innerHTML = cta(F.shopFormUrl, `【${F.name}】お店・会社の掲載について`, "掲載について相談する") || `<span class="soon">申し込みフォーム 準備中</span>`;
+$("shopCta").innerHTML = cta(F.shopFormUrl, `【${F.name}】お店・会社の掲載について`, "掲載について相談する");
 
 // ---- 日時・会場 ----
 $("dist").innerHTML = `<div class="st">${F.venue.station}から</div><div class="km">${F.venue.distance}</div><span class="wk">${F.venue.walk}</span>`
