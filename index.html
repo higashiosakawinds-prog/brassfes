@@ -32,16 +32,19 @@ const FESTA = {
   catchcopy: "広げよう、音楽の輪。楽しもう、音楽の和！",
 
   // ファーストビューの大きなイラスト（images フォルダに入れた画像の名前。空 "" なら仮キャラが出ます）
-  heroImage: "images/hero-members.webp",     // ファーストビュー
+  logo: "images/logo.webp",                  // ロゴ
+  heroImage: "images/hero-members.webp",     // ファーストビューの人物
+  heroTown: "images/town.webp",              // ファーストビューの背景の街
   polaroidImage: "images/hero-members.webp", // 黄色い面のポラロイド写真
   townImage: "images/tuba-back.webp",        // 「音楽のあとは、街へ」でのぞいている人
-  accessImage: "images/member-walk.webp",    // 「日時・会場」で手招きしている人
+  accessImage: "images/jk-walk.webp",        // 「日時・会場」で歩いている人
+  townScene: "images/town.webp",             // 「音楽のあとは、街へ」の街の絵
   inviteImage: "images/member-jump.webp",    // 「来年は、いっしょに」で跳んでいる人
 
-  // 「ここが楽しい！」ポイント（来たくなる理由）。img は丸からとび出すイラスト
+  // 「ここが楽しい！」ポイント（来たくなる理由）。img は丸からとび出すイラスト。zoom は絵の大きさ(%)、なければ自動
   points: [
     { title: "ふらっと入れる", img: "images/tuba-reach.webp", text: "入場無料・予約なし。図書館に寄ったついでに、ちょっと聴いていくのも大歓迎。", chara: "drum" },
-    { title: "高校生から大人まで", img: "images/hero-members.webp", text: "高校の吹奏楽部と、2つの市民楽団。世代の違うバンドの音を、一日でまとめて聴けます。", chara: "clarinet" },
+    { title: "高校生から大人まで", img: "images/jk-point.webp", zoom: 118, text: "高校の吹奏楽部と、2つの市民楽団。世代の違うバンドの音を、一日でまとめて聴けます。", chara: "clarinet" },
     { title: "最後はみんなで合奏", img: "images/tuba-wave.webp", text: "フィナーレは団体の垣根をこえた合同ステージ。ここでしか聴けない編成です。", chara: "trumpet" },
     { title: "帰りは街へ", img: "images/member-walk.webp", text: "パンフレットのクーポンを持って、東大阪のお店へ。音楽のあとの寄り道も楽しんで。", chara: "drum" }
   ],
@@ -153,17 +156,24 @@ img{max-width:100%;display:block}
 /* =========================================
    ファーストビュー
    ========================================= */
-.hero{background:var(--blue);position:relative;overflow:hidden;padding-top:34px}
-.hero .col{padding-bottom:0}
-.wm{position:relative;margin:0 auto;width:min(100%,460px);padding:26px 18px 22px;text-align:center;color:var(--sun)}
-.wm svg.frame{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.wm .s{display:block;font-weight:900;font-size:clamp(1rem,4.4vw,1.25rem);letter-spacing:.3em;line-height:1.3}
-.wm .l{display:block;font-weight:900;font-size:clamp(2.1rem,10vw,3.1rem);letter-spacing:.06em;line-height:1.25}
-.wm .y{display:block;font-family:var(--en);font-weight:500;font-size:1rem;letter-spacing:.4em;line-height:1.4}
-.copy{color:var(--sun);text-align:center;font-weight:700;font-size:.98rem;letter-spacing:.14em;line-height:1.8;margin-top:22px}
-.count{display:block;width:max-content;margin:14px auto 0;background:rgba(0,0,0,.14);color:var(--white);font-weight:700;font-size:.82rem;border-radius:999px;padding:3px 14px}
+/* 空のグラデーション＋うしろに街、まえに3人、いちばん上にロゴ */
+.hero{position:relative;overflow:hidden;padding-top:22px;
+  background:linear-gradient(180deg,var(--blue) 0%,#5ea39d 48%,#a9d1c8 78%,#d6e6df 100%)}
+.hero .col{padding-bottom:0;z-index:3}
+.hero h1{margin:0 auto;width:min(96%,520px)}
+.hero h1 img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 0 rgba(43,37,34,.18))}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.copy{color:var(--white);text-align:center;font-weight:900;font-size:1rem;letter-spacing:.14em;line-height:1.8;margin-top:10px;position:relative;z-index:3;text-shadow:0 0 6px rgba(31,72,69,.9),0 0 14px rgba(31,72,69,.7)}
+.count{display:block;width:max-content;margin:0 auto 12px;background:rgba(43,37,34,.22);color:var(--white);font-weight:700;font-size:.82rem;border-radius:999px;padding:3px 14px}
 .count b{font-family:var(--en);font-weight:500;font-size:1.15rem;color:var(--sun);margin:0 2px}
-.badges{position:relative;height:150px;margin-top:6px}
+/* 街はヒーローの下半分だけに敷く（はみ出た左右は切る） */
+.town-bg{position:absolute;left:0;right:0;bottom:0;height:64%;z-index:1;pointer-events:none;-webkit-mask:linear-gradient(transparent,#000 26%);mask:linear-gradient(transparent,#000 26%)}
+.town-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 100%;display:block;filter:saturate(.75) sepia(.12)}
+@media(min-width:760px){.town-bg{height:70%}}
+@media(min-width:760px){.copy{display:table;margin:14px auto 0;background:rgba(31,72,69,.6);padding:8px 26px;border-radius:999px;line-height:1.7}.copy br{display:none}}
+.cast{z-index:2}
+.sky-note{position:absolute;z-index:2;width:34px;pointer-events:none}
+.hero .stage{position:relative;z-index:2}
 .bdg{position:absolute;width:104px;text-decoration:none}
 .bdg svg.arc{position:absolute;left:-14px;top:-18px;width:132px;height:132px;overflow:visible}
 .bdg svg.arc text{fill:var(--sun);font-weight:700;font-size:13px;letter-spacing:2px}
@@ -177,17 +187,26 @@ img{max-width:100%;display:block}
 .bdg:nth-child(2){right:0;top:-10px}
 .bdg:nth-child(3){left:50%;top:44px;transform:translateX(-50%)}
 .cast{position:relative;display:flex;justify-content:center;align-items:flex-end;margin:6px auto 0;max-width:600px;height:min(64vw,330px)}
-.cast.photo{height:auto;display:block;width:118%;max-width:680px;margin:-26px 0 -30% 50%;transform:translateX(-50%)}
+.cast.photo{height:auto;display:block;width:112%;max-width:640px;margin:0 0 -26% 50%;transform:translateX(-50%)}
 .cast.photo img{width:100%;height:auto;display:block;will-change:transform}
 @media (prefers-reduced-motion:no-preference){
-  .cast.photo img{animation:rise 1.1s .2s cubic-bezier(.2,1,.3,1) both}
-  .bdg{animation:popin .6s cubic-bezier(.3,1.6,.5,1) both}
-  .bdg:nth-child(1){animation-delay:.7s}.bdg:nth-child(2){animation-delay:.85s}.bdg:nth-child(3){animation-delay:1s}
-  .datebadge{animation:popin .6s 1.25s cubic-bezier(.3,1.6,.5,1) both}
+  /* 開いた瞬間の登場：街がせり上がる → ロゴがドン → 3人が出てくる → 日付がポン */
+  .town-bg{animation:townIn 1.2s cubic-bezier(.2,1,.3,1) both}
+  .hero h1{animation:logoIn .9s .45s cubic-bezier(.3,1.5,.5,1) both}
+  .hero h1 img{animation:logoFloat 4s 1.6s ease-in-out infinite}
+  .copy,.count{animation:fadeUp .6s 1s both}
+  .cast.photo img{animation:rise 1.1s .8s cubic-bezier(.2,1,.3,1) both}
+  .sky-note{animation:skyNote 5s ease-in-out infinite}
+  .datebadge{animation:popin .6s 1.7s cubic-bezier(.3,1.6,.5,1) both}
 }
 @keyframes rise{from{transform:translateY(30%);opacity:0}}
+@keyframes townIn{from{transform:translateY(25%);opacity:0}}
+@keyframes logoIn{0%{transform:scale(.3) rotate(-12deg);opacity:0}100%{transform:none;opacity:1}}
+@keyframes logoFloat{50%{transform:translateY(-6px) rotate(-1deg)}}
+@keyframes fadeUp{from{transform:translateY(12px);opacity:0}}
+@keyframes skyNote{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-14px) rotate(8deg)}}
 @keyframes popin{from{scale:0;opacity:0}}
-.hero.has-photo .datebadge{right:auto;left:8px;bottom:5%;transform:rotate(-8deg)}
+.hero.has-photo .datebadge{right:auto;left:10px;bottom:6%;transform:rotate(-8deg);z-index:4}
 @media(min-width:700px){.hero.has-photo .datebadge{left:auto;right:calc(50% - 400px);bottom:30%;width:140px;height:140px}}
 .cast .m{width:44%;margin:0 -6%;position:relative}
 .cast .m svg{width:100%;display:block}
@@ -370,6 +389,10 @@ section,.yellow,.join,.flow,.town{position:relative}
 .maplink{display:inline-flex;align-items:center;gap:8px;margin-top:14px}
 .town .panel{--pl:var(--lav)}
 .town .lead{font-size:.92rem;margin:4px 0 22px 24px}
+.town-scene{margin:0 -22px 22px;overflow:hidden}
+.town-scene img{width:118%;max-width:none;margin-left:-9%;display:block;filter:saturate(.8) sepia(.1);transform:scale(.92);opacity:0;transition:transform 1.1s cubic-bezier(.2,1.2,.35,1),opacity .5s}
+.town-scene.in img{transform:none;opacity:1}
+@media (prefers-reduced-motion:reduce){.town-scene img{transform:none;opacity:1}}
 .tickets{display:grid;gap:14px;margin-left:24px}
 .ticket{display:flex;background:var(--card);border-radius:12px;text-decoration:none;min-height:96px;border:2px solid var(--ink)}
 .ticket .l{flex:1;padding:12px 14px}
@@ -446,15 +469,14 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
 
 <!-- ===== ファーストビュー ===== -->
 <header class="hero">
-  <svg class="dash" style="left:18px;top:14px;width:70px" viewBox="0 0 70 40" aria-hidden="true"><path d="M6 30 Q10 12 26 6 M34 30 Q40 16 56 12" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 8"/></svg>
+  <div class="town-bg" id="townBg" aria-hidden="true"></div>
+  <img class="sky-note" src="images/decor/note-gold.webp" alt="" style="left:6%;top:150px" aria-hidden="true">
+  <img class="sky-note" src="images/decor/note-red.webp" alt="" style="right:5%;top:96px;width:40px;animation-delay:-2s" aria-hidden="true">
+  <img class="sky-note" src="images/decor/note-red2.webp" alt="" style="left:12%;top:30px;width:26px;animation-delay:-3.5s" aria-hidden="true">
   <div class="col">
-    <h1 class="wm">
-      <svg class="frame" aria-hidden="true"><path id="wmPath" fill="none" stroke="var(--sun)" stroke-width="4" stroke-linejoin="round"/></svg>
-      <span class="s">東大阪市</span><span class="l">吹奏楽フェスタ</span><span class="y" id="yr"></span>
-    </h1>
-    <p class="copy" id="copy"></p>
     <p class="count" id="countdown"></p>
-    <div class="badges" id="badges"></div>
+    <h1 id="logo"></h1>
+    <p class="copy" id="copy"></p>
   </div>
   <div class="cast" id="cast"></div>
   <a class="datebadge" href="#access"><span class="d" id="dBig"></span><span class="w" id="wd"></span><span class="f" id="free"></span><span class="v"></span></a>
@@ -532,6 +554,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
       <div class="side">TOWN</div>
       <h3>音楽のあとは、<br>街へ。</h3>
       <p class="lead">このフェスタは、東大阪のお店や会社を応援しています。パンフレットのクーポンを持って、帰り道に寄ってみてください。</p>
+      <div class="town-scene" id="townScene"></div>
       <div class="tickets" id="shops"></div>
       <div class="forshop">
         <h4>お店・会社のみなさまへ</h4>
@@ -623,28 +646,15 @@ const BODY = { navy: "#9cc0d6", pink: "#f0a58c", orange: "#f2cd6e" };
 const pop = (img, kind, color, alt = "", zoom = "") => `<div class="pop">${img ? `<img src="${img}" alt="${alt}" loading="lazy" ${zoom ? `data-zoom="${zoom}"` : ""}>` : chara(kind, color)}</div>`;
 const photoOr = (g) => g.photo ? `<img src="${g.photo}" alt="${g.name}">` : chara(g.chara, "#fbf7ee");
 
-// ---- ロゴのもくもく枠（大きさに合わせて描く） ----
-function drawFrame() {
-  const box = document.querySelector(".wm"), w = box.offsetWidth, h = box.offsetHeight, r0 = 14;
-  const n = Math.max(3, Math.round((w - h) / (r0 * 2))), r = (w - h) / (n * 2), R = h / 2;
-  let d = `M${R} 2`;
-  for (let i = 0; i < n; i++) d += ` a${r} ${r * .7} 0 0 1 ${r * 2} 0`;
-  d += ` A${R - 2} ${R - 2} 0 0 1 ${w - R} ${h - 2}`;
-  for (let i = 0; i < n; i++) d += ` a${r} ${r * .7} 0 0 1 ${-r * 2} 0`;
-  d += ` A${R - 2} ${R - 2} 0 0 1 ${R} 2 Z`;
-  $("wmPath").setAttribute("d", d);
-}
-
 // ---- ファーストビュー ----
 const days = Math.ceil((new Date(F.day + "T00:00:00+09:00") - new Date()) / 86400000);
 $("countdown").innerHTML = days > 0 ? `本番まで あと<b>${days}</b>日` : days === 0 ? `本日開催！` : `ご来場ありがとうございました`;
-$("yr").textContent = F.year;
+$("logo").innerHTML = F.logo
+  ? `<img src="${F.logo}" alt="${F.name} ${F.year}" width="1200" height="553">`
+  : `${F.name} ${F.year}`;
+if (F.heroTown) $("townBg").innerHTML = `<img src="${F.heroTown}" alt="">`;
 $("copy").innerHTML = F.catchcopy.replace("。", "。<br>");
-$("badges").innerHTML = F.groups.map((g, i) => `
-  <a class="bdg ${g.color}" href="#rail">
-    <svg class="arc" viewBox="0 0 132 132"><path id="bp${i}" d="M14 70 A52 52 0 0 1 118 70" fill="none"/>
-      <text><textPath href="#bp${i}" startOffset="50%" text-anchor="middle">${g.name.replace(/ /g, "")}</textPath></text></svg>
-    <div class="ph">${photoOr(g)}</div></a>`).join("");
+
 if (F.heroImage) {
   $("cast").classList.add("photo");
   document.querySelector(".hero").classList.add("has-photo");
@@ -693,7 +703,7 @@ const pc = ["pink", "navy", "orange", "pink"];
 $("ptHead").textContent = `${F.points.length}つの楽しみかた`;
 $("points").innerHTML = F.points.map((p, i) => `
   <div class="pt ${pc[i % 4]}">
-    ${pop(p.img, p.chara, BODY[pc[i % 4]])}
+    ${pop(p.img, p.chara, BODY[pc[i % 4]], "", p.zoom)}
     <div><span class="uline">${p.title}</span><p>${p.text}</p></div>
   </div>`).join("");
 
@@ -718,6 +728,7 @@ $("program").innerHTML = F.program.map((p, i) => {
 }).join("");
 
 // ---- お店・会社 ----
+if (F.townScene) $("townScene").innerHTML = `<img src="${F.townScene}" alt="東大阪の街のイラスト" loading="lazy">`;
 if (F.townImage) $("townPeek").innerHTML = `<img class="peek" src="${F.townImage}" alt="" loading="lazy">`;
 const empty = `<div class="ticket empty"><div class="l"><small>掲載店舗 募集中</small><b>ここにあなたのお店が入ります</b></div><div class="r">クーポン<br>掲載OK</div></div>`;
 $("shops").innerHTML = F.shops.length
@@ -848,7 +859,7 @@ const io = new IntersectionObserver(es => es.forEach(e => {
   e.target.classList.add("in"); io.unobserve(e.target);
   if (e.target.classList.contains("pop")) burst(e.target);
 }), { threshold: .3 });
-document.querySelectorAll(".pop, .peek, .rv, .h2, .pillar, .road").forEach(el => reduce ? el.classList.add("in") : io.observe(el));
+document.querySelectorAll(".pop, .peek, .rv, .h2, .pillar, .road, .town-scene").forEach(el => reduce ? el.classList.add("in") : io.observe(el));
 
 // スクロールに合わせて飾りがふわふわ動く（＋アーチの文字が速くなる）
 let lastY = scrollY, ticking = false;
@@ -867,12 +878,10 @@ if (!reduce) { addEventListener("scroll", () => { if (!ticking) { ticking = true
 // ファーストビューのイラストは、スクロールでゆっくり沈む
 const heroImg = document.querySelector(".cast.photo img");
 if (heroImg && !reduce) addEventListener("scroll", () => {
-  const y = scrollY; if (y < 900) heroImg.style.translate = `0 ${y * .18}px`;
+  const y = scrollY; if (y < 900) { heroImg.style.translate = `0 ${y * .18}px`; $("townBg").style.translate = `0 ${y * .32}px`; }
 }, { passive: true });
 
-drawFrame();
-addEventListener("resize", drawFrame);
-document.fonts && document.fonts.ready.then(drawFrame);
+
 </script>
 </body>
 </html>
