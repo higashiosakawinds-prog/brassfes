@@ -40,7 +40,7 @@ const FESTA = {
   open: "13:00",              // 開場（予定）
   start: "13:30",             // 開演（予定）
   timeNote: "時間は予定です。決まりしだいお知らせします。", // 確定したら "" にする
-  notice: "このページの内容は2026年10月時点の予定です。正式に決まりしだい更新します。", // 全部決まったら "" にする
+  notice: "", // 「このページの内容は予定です」などの注意書きを出したいときに入れる（空なら出ない）
   price: "入場無料",
 
   catchcopy: "広げよう、音楽の輪。楽しもう、音楽の和！",
@@ -117,11 +117,11 @@ const FESTA = {
 
   // よくある質問。fixed: false のあいだは「調整中」の札がつく（決まったら true に）
   faq: [
-    { q: "予約やチケットは必要ですか？", a: "不要です！入場無料なので、当日そのままお越しください。", fixed: false },
-    { q: "途中で入ったり出たりできますか？", a: "曲と曲の間であれば出入りできます。", fixed: false },
-    { q: "小さな子どもと一緒でも大丈夫？", a: "大歓迎です！ご家族みんなで楽しんでください。", fixed: false },
-    { q: "車で行けますか？", a: "駐車場に限りがございますので、電車でのご来場をお勧めします！", fixed: false },
-    { q: "クーポンはどこでもらえますか？", a: "当日、会場でお配りするパンフレットについています。", fixed: false }
+    { q: "予約やチケットは必要ですか？", a: "不要です！入場無料なので、当日そのままお越しください。", fixed: true },
+    { q: "途中で入ったり出たりできますか？", a: "曲と曲の間であれば出入りできます。", fixed: true },
+    { q: "小さな子どもと一緒でも大丈夫？", a: "大歓迎です！ご家族みんなで楽しんでください。", fixed: true },
+    { q: "車で行けますか？", a: "駐車場に限りがございますので、電車でのご来場をお勧めします！", fixed: true },
+    { q: "クーポンはどこでもらえますか？", a: "当日、会場でお配りするパンフレットについています。", fixed: true }
   ],
 
   host: "東大阪吹奏楽団",
@@ -181,6 +181,38 @@ img{max-width:100%;display:block}
 .hero h1 img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 0 rgba(43,37,34,.18))}
 .nb{display:inline-block}
 .host{position:relative;z-index:3;text-align:center;color:var(--white);font-size:.78rem;font-weight:700;letter-spacing:.1em;margin-top:6px;text-shadow:0 0 6px rgba(31,72,69,.9)}
+/* ===== メニュー ===== */
+.burger{position:fixed;right:14px;top:14px;z-index:60;width:52px;height:52px;border-radius:50%;border:0;cursor:pointer;
+  background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;box-shadow:0 4px 0 rgba(0,0,0,.15)}
+.burger span{display:block;width:22px;height:2.5px;border-radius:2px;background:var(--white);transition:transform .35s,opacity .2s}
+.burger[aria-expanded="true"]{background:var(--sun)}
+.burger[aria-expanded="true"] span{background:var(--ink)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:55;background:var(--blue);overflow-y:auto;padding:90px 28px 40px;
+  clip-path:circle(0 at calc(100% - 40px) 40px);transition:clip-path .55s cubic-bezier(.7,0,.2,1)}
+.menu.open{clip-path:circle(150% at calc(100% - 40px) 40px)}
+.menu[hidden]{display:block;visibility:hidden}
+.menu.open{visibility:visible}
+.menu .menu-logo{display:block;width:min(64%,260px);height:auto;margin:0 auto 22px}
+.menu ol{list-style:none;max-width:420px;margin:0 auto;counter-reset:m}
+.menu li{opacity:0;transform:translateY(16px);transition:.4s cubic-bezier(.2,1,.3,1)}
+.menu.open li{opacity:1;transform:none;transition-delay:calc(.2s + var(--i) * 45ms)}
+.menu a{display:flex;align-items:baseline;gap:14px;padding:13px 4px;border-bottom:1.5px dashed rgba(246,240,228,.35);
+  color:var(--white);text-decoration:none;font-weight:900;font-size:1.15rem;letter-spacing:.08em}
+.menu a small{font-family:var(--en);font-weight:400;font-size:.7rem;letter-spacing:.25em;color:var(--sun);width:6.5em;flex:none}
+.menu a:hover,.menu a:focus-visible{color:var(--sun)}
+body.menu-open{overflow:hidden}
+/* ===== TOP ボタン ===== */
+.totop{position:fixed;right:14px;bottom:18px;z-index:50;width:58px;height:58px;border-radius:50%;background:var(--sun);color:var(--ink);
+  text-decoration:none;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:var(--en);font-weight:500;font-size:.72rem;letter-spacing:.12em;
+  box-shadow:0 4px 0 rgba(43,37,34,.25);opacity:0;transform:translateY(20px) scale(.7);pointer-events:none;transition:.35s cubic-bezier(.3,1.6,.5,1)}
+.totop::before{content:"";width:10px;height:10px;border-left:2.5px solid var(--ink);border-top:2.5px solid var(--ink);transform:rotate(45deg);margin:4px 0 -2px}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{transform:translateY(-4px)}
+@media (prefers-reduced-motion:reduce){.menu,.menu li,.totop,.burger span{transition:none}}
+section[id],header[id]{scroll-margin-top:10px}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .copy{color:var(--white);text-align:center;font-weight:900;font-size:1rem;letter-spacing:.14em;line-height:1.8;margin-top:10px;position:relative;z-index:3;text-shadow:0 0 6px rgba(31,72,69,.9),0 0 14px rgba(31,72,69,.7)}
 .count{display:block;width:max-content;margin:0 auto 12px;background:rgba(43,37,34,.22);color:var(--white);font-weight:700;font-size:.82rem;border-radius:999px;padding:3px 14px}
@@ -488,8 +520,16 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
 </head>
 <body>
 
+<!-- ===== メニュー（右上）と TOP ボタン（右下） ===== -->
+<button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+<nav class="menu" id="menu" aria-label="ページ内メニュー" hidden>
+  <img class="menu-logo" src="images/logo.webp" alt="" width="1200" height="553">
+  <ol id="menuList"></ol>
+</nav>
+<a class="totop" id="totop" href="#top" aria-label="ページのいちばん上へ"><span>TOP</span></a>
+
 <!-- ===== ファーストビュー ===== -->
-<header class="hero">
+<header class="hero" id="top">
   <div class="town-bg" id="townBg" aria-hidden="true"></div>
   <img class="sky-note" src="images/decor/note-gold.webp" alt="" style="left:6%;top:150px" aria-hidden="true">
   <img class="sky-note" src="images/decor/note-red.webp" alt="" style="right:5%;top:96px;width:40px;animation-delay:-2s" aria-hidden="true">
@@ -505,7 +545,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
 </header>
 
 <!-- ===== 出演バンド（吹き出しカード） ===== -->
-<section class="bands">
+<section class="bands" id="bands">
   <div class="rail" id="rail"></div>
   <div class="dots" id="dots"></div>
 </section>
@@ -539,7 +579,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
 </div>
 
 <!-- ===== 4つの楽しみかた ===== -->
-<section class="points">
+<section class="points" id="points-sec">
   <div class="col">
     <h2 class="h2"><small>POINT</small><span id="ptHead"></span></h2>
     <div id="points"></div>
@@ -547,7 +587,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
 </section>
 
 <!-- ===== 当日の流れ ===== -->
-<section class="flow">
+<section class="flow" id="program-sec">
   <div class="col">
     <h2 class="h2"><span style="display:block;font-family:var(--en);font-weight:300;font-size:.75rem;letter-spacing:.4em">PROGRAM</span>当日の流れ</h2>
     <div class="times" id="times"></div>
@@ -606,7 +646,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
 </section>
 
 <!-- ===== よくある質問 ===== -->
-<section class="faq">
+<section class="faq" id="faq-sec">
   <div class="col">
     <h2 class="h2"><span style="display:block;font-family:var(--en);font-weight:300;font-size:.75rem;letter-spacing:.4em">Q&amp;A</span>よくある質問</h2>
     <p class="notice" id="faqNotice"></p>
@@ -615,7 +655,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
 </section>
 
 <!-- ===== 来年は、いっしょに ===== -->
-<section class="join">
+<section class="join" id="join">
   <div class="col">
     <div id="jump"></div>
     <div class="ghost" id="nextYear" aria-hidden="true"></div>
@@ -805,6 +845,33 @@ $("share").innerHTML = `
   <a href="https://x.com/intent/post?text=${txt}&url=${url}" target="_blank" rel="noopener">Xでシェア</a>`;
 $("fName").textContent = `${F.name} ${F.year}`;
 $("fHost").textContent = `主催：${F.host}`;
+
+// ---- メニュー（ページ内リンク）：ここに足せば項目が増える ----
+const NAV = [
+  ["bands", "出演するバンド", "BANDS"],
+  ["points-sec", "4つの楽しみかた", "POINT"],
+  ["program-sec", "当日の流れ", "PROGRAM"],
+  ["vision", "このフェスタが目指すこと", "VISION"],
+  ["town", "お店・会社のみなさまへ", "SHOP"],
+  ["access", "日時・会場", "ACCESS"],
+  ["faq-sec", "よくある質問", "Q&A"],
+  ["join", "来年、いっしょに", "JOIN"]
+];
+$("menuList").innerHTML = NAV.map(([id, ja, en], i) => `<li style="--i:${i}"><a href="#${id}"><small>${en}</small>${ja}</a></li>`).join("");
+const menu = $("menu"), burger = $("burger");
+function setMenu(open) {
+  burger.setAttribute("aria-expanded", open);
+  burger.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+  document.body.classList.toggle("menu-open", open);
+  if (open) { menu.hidden = false; requestAnimationFrame(() => menu.classList.add("open")); menu.querySelector("a").focus({ preventScroll: true }); }
+  else { menu.classList.remove("open"); setTimeout(() => { if (!menu.classList.contains("open")) menu.hidden = true; }, 550); }
+}
+burger.addEventListener("click", () => setMenu(burger.getAttribute("aria-expanded") !== "true"));
+menu.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+addEventListener("keydown", e => { if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") { setMenu(false); burger.focus(); } });
+// TOP ボタン：少しスクロールしたら出てくる
+const totop = $("totop");
+addEventListener("scroll", () => totop.classList.toggle("show", scrollY > innerHeight * .8), { passive: true });
 
 // ---- 検索エンジン向けのイベント情報（FESTA から自動で作る） ----
 const ld = document.createElement("script");
