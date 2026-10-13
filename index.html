@@ -41,17 +41,18 @@ const FESTA = {
   townScene: "images/town.webp",             // 「音楽のあとは、街へ」の街の絵
   inviteImage: "images/member-jump.webp",    // 「来年は、いっしょに」で跳んでいる人
 
+  // 見出しの「|」は「ここで改行してOK」の目印（画面に「|」は出ません）
   // 「ここが楽しい！」ポイント（来たくなる理由）。img は丸からとび出すイラスト。zoom は絵の大きさ(%)、なければ自動
   points: [
-    { title: "ふらっと入れる", img: "images/tuba-reach.webp", text: "入場無料・予約なし。図書館に寄ったついでに、ちょっと聴いていくのも大歓迎。", chara: "drum" },
-    { title: "高校生から大人まで", img: "images/jk-point.webp", zoom: 118, text: "高校の吹奏楽部と、2つの市民楽団。世代の違うバンドの音を、一日でまとめて聴けます。", chara: "clarinet" },
-    { title: "最後はみんなで合奏", img: "images/tuba-wave.webp", text: "フィナーレは団体の垣根をこえた合同ステージ。ここでしか聴けない編成です。", chara: "trumpet" },
-    { title: "帰りは街へ", img: "images/member-walk.webp", text: "パンフレットのクーポンを持って、東大阪のお店へ。音楽のあとの寄り道も楽しんで。", chara: "drum" }
+    { title: "ふらっと|入れる", img: "images/tuba-reach.webp", text: "入場無料・予約なし。図書館に寄ったついでに、ちょっと聴いていくのも大歓迎。", chara: "drum" },
+    { title: "高校生から|大人まで", img: "images/jk-point.webp", zoom: 118, text: "高校の吹奏楽部と、2つの市民楽団。世代の違うバンドの音を、一日でまとめて聴けます。", chara: "clarinet" },
+    { title: "最後は|みんなで合奏", img: "images/tuba-wave.webp", text: "フィナーレは団体の垣根をこえた合同ステージ。ここでしか聴けない編成です。", chara: "trumpet" },
+    { title: "帰りは|街へ", img: "images/member-walk.webp", text: "パンフレットのクーポンを持って、東大阪のお店へ。音楽のあとの寄り道も楽しんで。", chara: "drum" }
   ],
 
   // プログラム（順番どおりに並べる）。img は大きな丸からとび出すイラスト。zoom は絵の大きさ(%)、なければ自動
   program: [
-    { part: "第一部", img: "images/band-seated.webp", zoom: 104, title: "東大阪吹奏楽団 ＋ 日新高校吹奏楽部", text: "地域に根ざした2団体によるドリームステージ！", color: "navy" },
+    { part: "第一部", img: "images/band-seated.webp", zoom: 104, title: "東大阪吹奏楽団|＋ 日新高校吹奏楽部", text: "地域に根ざした2団体によるドリームステージ！", color: "navy" },
     { part: "第二部", img: "images/tuba-reach.webp", title: "吹奏楽団 未来図", text: "2027年吹奏楽コンクール課題曲・自由曲（カット無し）を含む、未来図の今をお届けします。", color: "pink" },
     { part: "第三部", img: "images/band-conductor.webp", zoom: 104, title: "合同ステージ", text: "東大阪と枚方が手を取り合う合同演奏。団体の垣根をこえて、ひとつの音に。", color: "orange" }
   ],
@@ -71,10 +72,10 @@ const FESTA = {
     title: "音楽で、まちをつなぐ。",
     lead: "このフェスタは、ただの合同演奏会ではありません。東大阪の吹奏楽団・学校・市民・まちのお店を音楽でつなぎ、毎年続いていく地域のお祭りを目指しています。",
     pillars: [
-      { title: "世代をこえて", text: "高校生から大人まで、同じ舞台で音を重ねる。世代や団体のちがいをこえて、音楽で交流できる場をつくります。", img: "winds" },
-      { title: "学校とつながる", text: "部活動の地域移行を見すえて、学校と市民楽団がいっしょに音楽をつくる。その発表と交流の場にしていきます。", img: "triangle" },
-      { title: "まちのお店とつながる", text: "パンフレットのクーポンをきっかけに、来場者が東大阪のお店を知り、まちを歩く。音楽からまちのにぎわいへ。", img: "tambourine" },
-      { title: "だれでも、吹奏楽に", text: "入場無料・予約なし。はじめての人も、子ども連れも、気軽に生の音楽にふれられる機会をつくります。", img: "mallets" }
+      { title: "世代を|こえて", text: "高校生から大人まで、同じ舞台で音を重ねる。世代や団体のちがいをこえて、音楽で交流できる場をつくります。", img: "winds" },
+      { title: "学校と|つながる", text: "部活動の地域移行を見すえて、学校と市民楽団がいっしょに音楽をつくる。その発表と交流の場にしていきます。", img: "triangle" },
+      { title: "まちのお店と|つながる", text: "パンフレットのクーポンをきっかけに、来場者が東大阪のお店を知り、まちを歩く。音楽からまちのにぎわいへ。", img: "tambourine" },
+      { title: "だれでも、|吹奏楽に", text: "入場無料・予約なし。はじめての人も、子ども連れも、気軽に生の音楽にふれられる機会をつくります。", img: "mallets" }
     ],
     steps: [
       { when: "2027", text: "3団体で、第1回をひらく" },
@@ -162,6 +163,7 @@ img{max-width:100%;display:block}
 .hero .col{padding-bottom:0;z-index:3}
 .hero h1{margin:0 auto;width:min(96%,520px)}
 .hero h1 img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 0 rgba(43,37,34,.18))}
+.nb{display:inline-block}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .copy{color:var(--white);text-align:center;font-weight:900;font-size:1rem;letter-spacing:.14em;line-height:1.8;margin-top:10px;position:relative;z-index:3;text-shadow:0 0 6px rgba(31,72,69,.9),0 0 14px rgba(31,72,69,.7)}
 .count{display:block;width:max-content;margin:0 auto 12px;background:rgba(43,37,34,.22);color:var(--white);font-weight:700;font-size:.82rem;border-radius:999px;padding:3px 14px}
@@ -346,8 +348,6 @@ section,.yellow,.join,.flow,.town{position:relative}
 .panel h3{text-align:center;font-weight:900;font-size:clamp(1.25rem,5.6vw,1.6rem);line-height:1.6;letter-spacing:.1em;margin:0 0 6px 24px}
 .panel .big{position:relative;width:calc(100% + 64px);margin:10px -20px 18px -44px}
 .panel .big .pop{--w:100%;--cl:var(--c);z-index:1;aspect-ratio:1/1.2}
-.panel .big svg.ring{position:absolute;left:-5%;width:110%;bottom:-5%;aspect-ratio:1;overflow:visible;z-index:2;pointer-events:none}
-.panel .big svg.ring text{font-family:var(--en);font-size:12px;letter-spacing:2px;fill:var(--ink);stroke:var(--pl);stroke-width:5px;paint-order:stroke;stroke-linejoin:round}
 .panel .part{font-size:.85rem;font-weight:700;margin-bottom:6px}
 .panel p.t{font-size:.92rem;margin-top:10px}
 .panel .dash{right:14px;bottom:20px}
@@ -612,6 +612,9 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
 -->
 <script>
 const F = FESTA;
+// 見出しの「|」で区切ったかたまりごとに改行する（「部」だけ次の行、を防ぐ）
+const nb = (t) => t.split("|").map(w => `<span class="nb">${w}</span>`).join("");
+const plain = (t) => t.replace(/\|/g, "");
 const $ = (id) => document.getElementById(id);
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -704,7 +707,7 @@ $("ptHead").textContent = `${F.points.length}つの楽しみかた`;
 $("points").innerHTML = F.points.map((p, i) => `
   <div class="pt ${pc[i % 4]}">
     ${pop(p.img, p.chara, BODY[pc[i % 4]], "", p.zoom)}
-    <div><span class="uline">${p.title}</span><p>${p.text}</p></div>
+    <div><span class="uline">${nb(p.title)}</span><p>${p.text}</p></div>
   </div>`).join("");
 
 // ---- 当日の流れ ----
@@ -716,10 +719,8 @@ $("program").innerHTML = F.program.map((p, i) => {
   return `<div class="panel ${p.color}">
     <div class="no"><b>${no}</b><span>STAGE</span></div>
     <div class="side">${side[i] || "STAGE"}</div>
-    <h3>${p.title}</h3>
+    <h3>${nb(p.title)}</h3>
     <div class="big">
-      <svg class="ring" viewBox="0 0 200 200"><path id="rp${i}" d="M6 100 A94 94 0 0 1 194 100" fill="none"/>
-        <text><textPath href="#rp${i}" startOffset="80%" text-anchor="middle">STAGE ${no} - ${side[i] || "STAGE"}</textPath></text></svg>
       ${pop(p.img, F.groups[i % F.groups.length].chara, "#fbf7ee", "", p.zoom)}
     </div>
     <div class="part">${p.part}</div>
@@ -757,7 +758,7 @@ if (F.venue.mapUrl) $("mapLink").innerHTML = `<a class="pill maplink" href="${F.
 $("vTitle").innerHTML = F.vision.title.replace("、", "、<br>");
 $("vLead").textContent = F.vision.lead;
 $("pillars").innerHTML = F.vision.pillars.map(v =>
-  `<div class="pillar"><h3>${v.title}</h3><p>${v.text}</p><img src="images/decor/${v.img}.webp" alt="" loading="lazy"></div>`).join("");
+  `<div class="pillar"><h3>${nb(v.title)}</h3><p>${v.text}</p><img src="images/decor/${v.img}.webp" alt="" loading="lazy"></div>`).join("");
 $("steps").innerHTML = F.vision.steps.map(st => `<li><span class="w">${st.when}</span><p>${st.text}</p></li>`).join("");
 
 // ---- よくある質問 ----
