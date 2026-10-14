@@ -71,13 +71,15 @@ const FESTA = {
     { part: "第三部", img: "images/band-conductor.webp", zoom: 104, title: "合同ステージ", text: "東大阪と枚方が手を取り合う合同演奏。団体の垣根をこえて、ひとつの音に。", color: "orange" }
   ],
 
-  // 出演団体（増えたらコピーして足すだけ。photo は丸アイコンの画像。団体ロゴや写真に変えてもOK）
+  // 出演団体（増えたらコピーして足すだけ）
+  //   photo … 丸アイコンの画像 / logo … 名前の上に出す団体ロゴ（なければ ""）
+  //   link … 団体のサイト / insta … Instagram のURL（なければ ""。あればボタンが出る）
   groups: [
-    { name: "東大阪吹奏楽団", from: "東大阪市", color: "navy", chara: "drum", says: "地元で|めーっちゃ|待ってるで！", photo: "images/face-clarinet.webp", link: "",
+    { name: "東大阪吹奏楽団", from: "東大阪市", color: "navy", chara: "drum", says: "地元で|めーっちゃ|待ってるで！", photo: "images/face-clarinet.webp", logo: "images/higasui.svg", link: "https://higashiosakawinds-prog.github.io/higasui/", insta: "https://www.instagram.com/higashiosaka.winds/",
       text: "東大阪のまちに、音楽の輪を広げるために。2026年に生まれた新しい吹奏楽団です。地域とともに音楽を育みながら、東大阪に新しい文化をつくっていきます。" },
-    { name: "吹奏楽団 未来図", from: "枚方市", color: "pink", chara: "clarinet", says: "未来を描く音楽を！", photo: "images/face-mirai.webp", link: "",
+    { name: "吹奏楽団 未来図", from: "枚方市", color: "pink", chara: "clarinet", says: "未来を描く音楽を！", photo: "images/face-mirai.webp", logo: "", link: "", insta: "https://www.instagram.com/suisougakudanmiraizu/",
       text: "2026年に結成した新しい吹奏楽団。『未来を描く音楽』を合言葉に、一人一人が輝き合う、わくわくする音楽を届けていきます。" },
-    { name: "日新高校 吹奏楽部", from: "東大阪市", color: "orange", chara: "trumpet", says: "若さ全開でいきます！", photo: "images/face-jk.webp", link: "",
+    { name: "日新高校 吹奏楽部", from: "東大阪市", color: "orange", chara: "trumpet", says: "若さ全開でいきます！", photo: "images/face-jk.webp", logo: "", link: "", insta: "",
       text: "映画「国宝」のロケ地となった日新高校。自然豊かな環境で、心のこもった音楽を地域に届けています。" }
   ],
 
@@ -305,6 +307,12 @@ section[id],header[id]{scroll-margin-top:10px}
 .bub details[open] summary::before{content:"−"}
 .bub details p{font-size:.88rem;margin-top:10px}
 .bub a.more{font-size:.85rem;font-weight:700}
+.bub .glogo{display:block;width:100%;max-width:190px;height:auto;margin:-6px 0 0 -4px}
+.bub .insta{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;padding:10px 14px;border-radius:999px;
+  background:var(--c);color:var(--white);font-weight:900;font-size:.85rem;text-decoration:none;box-shadow:0 3px 0 rgba(43,37,34,.2)}
+.bub .insta:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(43,37,34,.2)}
+.bub .ig{width:16px;height:16px;border:2px solid currentColor;border-radius:5px;position:relative;flex:none}
+.bub .ig::after{content:"";position:absolute;inset:3px;border:2px solid currentColor;border-radius:50%}
 .dots{display:flex;justify-content:center;gap:10px;margin-top:14px}
 .dots i{width:10px;height:10px;border-radius:50%;border:2px solid var(--ink)}
 .dots i.on{background:var(--ink)}
@@ -756,8 +764,9 @@ $("free").textContent = F.price;
 $("rail").innerHTML = F.groups.map(g => `
   <div class="bub ${g.color}">
     <div class="ph">${photoOr(g)}</div>
-    <div><div class="nm">${g.name}<small>${g.from}</small></div><div class="sy">「${nb(g.says)}」</div></div>
-    <details><summary>どんなバンド？</summary><p>${g.text}</p>${g.link ? `<a class="more" href="${g.link}" target="_blank" rel="noopener">もっと知る</a>` : ""}</details>
+    <div><div class="nm">${g.logo ? `<img class="glogo" src="${g.logo}" alt="${g.name}">` : g.name}<small>${g.from}</small></div><div class="sy">「${nb(g.says)}」</div></div>
+    ${g.insta ? `<a class="insta" href="${g.insta}" target="_blank" rel="noopener"><span class="ig" aria-hidden="true"></span>Instagramで練習の様子を見る</a>` : ""}
+    <details><summary>どんなバンド？</summary><p>${g.text}</p>${g.link ? `<a class="more" href="${g.link}" target="_blank" rel="noopener">団体のサイトを見る</a>` : ""}</details>
   </div>`).join("");
 $("dots").innerHTML = F.groups.map((_, i) => `<i class="${i ? "" : "on"}"></i>`).join("");
 $("rail").addEventListener("scroll", () => {
