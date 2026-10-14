@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>掲載のお申し込み｜東大阪市吹奏楽フェスタ 2027</title>
+<meta name="description" content="東大阪市吹奏楽フェスタ 2027 のパンフレット・Webクーポンへの掲載お申し込みフォームです。主催：東大阪吹奏楽団。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#3a8a85">
+<link rel="icon" href="images/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+<style>
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.wrap>*{min-width:0}
+@media(min-width:960px){.wrap{grid-template-columns:minmax(0,1fr) 340px;align-items:start}.side{position:sticky;top:20px}}
+form{padding:40px 0 60px}
+fieldset{border:0;margin-bottom:42px}
+legend{display:flex;align-items:center;gap:12px;font-weight:900;font-size:1.25rem;letter-spacing:.06em;margin-bottom:16px}
+legend .n{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--en);font-weight:400;font-size:1rem;flex:none}
+.f{margin-bottom:16px}
+.f label,.f .lb{display:block;font-weight:900;font-size:.92rem;margin-bottom:6px}
+.req{display:inline-block;background:var(--pink);color:var(--white);font-size:.68rem;border-radius:4px;padding:0 6px;margin-left:6px;vertical-align:2px}
+.opt{display:inline-block;color:var(--soft);font-size:.72rem;margin-left:6px}
+.hint{display:block;font-size:.78rem;color:var(--soft);margin-top:4px}
+input[type=text],input[type=email],input[type=tel],input[type=url],select,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:12px 14px}
+textarea{min-height:120px;resize:vertical;line-height:1.7}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(58,138,133,.18)}
+.count{float:right;font-family:var(--en);font-size:.75rem;color:var(--soft);font-weight:400}
+.count.over{color:var(--pink);font-weight:700}
+.bad input,.bad select,.bad textarea{border-color:var(--pink)}
+.err{display:none;color:var(--pink);font-size:.8rem;font-weight:700;margin-top:4px}
+.bad .err{display:block}
+/* プラン選択 */
+.plans{display:grid;gap:10px}
+.plan{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:14px 16px;cursor:pointer}
+.plan input{width:22px;height:22px;accent-color:var(--blue)}
+.plan b{font-weight:900;display:block;line-height:1.4}
+.plan small{font-size:.75rem;color:var(--soft)}
+.plan .yen{font-family:var(--en);font-size:1.3rem;white-space:nowrap}
+.plan:has(input:checked){background:var(--sky-l);border-color:var(--blue);box-shadow:0 0 0 3px var(--blue) inset}
+.plan .pk{display:inline-block;font-size:.66rem;font-weight:900;color:var(--white);background:var(--pink);border-radius:999px;padding:0 8px;margin-left:6px;vertical-align:2px}
+/* ジャンル・支払い */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.chip span{display:inline-block;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.88rem;background:var(--card)}
+.chip input:checked + span{background:var(--ink);color:var(--white)}
+.chip input:focus-visible + span{outline:3px solid var(--pink);outline-offset:2px}
+.chip input:disabled + span{opacity:.4}
+/* 写真 */
+fieldset{min-width:0}
+.photo{display:grid;grid-template-columns:120px minmax(0,1fr);gap:14px;align-items:center}
+.photo .pv{aspect-ratio:16/10;border:2px dashed var(--ink);border-radius:12px;background:var(--card);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:var(--en);font-size:.7rem;letter-spacing:.2em;color:var(--soft)}
+.photo .pv img{width:100%;height:100%;object-fit:cover}
+.photo input{font-size:.85rem;max-width:100%}
+.agree{display:flex;gap:10px;align-items:flex-start;background:var(--card);border-radius:14px;padding:14px 16px;font-size:.88rem}
+.agree input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--blue)}
+.privacy{font-size:.78rem;color:var(--soft);margin:10px 0 0;line-height:1.75}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:12px 0;margin:20px 0}
+.total b{font-family:var(--en);font-weight:400;font-size:2rem}
+.submit{width:100%}
+.msg{margin-top:12px;color:var(--pink);font-weight:700;font-size:.9rem}
+.hp{position:absolute;left:-9999px}
+/* プレビュー */
+.side .lb{font-family:var(--en);font-size:.72rem;letter-spacing:.3em;color:var(--pink);margin:40px 0 8px}
+.side p.note{font-size:.76rem;color:var(--soft);margin-top:8px}
+/* 完了画面 */
+.done{padding:50px 0 70px;text-align:center}
+.done[hidden]{display:none}
+.done .big{font-weight:900;font-size:clamp(1.6rem,7vw,2.2rem);line-height:1.45;margin:10px 0 14px}
+.done .box{text-align:left;background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:18px 20px;margin:22px 0}
+.done .box h3{font-weight:900;margin-bottom:8px}
+.done .box dl{display:grid;grid-template-columns:6em 1fr;gap:6px 10px;font-size:.92rem}
+.done .box dt{font-weight:900}
+.done .steps{list-style:none;text-align:left;margin:20px 0}
+.done .steps li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;margin-bottom:12px;font-size:.92rem}
+.done .steps li span{width:30px;height:30px;border-radius:50%;background:var(--sun);display:flex;align-items:center;justify-content:center;font-family:var(--en)}
+.bank{white-space:pre-wrap;font-weight:700;background:var(--sun-l);border-radius:10px;padding:10px 12px;margin-top:6px}
+</style>
+</head>
+<body>
+
+<p class="demo" id="demo" hidden>いまは「お試しモード」です。送信しても保存されません（設定が終わると本番になります）</p>
+<a class="back" href="shop.html">掲載のご案内へ</a>
+
+<header class="top">
+  <div class="col" style="max-width:1080px">
+    <img class="logo" src="images/logo.webp" alt="東大阪市吹奏楽フェスタ 2027" width="1200" height="553">
+    <h1>掲載のお申し込み</h1>
+    <p>入力しながら、右（スマホでは下）に掲載イメージが表示されます。所要時間は5分ほどです。</p>
+  </div>
+</header>
+
+<div class="wrap" id="formArea">
+<form id="form" novalidate>
+  <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+  <fieldset>
+    <legend><span class="n">1</span>プランをえらぶ</legend>
+    <div class="plans" id="plans"></div>
+    <p class="hint" style="margin-top:8px">くわしい内容は<a href="shop.html#plans">掲載のご案内</a>をご覧ください。</p>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">2</span>お店・会社のこと</legend>
+    <div class="f"><label for="shop_name">お店・会社の名前<span class="req">必須</span><span class="count" data-for="shop_name"></span></label>
+      <input type="text" id="shop_name" maxlength="60" required autocomplete="organization"><span class="err">名前を入れてください</span></div>
+    <div class="f"><label for="shop_kana">ふりがな<span class="opt">任意</span></label>
+      <input type="text" id="shop_kana" maxlength="80"></div>
+    <div class="f coupon-only"><span class="lb">ジャンル<span class="req">必須</span></span>
+      <div class="chips" id="genres"></div><span class="err">ジャンルをえらんでください</span></div>
+    <div class="f coupon-only"><label for="catch">ひとこと<span class="opt">任意</span><span class="count" data-for="catch"></span></label>
+      <input type="text" id="catch" maxlength="40" placeholder="例：荒本駅すぐの、手づくりパンのお店"></div>
+    <div class="f coupon-only"><label for="intro">紹介文<span class="opt">任意</span><span class="count" data-for="intro"></span></label>
+      <textarea id="intro" maxlength="400" placeholder="お店の自慢やおすすめを自由に"></textarea>
+      <span class="hint">パンフレットでは、プランの大きさに合わせて文章を調整させていただくことがあります</span></div>
+    <div class="f"><label for="address">住所<span class="opt">任意</span></label>
+      <input type="text" id="address" maxlength="120" autocomplete="street-address" placeholder="例：東大阪市荒本北1-2-3"></div>
+    <div class="f coupon-only"><label for="hours">営業時間・定休日<span class="opt">任意</span></label>
+      <input type="text" id="hours" maxlength="100" placeholder="例：11:00〜20:00（水曜定休）"></div>
+    <div class="f"><label for="url">Webサイト・SNS<span class="opt">任意</span></label>
+      <input type="url" id="url" maxlength="300" placeholder="https://"><span class="err">https:// から始まるURLを入れてください</span></div>
+  </fieldset>
+
+  <fieldset class="coupon-only">
+    <legend><span class="n">3</span>クーポン</legend>
+    <div class="f"><label for="coupon">クーポンの内容<span class="req">必須</span><span class="count" data-for="coupon"></span></label>
+      <input type="text" id="coupon" maxlength="60" placeholder="例：ドリンク1杯サービス／お会計から10%引き"><span class="err">クーポンの内容を入れてください</span></div>
+    <div class="f"><label for="coupon_note">条件など<span class="opt">任意</span><span class="count" data-for="coupon_note"></span></label>
+      <input type="text" id="coupon_note" maxlength="100" placeholder="例：2027年5月31日まで／1組1回限り"></div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n" id="nPhoto">4</span><span id="photoTitle">写真</span></legend>
+    <div class="photo">
+      <div class="pv" id="photoPv">PHOTO</div>
+      <div><input type="file" id="photo" accept="image/jpeg,image/png,image/webp">
+        <span class="hint">お店の外観・料理・ロゴなど1枚。スマホで撮った写真でOK（自動で小さくして送ります）</span></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n" id="nContact">5</span>ご担当者さま<span class="opt" style="font-size:.75rem">公開されません</span></legend>
+    <div class="f"><label for="contact_name">お名前<span class="req">必須</span></label>
+      <input type="text" id="contact_name" maxlength="60" required autocomplete="name"><span class="err">お名前を入れてください</span></div>
+    <div class="f"><label for="email">メールアドレス<span class="req">必須</span></label>
+      <input type="email" id="email" maxlength="200" required autocomplete="email"><span class="err">メールアドレスを正しく入れてください</span></div>
+    <div class="f"><label for="phone">電話番号<span class="opt">任意</span></label>
+      <input type="tel" id="phone" maxlength="30" autocomplete="tel"></div>
+    <div class="f"><label for="message">ご質問・ご要望<span class="opt">任意</span></label>
+      <textarea id="message" maxlength="1000" style="min-height:90px"></textarea></div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n" id="nPay">6</span>お支払い</legend>
+    <div class="chips" id="pays">
+      <label class="chip"><input type="radio" name="pay" value="card"><span>クレジットカード</span></label>
+      <label class="chip"><input type="radio" name="pay" value="bank"><span>お振込</span></label>
+    </div>
+    <span class="hint" id="payHint"></span>
+    <div class="total"><span style="font-weight:900">お支払い金額（税込）</span><b id="total">¥0</b></div>
+    <label class="agree"><input type="checkbox" id="agree"><span>掲載内容と、下の「お預かりする情報について」を確認しました</span></label>
+    <p class="privacy">お預かりする情報について：お店の名前・ひとこと・紹介文・クーポン・住所・営業時間・Webサイト・写真は、フェスタのパンフレットとWebサイトに掲載します。ご担当者さまのお名前・メールアドレス・電話番号・ご質問は公開せず、このフェスタに関するご連絡だけに使います。主催：東大阪吹奏楽団</p>
+  </fieldset>
+
+  <button class="pill sun submit" type="submit" id="submit">この内容で申し込む</button>
+  <p class="msg" id="msg" role="alert"></p>
+</form>
+
+<aside class="side">
+  <p class="lb">PREVIEW</p>
+  <div id="preview"></div>
+  <p class="note">Webのクーポン一覧では、このように表示されます（イメージ）。掲載は、主催者が内容を確認してからになります。</p>
+</aside>
+</div>
+
+<section class="done" id="done" hidden>
+  <div class="col">
+    <span class="eyebrow">THANK YOU</span>
+    <p class="big">お申し込み、<br>ありがとうございます！</p>
+    <p>内容を確認して、ご担当者さまのメールアドレスにご連絡します。</p>
+    <div class="box"><h3>お申し込み内容</h3><dl id="sum"></dl></div>
+    <div class="box"><h3>お支払い</h3><div id="payBox"></div></div>
+    <ol class="steps">
+      <li><span>1</span><div>主催者が内容を確認します</div></li>
+      <li><span>2</span><div>お支払いを確認したら、Webのクーポン一覧に公開します</div></li>
+      <li><span>3</span><div>パンフレットのプランは、紙面のイメージをメールでお送りします</div></li>
+    </ol>
+    <a class="pill" href="./">フェスタのページへ</a>
+  </div>
+</section>
+
+<footer><p>主催：東大阪吹奏楽団</p><p style="margin-top:6px"><a href="shop.html">掲載のご案内</a>　<a href="coupons.html">クーポン一覧</a></p></footer>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+/* ===== 申し込みフォームのしくみ（ふだんは触らなくてOK） ===== */
+const $ = (id) => document.getElementById(id);
+const yen = (n) => "¥" + Number(n).toLocaleString("ja-JP");
+$("demo").hidden = !DEMO;
+
+// プランの選択肢（?plan=p4 のようにURLで最初から選んでおける）
+const want = new URLSearchParams(location.search).get("plan");
+$("plans").innerHTML = C.plans.map((p, i) => `
+  <label class="plan"><input type="radio" name="plan" value="${p.id}" ${p.id === want || (!want && i === 2) ? "checked" : ""}>
+    <span><b>${p.name}${p.pickup ? '<span class="pk">おすすめ枠</span>' : ""}</b>${p.note ? `<small>${p.note}</small>` : ""}</span>
+    <span class="yen">${yen(p.price)}</span></label>`).join("");
+$("genres").innerHTML = C.genres.map((g) => `<label class="chip"><input type="radio" name="genre" value="${g}"><span>${g}</span></label>`).join("");
+
+const val = (id) => $(id).value.trim();
+const picked = (name) => (document.querySelector(`input[name=${name}]:checked`) || {}).value || "";
+let photoBlob = null, photoUrlLocal = "";
+
+// 入力のたびに：文字数、プランに合わせた表示切り替え、プレビュー、金額
+function refresh() {
+  const plan = planOf(picked("plan"));
+  const noCoupon = !!plan.noCoupon;
+  document.querySelectorAll(".coupon-only").forEach((el) => (el.style.display = noCoupon ? "none" : ""));
+  $("photoTitle").textContent = noCoupon ? "ロゴ・写真" : "写真";
+  $("nPhoto").textContent = noCoupon ? "3" : "4"; $("nContact").textContent = noCoupon ? "4" : "5"; $("nPay").textContent = noCoupon ? "5" : "6";
+  document.querySelectorAll(".count").forEach((c) => {
+    const el = $(c.dataset.for), max = +el.maxLength;
+    c.textContent = `${el.value.length}/${max}`; c.classList.toggle("over", el.value.length >= max);
+  });
+  $("total").textContent = yen(plan.price || 0) + (plan.id === "support" ? "〜" : "");
+  // カード払い：そのプランの支払いリンクがあるときだけ選べる
+  const cardOk = !!(C.cardLinks || {})[plan.id];
+  const card = document.querySelector("input[name=pay][value=card]");
+  card.disabled = !cardOk; if (!cardOk && card.checked) card.checked = false;
+  $("payHint").textContent = cardOk ? "" : "クレジットカード払いは準備中です。お振込をおえらびください";
+  $("preview").innerHTML = shopCard({
+    shop_name: val("shop_name"), shop_kana: val("shop_kana"), genre: noCoupon ? "" : picked("genre"),
+    catch: noCoupon ? "" : val("catch"), intro: noCoupon ? "" : val("intro"),
+    coupon: noCoupon ? "" : val("coupon") || "クーポンの内容", coupon_note: noCoupon ? "" : val("coupon_note"),
+    address: val("address"), hours: noCoupon ? "" : val("hours"), url: val("url"), photo_path: photoUrlLocal
+  });
+}
+$("form").addEventListener("input", (e) => { const f = e.target.closest(".f"); if (f) f.classList.remove("bad"); refresh(); });
+$("form").addEventListener("change", (e) => { const f = e.target.closest(".f"); if (f) f.classList.remove("bad"); refresh(); });
+
+// 写真：長い辺を photoMaxSide まで縮めて JPEG にする
+$("photo").addEventListener("change", async (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  const img = await createImageBitmap(file);
+  const r = Math.min(1, C.photoMaxSide / Math.max(img.width, img.height));
+  const cv = Object.assign(document.createElement("canvas"), { width: Math.round(img.width * r), height: Math.round(img.height * r) });
+  const ctx = cv.getContext("2d");
+  ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, cv.width, cv.height);   // 透明な部分は白に
+  ctx.drawImage(img, 0, 0, cv.width, cv.height);
+  photoBlob = await new Promise((ok) => cv.toBlob(ok, "image/jpeg", 0.85));
+  if (photoUrlLocal) URL.revokeObjectURL(photoUrlLocal);
+  photoUrlLocal = URL.createObjectURL(photoBlob);
+  $("photoPv").innerHTML = `<img src="${photoUrlLocal}" alt="">`;
+  refresh();
+});
+
+// 入力チェック
+function check() {
+  const noCoupon = !!planOf(picked("plan")).noCoupon;
+  const rules = [
+    ["shop_name", !!val("shop_name")],
+    ["contact_name", !!val("contact_name")],
+    ["email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val("email"))],
+    ["url", !val("url") || /^https?:\/\/\S+$/.test(val("url"))]
+  ];
+  if (!noCoupon) rules.push(["coupon", !!val("coupon")], ["genres", !!picked("genre")]);
+  let first = null;
+  rules.forEach(([id, ok]) => { const f = $(id).closest(".f"); f.classList.toggle("bad", !ok); if (!ok && !first) first = f; });
+  if (first) { first.scrollIntoView({ behavior: "smooth", block: "center" }); return "入力が足りないところがあります"; }
+  if (!picked("pay")) return "お支払い方法をえらんでください";
+  if (!$("agree").checked) return "「確認しました」にチェックを入れてください";
+  return "";
+}
+
+// 送信
+$("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (e.target.website.value) return;              // ロボットよけ
+  const problem = check(); $("msg").textContent = problem; if (problem) return;
+  const plan = planOf(picked("plan")), noCoupon = !!plan.noCoupon;
+  const row = {
+    plan: plan.id, shop_name: val("shop_name"), shop_kana: val("shop_kana") || null,
+    genre: noCoupon ? null : picked("genre"), catch: noCoupon ? null : val("catch") || null,
+    intro: noCoupon ? null : val("intro") || null, coupon: noCoupon ? null : val("coupon"),
+    coupon_note: noCoupon ? null : val("coupon_note") || null, address: val("address") || null,
+    hours: noCoupon ? null : val("hours") || null, url: val("url") || null,
+    contact_name: val("contact_name"), email: val("email"), phone: val("phone") || null,
+    payment_method: picked("pay"), message: val("message") || null, photo_path: null
+  };
+  $("submit").disabled = true; $("submit").textContent = "送信しています…";
+  try {
+    if (!DEMO) {
+      if (photoBlob) {
+        const path = `${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}.jpg`;
+        const up = await db.storage.from(C.photoBucket).upload(path, photoBlob, { contentType: "image/jpeg" });
+        if (up.error) throw up.error;
+        row.photo_path = path;
+      }
+      const { error } = await db.from("fes_shops").insert(row);
+      if (error) throw error;
+    }
+    showDone(row, plan);
+  } catch (err) {
+    console.error(err);
+    $("msg").textContent = "送信できませんでした。時間をおいてもう一度お試しください。" + (C.contactEmail ? `（解決しないときは ${C.contactEmail} へご連絡ください）` : "");
+    $("submit").disabled = false; $("submit").textContent = "この内容で申し込む";
+  }
+});
+
+// 完了画面
+function showDone(row, plan) {
+  $("formArea").style.display = "none"; $("done").hidden = false; scrollTo(0, 0);
+  $("sum").innerHTML = `<dt>プラン</dt><dd>${esc(plan.name)}</dd><dt>金額</dt><dd>${yen(plan.price)}${plan.id === "support" ? "〜" : ""}（税込）</dd>
+    <dt>お店</dt><dd>${esc(row.shop_name)}</dd><dt>ご担当</dt><dd>${esc(row.contact_name)} さま</dd>`;
+  const link = (C.cardLinks || {})[plan.id];
+  $("payBox").innerHTML = row.payment_method === "card" && link
+    ? `<p>下のボタンから、クレジットカードでお支払いください。</p><p style="margin-top:12px"><a class="pill sun" href="${esc(link)}" target="_blank" rel="noopener">カードで支払う（${yen(plan.price)}）</a></p>`
+    : `<p>${esc(C.payDeadline)}に、下記へお振込ください。振込名義の前に「フェス」とお付けいただけると助かります。</p>
+       <div class="bank">${C.bank ? esc(C.bank) : "振込先は、確認のメールでご案内します。"}</div>`;
+}
+refresh();
+</script>
+</body>
+</html>

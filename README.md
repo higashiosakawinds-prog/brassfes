@@ -27,3 +27,13 @@
 - 締切が決まったら `schedule` の `date` に入れる（空のあいだは「調整中」）
 - 来場見込み・部数は `expected` / `copies` に入れると表示される
 - 申し込みフォームができたら `formUrl` に（フォームがまだなら `email` でもOK）
+
+## 申し込みフォーム（apply.html）とクーポン一覧（coupons.html）
+- 設定はぜんぶ `config.js`（Supabase の接続先・プラン・ジャンル・カード払いのリンク・振込先）
+- `config.js` の Supabase が空のあいだは「お試しモード」（申し込みは保存されず、クーポン一覧はサンプル表示）
+- 申し込みは Supabase の `fes_shops` 表に「確認待ち（pending）」で入る
+  - 内容と入金を確認したら、Table Editor で `status` を `published` に → クーポン一覧に出る
+  - `paid` は入金確認のチェック、`sort` は大きいほど上に表示、`admin_memo` は自由メモ
+- 写真は Supabase Storage の `shop-photos` に保存（長い辺1600pxに縮めてから送る）
+- データベースの準備は `supabase/schema.sql` を一度実行するだけ
+- `.github/workflows/keep-supabase-awake.yml` が週2回 Supabase に軽くアクセスして、無料プランの自動停止を防ぐ

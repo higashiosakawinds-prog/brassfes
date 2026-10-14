@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クーポン一覧｜東大阪市吹奏楽フェスタ 2027</title>
+<meta name="description" content="東大阪市吹奏楽フェスタ 2027 に参加している東大阪のお店のクーポン一覧。音楽のあとは、街へ。主催：東大阪吹奏楽団。">
+<meta name="theme-color" content="#3a8a85">
+<meta property="og:title" content="クーポン一覧｜東大阪市吹奏楽フェスタ 2027">
+<meta property="og:image" content="https://higashiosakawinds-prog.github.io/brassfes/images/ogp.jpg">
+<link rel="icon" href="images/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+<style>
+.top{position:relative;padding-bottom:0}
+.top .town{display:block;width:100%;max-width:900px;margin:22px auto 0;-webkit-mask:linear-gradient(transparent,#000 30%);mask:linear-gradient(transparent,#000 30%)}
+.howto{background:var(--sun);padding:18px 0}
+.howto ol{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;font-weight:900;font-size:.9rem}
+.howto li{display:flex;align-items:center;gap:8px}
+.howto li span{width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--sun);display:flex;align-items:center;justify-content:center;font-family:var(--en);font-weight:400;font-size:.85rem}
+.filter{position:sticky;top:0;z-index:30;background:var(--white);border-bottom:2px solid var(--ink);padding:12px 0}
+.filter .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0}
+.filter .chips::-webkit-scrollbar{display:none}
+.filter button{flex:none;font:inherit;font-weight:700;font-size:.85rem;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:var(--card);color:var(--ink);cursor:pointer}
+.filter button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+section{padding:46px 0}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+.sec-head h2{font-weight:900;font-size:1.4rem;letter-spacing:.06em}
+.sec-head span{font-family:var(--en);font-size:.72rem;letter-spacing:.3em;color:var(--pink)}
+.pick{display:grid;gap:18px}
+@media(min-width:700px){.pick{grid-template-columns:1fr 1fr}}
+.list{display:grid;gap:12px}
+@media(min-width:700px){.list{grid-template-columns:1fr 1fr}}
+.empty{background:var(--card);border:2px dashed var(--ink);border-radius:18px;padding:26px 20px;text-align:center}
+.empty p{margin-bottom:14px}
+.thanks{background:var(--navy);color:var(--white);border-radius:40px 40px 0 0}
+.thanks .sec-head span{color:var(--sun)}
+.names{display:flex;flex-wrap:wrap;gap:10px}
+.names li{list-style:none;background:rgba(246,240,228,.1);border:1.5px solid rgba(246,240,228,.35);border-radius:999px;padding:6px 16px;font-weight:700}
+.cta{text-align:center;padding:50px 0}
+.cta p{margin-bottom:16px;font-weight:700}
+.count{font-family:var(--en);font-size:.85rem;color:var(--soft);margin:-8px 0 16px}
+.rv{opacity:0;transform:translateY(20px);transition:.6s cubic-bezier(.2,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<p class="demo" id="demo" hidden>いまは「お試しモード」です。表示されているお店はサンプルです</p>
+<a class="back" href="./">フェスタのページへ</a>
+
+<header class="top">
+  <div class="col" style="max-width:900px">
+    <img class="logo" src="images/logo.webp" alt="東大阪市吹奏楽フェスタ 2027" width="1200" height="553">
+    <h1>音楽のあとは、<br>街へ。</h1>
+    <p>フェスタを応援してくれている、東大阪のお店のクーポンです。</p>
+  </div>
+  <img class="town" src="images/town.webp" alt="" width="1600" height="891">
+</header>
+
+<div class="howto"><div class="col" style="max-width:900px"><ol>
+  <li><span>1</span>行きたいお店をえらぶ</li>
+  <li><span>2</span>お店でこの画面を見せる</li>
+  <li><span>3</span>クーポンを使える</li>
+</ol></div></div>
+
+<nav class="filter" aria-label="ジャンルでしぼりこむ"><div class="col" style="max-width:900px"><div class="chips" id="chips"></div></div></nav>
+
+<main class="col" style="max-width:900px">
+  <section id="pickSec">
+    <div class="sec-head"><h2>おすすめのお店</h2><span>PICK UP</span></div>
+    <div class="pick" id="pick"></div>
+  </section>
+  <section id="allSec" style="padding-top:0">
+    <div class="sec-head"><h2>参加しているお店</h2><span>ALL SHOPS</span></div>
+    <p class="count" id="count"></p>
+    <div class="list" id="list"></div>
+  </section>
+</main>
+
+<section class="thanks" id="thanksSec">
+  <div class="col" style="max-width:900px">
+    <div class="sec-head"><h2>応援してくださっている皆さま</h2><span>THANKS</span></div>
+    <ul class="names" id="names"></ul>
+  </div>
+</section>
+
+<div class="cta"><div class="col">
+  <p>あなたのお店も、フェスタに参加しませんか？</p>
+  <a class="pill sun" href="shop.html">掲載のご案内を見る</a>
+</div></div>
+
+<footer><p>主催：東大阪吹奏楽団</p><p style="margin-top:6px"><a href="./">東大阪市吹奏楽フェスタ 2027</a></p></footer>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+/* ===== クーポン一覧のしくみ（ふだんは触らなくてOK） ===== */
+const $ = (id) => document.getElementById(id);
+$("demo").hidden = !DEMO;
+
+// お試しモードで見せるサンプル（実在のお店ではありません）
+const SAMPLE = [
+  { plan: "p1", shop_name: "サンプルベーカリー", shop_kana: "さんぷるべーかりー", genre: "パン", catch: "朝7時から焼きたて", intro: "毎朝焼き上げるパンが自慢の小さなお店です。演奏会帰りのおやつにどうぞ。", coupon: "パン1個プレゼント", coupon_note: "1,000円以上お買い上げで", address: "東大阪市〇〇1-2-3", hours: "7:00〜18:00（月曜定休）" },
+  { plan: "web_pick", shop_name: "サンプル珈琲", genre: "カフェ・スイーツ", catch: "音楽の流れる喫茶店", intro: "レコードを聴きながらゆっくりできる喫茶店です。", coupon: "ドリンク50円引き", address: "東大阪市〇〇4-5-6", hours: "10:00〜19:00" },
+  { plan: "web_std", shop_name: "サンプル食堂", genre: "ごはん", catch: "ボリューム満点の定食", coupon: "大盛り無料", address: "東大阪市〇〇7-8" },
+  { plan: "web_std", shop_name: "サンプル酒店", genre: "お酒", catch: "地元の地酒そろってます", coupon: "お会計から5%引き", address: "東大阪市〇〇9-1" },
+  { plan: "web_std", shop_name: "サンプル雑貨店", genre: "お買い物", coupon: "ノベルティプレゼント", address: "東大阪市〇〇2-4" },
+  { plan: "support", shop_name: "サンプル製作所" }, { plan: "support", shop_name: "サンプル工業" }
+];
+
+let shops = [], genre = "すべて";
+
+async function load() {
+  if (DEMO) { shops = SAMPLE; return; }
+  const { data, error } = await db.from("fes_shops")
+    .select("id,plan,shop_name,shop_kana,genre,catch,intro,coupon,coupon_note,address,hours,url,photo_path,sort,created_at")
+    .eq("status", "published").order("sort", { ascending: false }).order("created_at");
+  if (error) { console.error(error); shops = []; return; }
+  shops = data;
+}
+
+function render() {
+  const withCoupon = shops.filter((s) => !planOf(s.plan).noCoupon);
+  const match = (s) => genre === "すべて" || s.genre === genre;
+  const pick = withCoupon.filter((s) => planOf(s.plan).pickup && match(s));
+  const all = withCoupon.filter(match);
+  const supporters = shops.filter((s) => planOf(s.plan).noCoupon);
+
+  // ジャンルのボタン（お店がいるジャンルだけ）
+  const used = C.genres.filter((g) => withCoupon.some((s) => s.genre === g));
+  $("chips").innerHTML = ["すべて", ...used].map((g) => `<button type="button" aria-pressed="${g === genre}" data-g="${esc(g)}">${esc(g)}</button>`).join("");
+
+  $("pickSec").hidden = !pick.length;
+  $("pick").innerHTML = pick.map((s) => `<div class="rv">${shopCard(s)}</div>`).join("");
+  $("count").textContent = all.length ? `${all.length} SHOPS` : "";
+  $("list").innerHTML = all.length
+    ? all.map((s) => `<div class="rv">${shopCard(s, true)}</div>`).join("")
+    : `<div class="empty"><p>${withCoupon.length ? "このジャンルのお店は、まだありません" : "参加店を募集中です。決まりしだい、ここに並びます！"}</p><a class="pill" href="shop.html">掲載のご案内</a></div>`;
+  $("thanksSec").hidden = !supporters.length;
+  $("names").innerHTML = supporters.map((s) => `<li>${esc(s.shop_name)}</li>`).join("");
+  reveal();
+}
+
+$("chips").addEventListener("click", (e) => {
+  const b = e.target.closest("button"); if (!b) return;
+  genre = b.dataset.g; render();
+});
+
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .15 });
+function reveal() { document.querySelectorAll(".rv:not(.in)").forEach((el) => (reduce ? el.classList.add("in") : io.observe(el))); }
+
+load().then(render);
+</script>
+</body>
+</html>

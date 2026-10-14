@@ -1,0 +1,58 @@
+/* ===== apply.html と coupons.html で共通の見た目 ===== */
+:root{
+  --blue:#3a8a85; --sun:#ecb641; --navy:#2d3f6b; --pink:#d9583e; --orange:#e8913a;
+  --sky-l:#d6e6df; --pink-l:#f5d8ca; --sun-l:#f6e2a8;
+  --ink:#2b2522; --soft:#6b625b; --white:#f6f0e4; --card:#fbf7ee; --line:rgba(43,37,34,.18);
+  --jp:"Zen Kaku Gothic New",sans-serif; --en:"Jost","Zen Kaku Gothic New",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:var(--jp);font-weight:500;color:var(--ink);background:var(--white);line-height:1.85;letter-spacing:.04em}
+body::after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .15 0 0 0 0 .1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit}
+img{max-width:100%;height:auto;display:block}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.col{max-width:640px;margin:0 auto;padding:0 20px;position:relative}
+.nb{display:inline-block}
+.eyebrow{display:block;font-family:var(--en);font-weight:300;font-size:.75rem;letter-spacing:.4em;color:var(--pink)}
+.h2{font-weight:900;font-size:clamp(1.5rem,6.6vw,2rem);line-height:1.45;letter-spacing:.06em;margin:6px 0 18px}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:var(--white);text-decoration:none;border:0;cursor:pointer;
+  font:inherit;font-weight:900;padding:16px 30px;border-radius:999px;letter-spacing:.06em;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.pill.sun{background:var(--sun);color:var(--ink)}
+.pill:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.pill[disabled]{opacity:.5;cursor:not-allowed}
+.back{position:fixed;left:12px;top:12px;z-index:40;background:var(--ink);color:var(--white);text-decoration:none;font-size:.8rem;font-weight:700;border-radius:999px;padding:8px 14px 8px 12px;box-shadow:0 3px 0 rgba(0,0,0,.15)}
+.back::before{content:"←";margin-right:6px}
+.demo{background:var(--pink);color:var(--white);text-align:center;font-size:.8rem;font-weight:700;padding:8px 16px;position:relative;z-index:41}
+.demo[hidden]{display:none}
+.demo:not([hidden]) ~ .back{top:52px}
+.top{background:linear-gradient(180deg,var(--blue),#5ea39d);color:var(--white);padding:70px 0 40px;overflow:hidden}
+.top .logo{width:min(48%,200px);margin-bottom:16px;filter:drop-shadow(0 4px 0 rgba(43,37,34,.18))}
+.top h1{font-weight:900;font-size:clamp(1.8rem,8vw,2.6rem);line-height:1.35;letter-spacing:.04em}
+.top p{margin-top:12px;font-weight:700;max-width:28em}
+footer{background:var(--ink);color:var(--white);text-align:center;padding:26px 16px 34px;font-size:.8rem}
+footer a{color:var(--sun)}
+
+/* お店カード（クーポン一覧と、申し込みのプレビューで共通） */
+.shop{background:var(--card);border:2px solid var(--ink);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.shop .ph{aspect-ratio:16/10;background:var(--sky-l);position:relative;overflow:hidden}
+.shop .ph img{width:100%;height:100%;object-fit:cover}
+.shop .ph .noimg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--en);letter-spacing:.3em;font-size:.7rem;color:var(--soft)}
+.shop .genre{position:absolute;left:10px;top:10px;background:var(--ink);color:var(--white);font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 10px}
+.shop .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.shop h3{font-weight:900;font-size:1.1rem;line-height:1.5}
+.shop .kana{font-size:.7rem;color:var(--soft);letter-spacing:.1em}
+.shop .catch{font-size:.88rem;font-weight:700;color:var(--blue)}
+.shop .intro{font-size:.84rem;color:var(--soft);line-height:1.75}
+.shop .cp{margin-top:8px;display:flex;align-items:stretch;border:2px dashed var(--ink);border-radius:12px;overflow:hidden}
+.shop .cp b{background:var(--sun);font-family:var(--en);font-weight:500;font-size:.7rem;letter-spacing:.2em;writing-mode:vertical-rl;padding:8px 6px;display:flex;align-items:center;justify-content:center}
+.shop .cp span{padding:8px 12px;font-weight:900;font-size:.95rem;line-height:1.5}
+.shop .cp small{display:block;font-weight:500;font-size:.74rem;color:var(--soft)}
+.shop .meta{margin-top:8px;font-size:.78rem;color:var(--soft);line-height:1.7}
+.shop .meta a{color:var(--blue);font-weight:700}
+.shop.mini{flex-direction:row}
+.shop.mini .ph{width:96px;aspect-ratio:auto;flex:none}
+.shop.mini .intro,.shop.mini .kana{display:none}
+.shop.mini .bd{padding:12px 14px}
+.shop.mini h3{font-size:1rem}

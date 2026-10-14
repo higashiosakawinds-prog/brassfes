@@ -68,7 +68,7 @@ const SHOP = {
   copies: "",     // 例: "300部"
 
   // 申し込み先：フォームがあればフォーム、なければメール。どちらも空なら「準備中」
-  formUrl: "",
+  formUrl: "apply.html",   // 申し込みフォーム（このサイトの apply.html）
   email: "",
 
   faq: [
@@ -376,7 +376,7 @@ $("faq").innerHTML = S.faq.map(f => `<details><summary>${f.q}${f.fixed ? "" : ' 
 
 const subject = encodeURIComponent(`【${S.name}】お店・会社の掲載について`);
 $("applyCta").innerHTML = S.formUrl
-  ? `<a class="pill sun" href="${S.formUrl}" target="_blank" rel="noopener">申し込みフォームへ</a>`
+  ? `<a class="pill sun" href="${S.formUrl}">申し込みフォームへ</a>`
   : S.email
   ? `<a class="pill sun" href="mailto:${S.email}?subject=${subject}">メールで相談する</a>`
   : `<span class="soon">申し込みフォーム 準備中</span>`;
