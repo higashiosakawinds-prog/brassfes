@@ -21,6 +21,7 @@ section{scroll-margin-top:70px}
 .howto{background:var(--sun);padding:18px 0}
 .howto ol{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;font-weight:900;font-size:.9rem}
 .howto li{display:flex;align-items:center;gap:8px}
+.howto .note{font-size:.78rem;font-weight:700;margin-top:6px}
 .howto li span{width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--sun);display:flex;align-items:center;justify-content:center;font-family:var(--en);font-weight:400;font-size:.85rem}
 .filter{position:sticky;top:0;z-index:30;background:var(--white);border-bottom:2px solid var(--ink);padding:12px 0}
 .filter .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0}
@@ -51,23 +52,23 @@ section{padding:46px 0}
 </head>
 <body>
 
-<p class="demo" id="demo" hidden>いまは「お試しモード」です。表示されているお店はサンプルです</p>
+<p class="demo" id="demo" hidden>お試しモード：表示しているお店はサンプルです</p>
 <a class="back" href="./">フェスタのページへ</a>
 
 <header class="top">
   <div class="col" style="max-width:900px">
     <img class="logo" src="images/logo.webp" alt="東大阪市吹奏楽フェスタ 2027" width="1200" height="553">
     <h1>音楽のあとは、<br>街へ。</h1>
-    <p>フェスタを応援してくれている、東大阪のお店のクーポンです。</p>
+    <p>フェスタに来てくれた人だけが使える、東大阪のお店のクーポン。演奏会のあとの寄り道に、どうぞ。</p>
   </div>
   <img class="town" src="images/town.webp" alt="" width="1600" height="891">
 </header>
 
 <div class="howto"><div class="col" style="max-width:900px"><ol>
-  <li><span>1</span>行きたいお店をえらぶ</li>
-  <li><span>2</span>お店でこの画面を見せる</li>
-  <li><span>3</span>クーポンを使える</li>
-</ol></div></div>
+  <li><span>1</span><b class="nb" id="day">5月2日（日）</b><b class="nb">フェスタに来る</b></li>
+  <li><span>2</span><b class="nb">パンフレットのQRから</b><b class="nb">クーポンを受け取る</b></li>
+  <li><span>3</span><b class="nb">お店で使う</b></li>
+</ol><p class="note">※このページは参加店の紹介です。この画面を見せてもクーポンは使えません</p></div></div>
 
 <nav class="filter" aria-label="ジャンルでしぼりこむ"><div class="col" style="max-width:900px"><div class="chips" id="chips"></div></div></nav>
 
@@ -104,6 +105,7 @@ section{padding:46px 0}
 /* ===== クーポン一覧のしくみ（ふだんは触らなくてOK） ===== */
 const $ = (id) => document.getElementById(id);
 $("demo").hidden = !DEMO;
+$("day").textContent = C.couponDay;
 
 // お試しモードで見せるサンプル（実在のお店ではありません）
 const SAMPLE = [

@@ -36,6 +36,11 @@ window.FES_CONFIG = {
   // ---- 問い合わせ先（申し込み完了画面に表示） ----
   contactEmail: "",
 
+  // ---- クーポンを使えるようにするか ----
+  // false のあいだは、一覧のクーポンに「当日、パンフレットのQRから使えます」と表示（この画面では使えない）
+  couponsOpen: false,
+  couponDay: "5月2日（日）",
+
   // ---- 写真 ----
   photoMaxSide: 1600,   // 長い辺をこのピクセルまで縮めてから保存（通信量と容量の節約）
   photoBucket: "shop-photos"

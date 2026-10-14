@@ -14,6 +14,7 @@ create table if not exists public.fes_shops (
   paid           boolean not null default false,                         -- 入金を確認したら true
   sort           integer not null default 0,                             -- 大きいほど上に表示（ピックアップの順番調整）
   admin_memo     text,
+  pin            text check (pin ~ '^[0-9]{4}$'),                    -- 店舗コード（当日のもぎり用・4桁・非公開）
 
   -- 申し込み内容（公開されるもの）
   plan           text not null

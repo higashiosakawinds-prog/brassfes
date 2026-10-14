@@ -30,7 +30,7 @@ function shopCard(s, mini = false) {
       <h3>${esc(s.shop_name || "お店の名前")}</h3>
       ${s.catch ? `<p class="catch">${esc(s.catch)}</p>` : ""}
       ${s.intro ? `<p class="intro">${esc(s.intro)}</p>` : ""}
-      ${s.coupon ? `<div class="cp"><b>COUPON</b><span>${esc(s.coupon)}${s.coupon_note ? `<small>${esc(s.coupon_note)}</small>` : ""}</span></div>` : ""}
+      ${s.coupon ? `<div class="cp ${C.couponsOpen ? "" : "locked"}"><b>COUPON</b><span>${esc(s.coupon)}${s.coupon_note ? `<small>${esc(s.coupon_note)}</small>` : ""}${C.couponsOpen ? "" : `<em class="lock">当日、パンフレットのQRから使えます</em>`}</span></div>` : ""}
       <p class="meta">${[s.address, s.hours].filter(Boolean).map(esc).join("<br>")}${url ? `${s.address || s.hours ? "<br>" : ""}<a href="${esc(url)}" target="_blank" rel="noopener">お店のページ</a>` : ""}</p>
     </div>
   </article>`;
