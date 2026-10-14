@@ -128,6 +128,7 @@ const FESTA = {
   ],
 
   host: "東大阪吹奏楽団",
+  hostUrl: "https://higashiosakawinds-prog.github.io/higasui/",   // 主催のサイト
   contactUrl: "",   // ← 学校・楽団の「出演の相談」フォームのURL
   // フォームがまだ無いあいだは、ここにメールアドレスを入れると「メールで相談する」ボタンになる
   contactEmail: ""
@@ -216,6 +217,10 @@ body.menu-open{overflow:hidden}
 .totop:hover{transform:translateY(-4px)}
 @media (prefers-reduced-motion:reduce){.menu,.menu li,.totop,.burger span{transition:none}}
 section[id],header[id]{scroll-margin-top:10px}
+.host a{color:inherit}
+.hostlogo{display:inline-flex;align-items:center;gap:10px;background:var(--white);border-radius:14px;padding:8px 16px;margin:14px 0 6px;text-decoration:none}
+.hostlogo small{color:var(--ink);font-weight:900;font-size:.72rem;letter-spacing:.1em}
+.hostlogo img{width:120px;height:auto}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .copy{color:var(--white);text-align:center;font-weight:900;font-size:1rem;letter-spacing:.14em;line-height:1.8;margin-top:10px;position:relative;z-index:3;text-shadow:0 0 6px rgba(31,72,69,.9),0 0 14px rgba(31,72,69,.7)}
 .count{display:block;width:max-content;margin:0 auto 12px;background:rgba(43,37,34,.22);color:var(--white);font-weight:700;font-size:.82rem;border-radius:999px;padding:3px 14px}
@@ -671,7 +676,9 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
   </div>
 </section>
 
-<footer><div class="col"><b id="fName"></b><p id="fHost"></p></div></footer>
+<footer><div class="col"><b id="fName"></b>
+  <a class="hostlogo" id="hostLogo" target="_blank" rel="noopener"><small>主催</small><img src="images/higasui.svg" alt="東大阪吹奏楽団" width="850" height="300"></a>
+  <p id="fHost"></p></div></footer>
 
 <!--
 ==========================================================
@@ -722,7 +729,8 @@ const photoOr = (g) => g.photo ? `<img src="${g.photo}" alt="${g.name}">` : char
 const days = Math.ceil((new Date(F.day + "T00:00:00+09:00") - new Date()) / 86400000);
 $("countdown").innerHTML = days > 0 ? `本番まで あと<b>${days}</b>日` : days === 0 ? `本日開催！` : `ご来場ありがとうございました`;
 if (F.logo) $("logo").innerHTML = `<img src="${F.logo}" alt="${F.name} ${F.year}" width="1200" height="553">`;
-$("heroHost").textContent = `主催：${F.host}`;
+$("heroHost").innerHTML = `主催：<a href="${F.hostUrl}" target="_blank" rel="noopener">${F.host}</a>`;
+$("hostLogo").href = F.hostUrl;
 if (F.heroTown) $("townBg").innerHTML = `<img src="${F.heroTown}" alt="">`;
 $("copy").innerHTML = F.catchcopy.replace("。", "。<br>");
 
@@ -850,7 +858,7 @@ $("share").innerHTML = `
   <a href="https://social-plugins.line.me/lineit/share?url=${url}" target="_blank" rel="noopener">LINEで友だちに送る</a>
   <a href="https://x.com/intent/post?text=${txt}&url=${url}" target="_blank" rel="noopener">Xでシェア</a>`;
 $("fName").textContent = `${F.name} ${F.year}`;
-$("fHost").textContent = `主催：${F.host}`;
+$("fHost").textContent = "";  // 主催はロゴで表示
 
 // ---- メニュー（ページ内リンク）：ここに足せば項目が増える ----
 const NAV = [
