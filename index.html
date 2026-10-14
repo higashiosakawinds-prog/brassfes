@@ -84,12 +84,15 @@ const FESTA = {
   // このフェスタが目指すこと（助成金の申請書とも言葉をそろえておくと◎）
   vision: {
     title: "音楽で、まちをつなぐ。",
-    lead: "東大阪の吹奏楽団・学校・市民・まちのお店を音楽でつなぎ、毎年続いていく地域に愛される音楽の祭典を目指しています。",
+    lead: "東大阪の吹奏楽団・学校・市民・まちのお店を音楽でつなぎ、毎年続いていく地域に愛される音楽の祭典を目指しています。音楽で人が育ち、その人が地域を育て、地域がまた新しい人を育てる。そんな「人と地域と音楽」の好循環を、このフェスタから。",
+    // 主催団体の定款との関係（助成金の審査などで見られたとき用。不要なら "" に）
+    basis: "このフェスタは、主催・東大阪吹奏楽団の定款（第2条 目的・第3条 活動内容）にもとづく事業です。",
+    basisUrl: "https://higashiosakawinds-prog.github.io/higasui/yakkan.html",
     pillars: [
-      { title: "世代を|こえて", text: "高校生から大人まで、同じ舞台で音を重ねる。世代や団体のちがいをこえて、音楽で交流できる場をつくります。", img: "winds" },
-      { title: "学校と|つながる", text: "部活動の地域移行を見すえて、学校と市民楽団がいっしょに音楽をつくる。その発表と交流の場にしていきます。", img: "triangle" },
+      { title: "世代を|こえて", text: "子どもから大人まで、世代や立場をこえて同じ舞台で音を重ねる。ともに交流し、成長できる場をつくります。", img: "winds" },
+      { title: "学校と|つながる", text: "部活動の地域移行を見すえて、学校と市民楽団がいっしょに音楽をつくる。教育と文化の新しいしくみを、ここから。", img: "triangle" },
       { title: "まちのお店と|つながる", text: "パンフレットのクーポンをきっかけに、みんなが東大阪のお店を知り、まちへ繰り出す。音楽からまちのにぎわいを！", img: "tambourine" },
-      { title: "だれでも、|吹奏楽に", text: "入場無料・予約なし。はじめての人も、子ども連れも、気軽に生の音楽にふれられる機会をつくります。", img: "mallets" }
+      { title: "だれでも、|吹奏楽に", text: "入場無料・予約なし。はじめての人も子ども連れも、気軽に生の音楽にふれる。地域に根ざした音楽文化を、次の世代へ。", img: "mallets" }
     ],
     steps: [
       { when: "2027", text: "3団体で、第1回をひらく" },
@@ -443,6 +446,9 @@ section,.yellow,.join,.flow,.town{position:relative}
 .road.in li:nth-child(2){transition-delay:.15s}.road.in li:nth-child(3){transition-delay:.3s}
 @media (prefers-reduced-motion:reduce){.road li{opacity:1;transform:none}.pillar img{translate:0 0}}
 .vision + .town{padding-top:60px}
+.basis{margin-top:30px;font-size:.78rem;line-height:1.8;opacity:.8}
+.basis a{color:var(--sun);font-weight:700}
+.basis:empty{display:none}
 .maplink{display:inline-flex;align-items:center;gap:8px;margin-top:14px}
 .town .panel{--pl:var(--lav)}
 .town .lead{font-size:.92rem;margin:4px 0 22px 24px}
@@ -613,6 +619,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
     <p class="lead" id="vLead"></p>
     <div class="pillars" id="pillars"></div>
     <div class="road" id="road"><h3>これからの道のり</h3><ol id="steps"></ol></div>
+    <p class="basis" id="basis"></p>
   </div>
 </section>
 
@@ -841,6 +848,7 @@ $("vTitle").innerHTML = F.vision.title.replace("、", "、<br>");
 $("vLead").textContent = F.vision.lead;
 $("pillars").innerHTML = F.vision.pillars.map(v =>
   `<div class="pillar"><h3>${nb(v.title)}</h3><p>${v.text}</p><img src="images/decor/${v.img}.webp" alt="" loading="lazy"></div>`).join("");
+if (F.vision.basis) $("basis").innerHTML = `${F.vision.basis}${F.vision.basisUrl ? ` <a href="${F.vision.basisUrl}" target="_blank" rel="noopener">定款を見る</a>` : ""}`;
 $("steps").innerHTML = F.vision.steps.map(st => `<li><span class="w">${st.when}</span><p>${st.text}</p></li>`).join("");
 
 // ---- よくある質問 ----
