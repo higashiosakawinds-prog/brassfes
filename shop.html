@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>掲載店・協賛のご案内｜東大阪市吹奏楽フェスタ 2027</title>
 <!-- 検索・SNSシェア用（料金や締切が変わったらここも直す） -->
-<meta name="description" content="2027年5月2日(日)開催「東大阪市吹奏楽フェスタ」のパンフレット・Webサイトに掲載するお店・会社を募集しています。クーポンのみ1,000円から。主催：東大阪吹奏楽団。">
+<meta name="description" content="2027年5月2日(日)開催「東大阪市吹奏楽フェスタ」のWebクーポンページに掲載するお店・会社を募集しています。1,000円から。主催：東大阪吹奏楽団。">
 <link rel="canonical" href="https://higashiosakawinds-prog.github.io/brassfes/shop.html">
 <meta name="theme-color" content="#3a8a85">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="東大阪市吹奏楽フェスタ">
 <meta property="og:title" content="掲載店・協賛のご案内｜東大阪市吹奏楽フェスタ 2027">
-<meta property="og:description" content="演奏会のパンフレットとWebサイトで、あなたのお店を来場者に紹介します。クーポンのみ1,000円から。">
+<meta property="og:description" content="フェスタの来場者に、あなたのお店のクーポンを届けます。1,000円から。">
 <meta property="og:url" content="https://higashiosakawinds-prog.github.io/brassfes/shop.html">
 <meta property="og:image" content="https://higashiosakawinds-prog.github.io/brassfes/images/ogp.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,31 +35,26 @@ const SHOP = {
   venue: "大阪府立中央図書館 ライティホール",
   host: "東大阪吹奏楽団",
 
-  // 掲載プラン。group でまとまりを分ける（paper＝パンフ＋Web／web＝Webのみ／support＝応援）
-  //   paper の size … A4を4×4マスに分けたときの「よこ×たて」のマス数（図に使う）
+  // 掲載プラン。group でまとまりを分ける（web＝クーポンページ／support＝応援）
   //   web の pickup … true なら「おすすめ枠」に表示。limit は先着の店数
   plans: [
-    { group: "paper", name: "1ページ",   price: 10000, size: [4, 4], note: "写真・紹介文・地図・クーポンをたっぷり。お店の魅力をまるごと伝えたい方に", tag: "いちばん目立つ" },
-    { group: "paper", name: "1/2ページ", price: 5000,  size: [4, 2], note: "写真と紹介文、クーポンもしっかり載せられるサイズ" },
-    { group: "paper", name: "1/4ページ", price: 3000,  size: [2, 2], note: "写真1枚＋ひとこと紹介＋クーポン。はじめての方にもおすすめ", tag: "おすすめ" },
-    { group: "web", name: "Webピックアップ", price: 3000, pickup: true, limit: 6, note: "クーポン一覧のいちばん上「おすすめ」枠に、写真つきの大きなカードで表示" },
-    { group: "web", name: "Webスタンダード", price: 1000, pickup: false, note: "クーポン一覧に、店名・ひとこと・クーポンを掲載（ジャンル別に並びます）" },
-    { group: "support", name: "協賛（応援）", price: 3000, priceFrom: true, note: "クーポンは出せないけれど、地域の音楽を応援したい会社・団体さまへ。パンフレットとWebにお名前・ロゴを掲載" }
+    { group: "web", name: "Webピックアップ", price: 3000, pickup: true, limit: 6, note: "クーポンページのいちばん上「おすすめ」枠に、写真つきの大きなカードで表示" },
+    { group: "web", name: "Webスタンダード", price: 1000, pickup: false, note: "クーポンページに、店名・ひとこと・クーポンを掲載（ジャンル別に並びます）" },
+    { group: "support", name: "協賛（応援）", price: 3000, priceFrom: true, note: "クーポンは出せないけれど、地域の音楽を応援したい会社・団体さまへ。Webにお名前を掲載" }
   ],
   groups: {
-    paper:   { title: "パンフレット＋Web", lead: "紙面に載せて、Webでもおすすめ枠に。いちばんしっかり届くプランです", perks: ["パンフレットの紙面に掲載", "Webのおすすめ枠（ピックアップ）にも表示", "パンフレットの掲載店一覧にも掲載"] },
-    web:     { title: "Webのみ",           lead: "まずは気軽に。スマホのクーポン一覧に載せるプランです", perks: ["Webのクーポン一覧に掲載", "パンフレットの掲載店一覧に1行で掲載（スマホがない方も使えます）"] },
-    support: { title: "応援する",          lead: "", perks: [] }
+    web:     { title: "クーポンを出す", lead: "来場者がパンフレットのQRから開くクーポンページに、お店を掲載します", perks: ["フォームに入力した内容がそのまま掲載", "当日、来場者全員がアクセスできる", "当日までも「参加店」として紹介"] },
+    support: { title: "応援する", lead: "", perks: [] }
   },
+
 
 
   // スケジュール（決まったら日付を入れる。date が "" のあいだは「調整中」と出る）
   schedule: [
     { label: "お申し込み受付スタート", date: "受付中" },
     { label: "お申し込みしめきり",     date: "" },
-    { label: "掲載内容（写真・文章）のご提出しめきり", date: "" },
-    { label: "パンフレット完成・Web掲載", date: "" },
-    { label: "フェスタ当日・パンフレット配布", date: "2027年5月2日（日）" }
+    { label: "クーポンページに「参加店」として公開", date: "確認しだい順次" },
+    { label: "フェスタ当日・クーポンが使えるように", date: "2027年5月2日（日）" }
   ],
 
   // 来場見込み・部数（決まったら数字を入れる。"" のあいだは出ません）
@@ -74,7 +69,7 @@ const SHOP = {
   faq: [
     { q: "東大阪市の外のお店でも申し込めますか？", a: "調整中です。決まりしだいこのページでお知らせします。", fixed: false },
     { q: "クーポンの内容は自由に決めていいですか？", a: "はい、お店で自由に決めていただけます（例：ドリンク1杯サービス、会計から10%引き など）。", fixed: false },
-    { q: "掲載のデザインは作ってもらえますか？", a: "写真と文章をいただければ、こちらでパンフレットの紙面に組み込みます。", fixed: false },
+    { q: "掲載内容はあとから変えられますか？", a: "はい。ご連絡いただければ、こちらで修正します。", fixed: false },
     { q: "支払い方法は？", a: "調整中です。決まりしだいこのページでお知らせします。", fixed: false }
   ]
 };
@@ -240,7 +235,7 @@ footer a{color:var(--sun)}
     <img class="logo" src="images/logo.webp" alt="東大阪市吹奏楽フェスタ 2027" width="1200" height="553">
     <span class="kicker">掲載店・協賛 募集中</span>
     <h1><span class="nb">演奏会に来た</span><span class="nb">みんなを、</span><br><em>あなたのお店へ。</em></h1>
-    <p class="lead" id="heroLead">2027年5月2日（日）のフェスタで配るパンフレットと、このWebサイトに、東大阪のお店・会社を掲載します。</p>
+    <p class="lead" id="heroLead">2027年5月2日（日）のフェスタの来場者に、あなたのお店のクーポンを届けます。</p>
     <div class="from"><b>¥1,000</b><span>から掲載できます</span></div>
     <div class="btns"><a class="pill sun" href="#apply">申し込む・相談する</a><a class="pill" href="#plans">料金を見る</a></div>
   </div>
@@ -252,7 +247,7 @@ footer a{color:var(--sun)}
   <div class="col">
     <span class="eyebrow">MERIT</span>
     <h2 class="h2">掲載すると、<br>こんないいこと。</h2>
-    <div class="item rv"><span class="no">01</span><div><h3>来場者全員の<span class="nb">手もとに届く</span></h3><p>パンフレットは入場したお客さん全員にお配りします。演奏会の合間や帰り道に、じっくり読んでもらえます。</p></div></div>
+    <div class="item rv"><span class="no">01</span><div><h3>来場者全員に<span class="nb">届く</span></h3><p>入場したお客さん全員に配るパンフレットのQRから、クーポンページが開きます。演奏会の休憩中や帰り道に、じっくり見てもらえます。</p></div></div>
     <div class="item rv"><span class="no">02</span><div><h3>クーポンが、<span class="nb">来店のきっかけに</span></h3><p>「せっかくもらったし、寄ってみよう」。クーポンが、はじめてのお客さんの背中を押します。</p></div></div>
     <div class="item rv"><span class="no">03</span><div><h3>地域を応援するお店として<span class="nb">紹介されます</span></h3><p>このフェスタは「音楽で、まちをつなぐ」が合言葉。Webサイトにも掲載して、地域の音楽を支えるお店として紹介します。</p></div></div>
   </div>
@@ -264,8 +259,8 @@ footer a{color:var(--sun)}
     <span class="eyebrow" style="color:var(--navy)">HOW IT WORKS</span>
     <h2 class="h2">クーポンの<span class="nb">しくみ</span></h2>
     <ol class="steps">
-      <li class="rv"><span class="ic">1</span><div><b>入場のときに、パンフレットを受け取る</b><small>お店の紹介と、掲載店の一覧が載っています</small></div></li>
-      <li class="rv"><span class="ic">2</span><div><b>スマホでクーポンを開く</b><small>パンフレットのQRコードから。スマホがない方は、パンフレットの掲載店一覧がそのままクーポンになります</small></div></li>
+      <li class="rv"><span class="ic">1</span><div><b>入場のときに、パンフレットを受け取る</b><small>クーポンページのQRコードが載っています</small></div></li>
+      <li class="rv"><span class="ic">2</span><div><b>QRから、かんたんなアンケートに答える</b><small>答えると、クーポンページが開きます</small></div></li>
       <li class="rv"><span class="ic">3</span><div><b>帰り道や後日、お店でクーポンを見せる</b><small>音楽のあとの寄り道が、あなたのお店に</small></div></li>
     </ol>
   </div>
@@ -276,7 +271,7 @@ footer a{color:var(--sun)}
   <div class="col">
     <span class="eyebrow">PLAN</span>
     <h2 class="h2">掲載プラン</h2>
-    <p style="font-size:.9rem;margin:-10px 0 30px">パンフレットはA4サイズの冊子です。図の色のついたところが、掲載される場所・大きさの目安です。</p>
+    <p style="font-size:.9rem;margin:-10px 0 30px">図の色のついたところが、クーポンページでの表示場所の目安です。</p>
     <div id="planList"></div>
     <div class="numbers" id="numbers"></div>
   </div>
@@ -338,11 +333,11 @@ footer a{color:var(--sun)}
 const S = SHOP, $ = (id) => document.getElementById(id);
 const yen = (n) => "¥" + n.toLocaleString("ja-JP");
 
-$("heroLead").textContent = `${S.dateLong}のフェスタで配るパンフレットと、このWebサイトに、東大阪のお店・会社を掲載します。`;
+$("heroLead").textContent = `${S.dateLong}のフェスタの来場者に、あなたのお店のクーポンを届けます。`;
 const minPrice = Math.min(...S.plans.map(p => p.price));
 document.querySelector(".hero .from b").textContent = yen(minPrice);
 
-// プランの図：紙面はA4の16マス、Webはスマホ画面、協賛は名前の帯
+// プランの図：Webはスマホ画面、協賛は名前の帯（paper を足すと A4 の16マス図も出せる）
 function figure(p) {
   if (p.group === "paper")
     return `<div class="a4" aria-hidden="true">${Array.from({ length: 16 }, (_, k) => `<i class="${k % 4 < p.size[0] && Math.floor(k / 4) < p.size[1] ? "on" : ""}" style="--k:${k}"></i>`).join("")}</div>`;

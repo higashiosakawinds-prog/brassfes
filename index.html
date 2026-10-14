@@ -61,13 +61,13 @@ const FESTA = {
     { title: "ふらっと|入れる", img: "images/tuba-reach.webp", text: "入場無料・予約も不要！図書館に寄ったついでに、ちょっと聴いていくのも大歓迎！", chara: "drum" },
     { title: "高校生から|大人まで", img: "images/jk-point.webp", zoom: 118, text: "高校の吹奏楽部と、2つの市民楽団。世代の違うバンドの音を、一日でまとめて堪能しよう！", chara: "clarinet" },
     { title: "最後は|みんなで合奏", img: "images/tuba-wave.webp", text: "フィナーレは団体の垣根をこえた合同ステージ。ここでしか聴けない編成です。", chara: "trumpet" },
-    { title: "帰りは|街へ", img: "images/member-walk.webp", text: "パンフレットのクーポンを持って、ちょっとお得に東大阪のお店へ。音楽のあとの寄り道も楽しんで！", chara: "drum" }
+    { title: "帰りは|街へ", img: "images/member-walk.webp", text: "パンフレットのQRからクーポンを受け取って、ちょっとお得に東大阪のお店へ。音楽のあとの寄り道も楽しんで！", chara: "drum" }
   ],
 
   // プログラム（順番どおりに並べる）。img は大きな丸からとび出すイラスト。zoom は絵の大きさ(%)、なければ自動
   program: [
-    { part: "第一部", img: "images/band-seated.webp", zoom: 104, title: "東大阪吹奏楽団|＋ 日新高校吹奏楽部", text: "地域に根ざした2団体によるドリームステージ！", color: "navy" },
-    { part: "第二部", img: "images/tuba-reach.webp", title: "吹奏楽団 未来図", text: "2027年吹奏楽コンクール課題曲・自由曲（カット無し）を含む、未来図の今をお届けします。", color: "pink" },
+    { part: "第一部", img: "images/tuba-reach.webp", title: "吹奏楽団 未来図", text: "2027年吹奏楽コンクール課題曲・自由曲（カット無し）を含む、未来図の今をお届けします。", color: "pink" },
+    { part: "第二部", img: "images/band-seated.webp", zoom: 104, title: "東大阪吹奏楽団|＋ 日新高校吹奏楽部", text: "地域に根ざした2団体によるドリームステージ！", color: "navy" },
     { part: "第三部", img: "images/band-conductor.webp", zoom: 104, title: "合同ステージ", text: "東大阪と枚方が手を取り合う合同演奏。団体の垣根をこえて、ひとつの音に。", color: "orange" }
   ],
 
@@ -86,12 +86,12 @@ const FESTA = {
     title: "音楽で、まちをつなぐ。",
     lead: "東大阪の吹奏楽団・学校・市民・まちのお店を音楽でつなぎ、毎年続いていく地域に愛される音楽の祭典を目指しています。音楽で人が育ち、その人が地域を育て、地域がまた新しい人を育てる。そんな「人と地域と音楽」の好循環を、このフェスタから。",
     // 主催団体の定款との関係（助成金の審査などで見られたとき用。不要なら "" に）
-    basis: "このフェスタは、主催・東大阪吹奏楽団の定款（第2条 目的・第3条 活動内容）にもとづく事業です。",
-    basisUrl: "https://higashiosakawinds-prog.github.io/higasui/yakkan.html",
+    basis: "",
+    basisUrl: "",
     pillars: [
       { title: "世代を|こえて", text: "子どもから大人まで、世代や立場をこえて同じ舞台で音を重ねる。ともに交流し、成長できる場をつくります。", img: "winds" },
       { title: "学校と|つながる", text: "部活動の地域移行を見すえて、学校と市民楽団がいっしょに音楽をつくる。教育と文化の新しいしくみを、ここから。", img: "triangle" },
-      { title: "まちのお店と|つながる", text: "パンフレットのクーポンをきっかけに、みんなが東大阪のお店を知り、まちへ繰り出す。音楽からまちのにぎわいを！", img: "tambourine" },
+      { title: "まちのお店と|つながる", text: "クーポンをきっかけに、みんなが東大阪のお店を知り、まちへ繰り出す。音楽からまちのにぎわいを！", img: "tambourine" },
       { title: "だれでも、|吹奏楽に", text: "入場無料・予約なし。はじめての人も子ども連れも、気軽に生の音楽にふれる。地域に根ざした音楽文化を、次の世代へ。", img: "mallets" }
     ],
     steps: [
@@ -127,7 +127,7 @@ const FESTA = {
     { q: "車椅子で行けますか？", a: "会場のライティホールには車椅子席が4席あります。自由にご利用ください。", fixed: true },
     { q: "赤ちゃん連れでも聴ける席はありますか？", a: "親子室が2室あります。お子さんが泣いてしまっても気にせず楽しめますので、自由にご利用ください。", fixed: true },
     { q: "車で行けますか？", a: "駐車場に限りがございますので、電車でのご来場をお勧めします！", fixed: true },
-    { q: "クーポンはどこでもらえますか？", a: "当日、会場でお配りするパンフレットについています。", fixed: true }
+    { q: "クーポンはどこでもらえますか？", a: "当日お配りするパンフレットのQRコードから、かんたんなアンケートに答えると、クーポンのページが開きます。", fixed: true }
   ],
 
   host: "東大阪吹奏楽団",
@@ -630,7 +630,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
       <div class="no"><b>♪</b><span>SHOP</span></div>
       <div class="side">TOWN</div>
       <h3>音楽のあとは、<br>街へ。</h3>
-      <p class="lead">このフェスタは、東大阪のお店や会社を応援しています。パンフレットのクーポンを持って、帰り道に寄ってみてください。</p>
+      <p class="lead">このフェスタは、東大阪のお店や会社を応援しています。パンフレットのQRからクーポンを受け取って、帰り道に寄ってみてください。</p>
       <div class="town-scene" id="townScene"></div>
       <div class="tickets" id="shops"></div>
       <div class="forshop">
@@ -638,7 +638,7 @@ footer b{display:block;font-size:.95rem;letter-spacing:.1em}
         <p style="font-size:.9rem">あなたのお店も、フェスタに参加しませんか？</p>
         <ul>
           <li>このページに、お店・会社の紹介を掲載</li>
-          <li>当日配るパンフレットに掲載</li>
+          <li>当日、来場者がパンフレットのQRからクーポンを受け取れる</li>
           <li>クーポンブックで、来場者にお店を知ってもらえる</li>
           <li>Webのクーポン一覧への掲載なら1,000円から</li>
         </ul>

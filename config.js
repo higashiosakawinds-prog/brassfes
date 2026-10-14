@@ -13,9 +13,6 @@ window.FES_CONFIG = {
   // ---- プラン（shop.html の料金と合わせる） ----
   // id はデータベースに保存される名前なので変えないでください
   plans: [
-    { id: "p1",       name: "パンフ1ページ＋Web",   price: 10000, pickup: true },
-    { id: "p2",       name: "パンフ1/2ページ＋Web", price: 5000,  pickup: true },
-    { id: "p4",       name: "パンフ1/4ページ＋Web", price: 3000,  pickup: true },
     { id: "web_pick", name: "Webピックアップ",      price: 3000,  pickup: true, note: "先着6店" },
     { id: "web_std",  name: "Webスタンダード",      price: 1000,  pickup: false },
     { id: "support",  name: "協賛（応援）",         price: 3000,  pickup: false, note: "3,000円〜・クーポンなし", noCoupon: true }

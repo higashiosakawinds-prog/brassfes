@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>掲載のお申し込み｜東大阪市吹奏楽フェスタ 2027</title>
-<meta name="description" content="東大阪市吹奏楽フェスタ 2027 のパンフレット・Webクーポンへの掲載お申し込みフォームです。主催：東大阪吹奏楽団。">
+<meta name="description" content="東大阪市吹奏楽フェスタ 2027 のWebクーポンページへの掲載お申し込みフォームです。主催：東大阪吹奏楽団。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#3a8a85">
 <link rel="icon" href="images/logo.webp">
@@ -116,7 +116,7 @@ fieldset{min-width:0}
       <input type="text" id="catch" maxlength="40" placeholder="例：荒本駅すぐの、手づくりパンのお店"></div>
     <div class="f coupon-only"><label for="intro">紹介文<span class="opt">任意</span><span class="count" data-for="intro"></span></label>
       <textarea id="intro" maxlength="400" placeholder="お店の自慢やおすすめを自由に"></textarea>
-      <span class="hint">パンフレットでは、プランの大きさに合わせて文章を調整させていただくことがあります</span></div>
+      <span class="hint">入力した内容が、そのままクーポンページに掲載されます</span></div>
     <div class="f"><label for="address">住所<span class="opt">任意</span></label>
       <input type="text" id="address" maxlength="120" autocomplete="street-address" placeholder="例：東大阪市荒本北1-2-3"></div>
     <div class="f coupon-only"><label for="hours">営業時間・定休日<span class="opt">任意</span></label>
@@ -163,7 +163,7 @@ fieldset{min-width:0}
     <span class="hint" id="payHint"></span>
     <div class="total"><span style="font-weight:900">お支払い金額（税込）</span><b id="total">¥0</b></div>
     <label class="agree"><input type="checkbox" id="agree"><span>掲載内容と、下の「お預かりする情報について」を確認しました</span></label>
-    <p class="privacy">お預かりする情報について：お店の名前・ひとこと・紹介文・クーポン・住所・営業時間・Webサイト・写真は、フェスタのパンフレットとWebサイトに掲載します。ご担当者さまのお名前・メールアドレス・電話番号・ご質問は公開せず、このフェスタに関するご連絡だけに使います。主催：東大阪吹奏楽団</p>
+    <p class="privacy">お預かりする情報について：お店の名前・ひとこと・紹介文・クーポン・住所・営業時間・Webサイト・写真は、フェスタのWebサイト（クーポンページ）に掲載します。ご担当者さまのお名前・メールアドレス・電話番号・ご質問は公開せず、このフェスタに関するご連絡だけに使います。主催：東大阪吹奏楽団</p>
   </fieldset>
 
   <button class="pill sun submit" type="submit" id="submit">この内容で申し込む</button>
@@ -187,7 +187,7 @@ fieldset{min-width:0}
     <ol class="steps">
       <li><span>1</span><div>主催者が内容を確認します</div></li>
       <li><span>2</span><div>お支払いを確認したら、Webのクーポン一覧に公開します</div></li>
-      <li><span>3</span><div>パンフレットのプランは、紙面のイメージをメールでお送りします</div></li>
+      <li><span>3</span><div>フェスタ当日、来場者がパンフレットのQRからクーポンを受け取れるようになります</div></li>
     </ol>
     <a class="pill" href="./">フェスタのページへ</a>
   </div>
@@ -207,7 +207,7 @@ $("demo").hidden = !DEMO;
 // プランの選択肢（?plan=p4 のようにURLで最初から選んでおける）
 const want = new URLSearchParams(location.search).get("plan");
 $("plans").innerHTML = C.plans.map((p, i) => `
-  <label class="plan"><input type="radio" name="plan" value="${p.id}" ${p.id === want || (!want && i === 2) ? "checked" : ""}>
+  <label class="plan"><input type="radio" name="plan" value="${p.id}" ${p.id === want || (!want && i === 0) ? "checked" : ""}>
     <span><b>${p.name}${p.pickup ? '<span class="pk">おすすめ枠</span>' : ""}</b>${p.note ? `<small>${p.note}</small>` : ""}</span>
     <span class="yen">${yen(p.price)}</span></label>`).join("");
 $("genres").innerHTML = C.genres.map((g) => `<label class="chip"><input type="radio" name="genre" value="${g}"><span>${g}</span></label>`).join("");
